@@ -1,0 +1,7 @@
+日本地図 / Map of Japan
+Unmodified SVG by Geolonia, based on 日本地図.svg from Wikipedia.
+Source: https://github.com/geolonia/japanese-prefectures/blob/master/map-full.svg
+Base source: https://ja.wikipedia.org/wiki/ファイル:日本地図.svg
+License: GFDL. A copy is included in map-license.txt.
+Runtime colors and highlight overlay are added by きまぐれダーツ旅 (2026).
+Some remote islands are omitted from the original SVG.
