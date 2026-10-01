@@ -225,7 +225,7 @@
 @keyframes slot-blink {from {opacity:.35}to {opacity:1}}
 
 .slot-start-button {gap:11px}
-.slot-button-symbol {display:flex;gap:2px;align-items:center;justify-content:center;width:29px;height:23px;border:2px solid currentColor;border-radius:4px}
+.primary-button .slot-button-symbol {display:flex;flex:0 0 29px;gap:2px;align-items:center;justify-content:center;width:29px;height:23px;border:2px solid currentColor;border-radius:4px}
 .slot-button-symbol i {display:block;width:4px;height:11px;border-radius:2px;background:currentColor}
 .slot-button-symbol i:nth-child(2) {height:15px}
 
