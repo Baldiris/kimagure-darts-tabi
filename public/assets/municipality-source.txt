@@ -1,0 +1,15 @@
+Municipality choices / 市区町村データ
+Source: Code for FUKUI / localgovjp
+https://github.com/code4fukui/localgovjp
+Snapshot: cd94f841f22235759ed29e7f38ecc2fbc6671e6b (2026-07-09)
+https://github.com/code4fukui/localgovjp/blob/cd94f841f22235759ed29e7f38ecc2fbc6671e6b/localgovjp.json
+Retrieved: 2026-10-01
+License: CC0 1.0
+https://creativecommons.org/publicdomain/zero/1.0/
+Upstream sources: Geospatial Information Authority of Japan and J-LIS.
+
+Adaptation by きまぐれダーツ旅: retain municipal ID, prefecture code and name;
+remove spaces from display names; omit designated-city wards to avoid overlap
+with their parent cities. Tokyo's 23 special wards remain individual choices.
+Result: 1,741 choices across 47 prefectures. No live external API is required.
+Regenerate with: node scripts/import-municipalities.mjs /path/to/localgovjp.json

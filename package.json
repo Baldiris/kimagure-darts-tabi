@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "vite",
     "build": "node scripts/build-pages.mjs",
+    "check": "node scripts/check-travel.mjs && tsc --noEmit",
     "preview": "vite preview"
   },
   "dependencies": {
