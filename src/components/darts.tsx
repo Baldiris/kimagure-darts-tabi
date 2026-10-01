@@ -2,14 +2,14 @@ import {useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type CSSPr
 import {ArrowRight} from 'lucide-react';
 import {type Destination} from '@/lib/destinations';
 import {findDestination, type Area} from '@/lib/travel-state';
+import {regionalAssets} from '@/lib/region-map-assets';
 
 export type DartPhase = 'preview' | 'windup' | 'flying' | 'landed' | 'result';
 export type DartCharge = {active:boolean; power:number};
 export type DartShot = {id:string; destination:Destination; power:number; flightMs:number};
-const regionalAssets: Record<string,string> = {'北海道・東北':'hokkaido-tohoku','関東':'kanto','中部':'chubu','近畿':'kinki','中国':'chugoku','四国':'shikoku','九州・沖縄':'kyushu-okinawa'};
 const mapRequests = new Map<string,Promise<string>>();
 export function preloadDartMap(area:Area = '全国') {
- const asset = regionalAssets[area] ? `./assets/regions/${regionalAssets[area]}.svg` : './assets/japan.svg';
+ const asset = regionalAssets[area] ?? './assets/japan.svg';
  if (!mapRequests.has(asset)) mapRequests.set(asset, fetch(asset).then(response => {if (!response.ok) throw new Error('map'); return response.text();}).catch(error => {mapRequests.delete(asset); throw error;}));
  return mapRequests.get(asset)!;
 }
