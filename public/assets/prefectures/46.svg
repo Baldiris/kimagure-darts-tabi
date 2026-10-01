@@ -2,11 +2,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
  <title>鹿児島の地図</title>
  <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
- <g transform="matrix(6.20155039 0 0 6.20155039 -343.41085271 -5194.92248062)">
-  <g class="kagoshima kyushu kyushu-okinawa prefecture" data-code="46" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(96.000000, 17.000000)" data-anchor-x="568.217" data-anchor-y="374.070">
+ <g transform="matrix(6.50406504 0 0 6.50406504 -384.55284553 -5452.96747967)">
+  <g class="kagoshima kyushu kyushu-okinawa prefecture" data-code="46" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(96.000000, 17.000000)" data-anchor-x="571.545" data-anchor-y="387.683">
    <title>鹿児島 / Kagoshima</title>
-   <polygon points="23 949 26 951 23 952" vector-effect="non-scaling-stroke" />
-   <polygon points="33 960 32 954 39 950 48 956 47 961 41 965 35 964" vector-effect="non-scaling-stroke" />
    <polygon points="64 953 64 958 59 959 58 952 62 949 63 939 70 929 71 938" vector-effect="non-scaling-stroke" />
    <polygon points="38 844 43 848 52 844 57 850 56 852 61 859 66 864 65 869 70 871 73 880 80 881 80 888 78 891 75 890 70 896 75 899 73 903 76 902 69 905 66 910 50 918 50 913 55 910 59 898 53 889 54 884 48 881 53 879 54 883 57 884 61 878 54 872 50 874 44 887 46 898 51 901 49 906 43 907 40 901 27 901 28 897 25 896 27 894 22 890 31 890 35 880 32 871 27 867 30 860 28 848 31 846 35 848" vector-effect="non-scaling-stroke" />
    <polygon points="31 837 34 836 33 838" vector-effect="non-scaling-stroke" />

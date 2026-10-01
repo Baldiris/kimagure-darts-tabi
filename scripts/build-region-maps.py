@@ -49,7 +49,7 @@ def inside(x, y, vertices):
     return result
 
 
-def prepare(original):
+def prepare(original, island_distance=65):
     group = deepcopy(original)
     offset = points(group.get("transform"))[0]
     fragments = []
@@ -69,7 +69,7 @@ def prepare(original):
         box = bounds(f[2])
         distance = math.hypot(max(b[0]-box[2], box[0]-b[2], 0),
                               max(b[1]-box[3], box[1]-b[3], 0))
-        if distance <= 65:
+        if distance <= island_distance:
             kept.append(f)
     # Keep subpaths in the same path so lakes retain their original winding.
     for child in list(group):
@@ -153,7 +153,8 @@ def main():
         svg = ET.Element(f"{{{NS}}}svg", {"class": "prefecture-svg-map", "viewBox": "0 0 1000 1000"})
         ET.SubElement(svg, f"{{{NS}}}title").text = f"{name}の地図"
         ET.SubElement(svg, f"{{{NS}}}desc").text = "Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted."
-        svg.append(fit([prepare(groups[code])], (100, 95, 800, 800)))
+        # A tighter island range keeps the prefecture's mainland legible.
+        svg.append(fit([prepare(groups[code], island_distance=25)], (100, 95, 800, 800)))
         assert [int(g.get("data-code")) for g in svg.iter(f"{{{NS}}}g") if g.get("data-code")] == [code]
         ET.indent(svg, space=" ")
         path = prefecture_output/f"{code:02}.svg"

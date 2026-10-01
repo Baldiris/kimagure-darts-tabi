@@ -2,10 +2,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
  <title>島根の地図</title>
  <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
- <g transform="matrix(6.45161290 0 0 6.45161290 -1161.29032258 -3840.48387097)">
-  <g class="shimane chugoku prefecture" data-code="32" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(211.000000, 610.000000)" data-anchor-x="483.871" data-anchor-y="643.387">
+ <g transform="matrix(9.09090909 0 0 9.09090909 -1818.18181818 -5823.18181818)">
+  <g class="shimane chugoku prefecture" data-code="32" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(211.000000, 610.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
    <title>島根 / Shimane</title>
-   <path d="M74,14 L78,13 L75,17 L72,15 L73,19 L71,16 L74,14 Z  M79,16 L77,19 L77,15 L79,14 L81,17 L79,16 Z  M83,5 L88,0 L93,5 L92,9 L89,9 L91,11 L86,12 L83,5 Z  M2,100 L10,98 L25,84 L35,78 L41,70 L52,65 L55,59 L53,55 L70,51 L76,46 L79,49 L87,48 L84,50 L82,51 L88,59 L87,68 L79,70 L81,73 L77,79 L64,77 L57,85 L51,88 L54,93 L46,95 L41,93 L39,96 L31,94 L25,99 L26,101 L24,107 L19,112 L21,114 L17,116 L18,120 L15,124 L13,122 L7,124 L5,120 L7,115 L2,115 L0,111 L4,106 L2,100 Z" vector-effect="non-scaling-stroke" />
+   <path d="M2,100 L10,98 L25,84 L35,78 L41,70 L52,65 L55,59 L53,55 L70,51 L76,46 L79,49 L87,48 L84,50 L82,51 L88,59 L87,68 L79,70 L81,73 L77,79 L64,77 L57,85 L51,88 L54,93 L46,95 L41,93 L39,96 L31,94 L25,99 L26,101 L24,107 L19,112 L21,114 L17,116 L18,120 L15,124 L13,122 L7,124 L5,120 L7,115 L2,115 L0,111 L4,106 L2,100 Z" vector-effect="non-scaling-stroke" />
   </g>
  </g>
 </svg>
