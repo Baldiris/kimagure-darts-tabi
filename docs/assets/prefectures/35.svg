@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>山口の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(9.63855422 0 0 9.63855422 -1519.27710843 -6618.25301205)">
+  <g class="yamaguchi chugoku prefecture" data-code="35" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(168.000000, 710.000000)" data-anchor-x="446.988" data-anchor-y="485.361">
+   <title>山口 / Yamaguchi</title>
+   <path d="M45,0 L47,6 L43,11 L45,15 L50,15 L48,20 L50,24 L56,22 L58,24 L61,20 L60,16 L64,14 L64,21 L66,23 L67,29 L72,31 L72,36 L69,36 L70,44 L65,46 L65,54 L61,48 L57,48 L52,42 L47,44 L50,41 L46,38 L35,42 L32,39 L30,42 L29,40 L27,42 L27,38 L25,43 L21,45 L19,43 L16,45 L15,40 L9,36 L3,43 L3,36 L0,32 L4,27 L1,21 L4,17 L10,17 L5,15 L7,12 L16,14 L17,17 L24,17 L30,15 L29,12 L41,1 L43,2 L45,0 Z  M64,54 L59,56 L62,52 L64,54 Z  M75,50 L83,48 L78,50 L77,53 L73,50 L69,53 L67,48 L70,46 L75,50 Z  M18,15 L18,13 L22,14 L18,15 Z  M51,46 L48,46 L51,43 L51,46 Z" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

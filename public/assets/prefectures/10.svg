@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>群馬の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(11.94029851 0 0 11.94029851 -6532.83582090 -6710.97014925)">
+  <g class="gunma kanto prefecture" data-code="10" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(557.000000, 570.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
+   <title>群馬 / Gunma</title>
+   <polygon points="64 52 54 54 48 50 37 48 32 58 16 67 12 65 12 59 9 56 12 55 10 49 13 47 12 41 3 41 0 36 1 29 6 25 5 23 14 20 26 14 26 11 29 10 28 5 32 4 34 0 41 7 49 9 47 12 50 14 47 17 46 26 54 29 48 42 53 49 62 48" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

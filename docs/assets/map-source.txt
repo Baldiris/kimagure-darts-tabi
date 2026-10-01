@@ -3,7 +3,7 @@ Unmodified SVG by Geolonia, based on 日本地図.svg from Wikipedia.
 Source: https://github.com/geolonia/japanese-prefectures/blob/master/map-full.svg
 Base source: https://ja.wikipedia.org/wiki/ファイル:日本地図.svg
 License: GFDL. A copy is included in map-license.txt.
-Runtime colors, prefecture labels, highlight overlay, and regional SVG adaptations are added by きまぐれダーツ旅 (2026).
+Runtime colors, prefecture labels, highlight overlay, and regional/prefecture SVG adaptations are added by きまぐれダーツ旅 (2026).
 Regional maps preserve the source coastlines with a fitted viewport. Some remote islands are simplified. Okinawa is displayed in a separately scaled inset on the Kyushu-Okinawa map.
-Regional assets can be regenerated with scripts/build-region-maps.py.
+Seven regional maps and 47 individual prefecture maps can be regenerated with scripts/build-region-maps.py.
 Some remote islands are omitted from the original SVG.

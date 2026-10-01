@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>長野の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(6.95652174 0 0 6.95652174 -3246.08695652 -3884.13043478)">
+  <g class="nagano chubu prefecture" data-code="20" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(503.000000, 572.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
+   <title>長野 / Nagano</title>
+   <polygon points="68 18 59 21 60 23 55 27 54 34 57 39 66 39 67 45 64 47 66 53 63 54 66 57 66 63 70 65 71 70 68 72 64 69 58 71 53 66 43 77 46 80 43 82 45 87 41 92 41 104 26 114 18 112 13 115 12 109 14 106 12 102 15 102 13 99 15 95 9 89 11 86 6 79 0 76 2 71 7 71 13 64 14 60 11 56 16 46 13 40 19 32 18 29 21 28 22 17 27 10 27 7 34 8 34 13 36 14 44 10 48 12 48 7 53 2 60 0 63 2 63 7 68 11" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

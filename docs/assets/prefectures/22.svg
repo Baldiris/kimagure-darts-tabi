@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>静岡の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(9.41176471 0 0 9.41176471 -4709.41176471 -6013.23529412)">
+  <g class="shizuoka chubu prefecture" data-code="22" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(511.000000, 659.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
+   <title>静岡 / Shizuoka</title>
+   <polygon points="73 14 77 14 77 27 83 31 81 36 85 42 85 46 78 55 77 61 70 65 64 59 67 45 65 41 66 38 72 37 62 31 55 33 51 38 53 41 44 45 42 54 36 61 38 65 25 61 0 60 0 52 8 47 18 27 33 17 33 5 37 0 40 8 39 19 44 20 48 29 53 27 52 20 56 12 61 17" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

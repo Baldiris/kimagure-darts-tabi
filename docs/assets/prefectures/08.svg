@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>茨城の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(10.81081081 0 0 10.81081081 -6548.64864865 -6121.21621622)">
+  <g class="ibaraki kanto prefecture" data-code="8" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(622.000000, 575.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
+   <title>茨城 / Ibaraki</title>
+   <polygon points="5 54 5 54 2 55 0 48 7 45 8 41 11 41 14 36 25 34 28 27 26 17 29 15 28 12 28 1 38 10 44 4 44 0 54 5 46 29 47 35 44 42 46 52 51 61 49 63 51 66 52 62 60 74 42 62 42 65 24 69 13 64" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

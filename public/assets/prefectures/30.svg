@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>和歌山の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(13.55932203 0 0 13.55932203 -5052.54237288 -9898.22033898)">
+  <g class="wakayama kinki prefecture" data-code="30" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(385.000000, 737.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
+   <title>和歌山 / Wakayama</title>
+   <path d="M41,32 L44,38 L49,41 L45,46 L46,50 L38,55 L37,59 L35,59 L36,56 L19,51 L14,44 L17,41 L9,37 L4,30 L0,30 L3,25 L0,24 L6,21 L1,18 L5,16 L4,14 L8,14 L0,6 L2,3 L5,6 L31,0 L35,9 L31,10 L25,17 L30,24 L28,30 L41,32 Z  M49,23 L49,26 L44,29 L44,26 L49,23 Z" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>石川の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(8.79120879 0 0 8.79120879 -3689.01098901 -4661.04395604)">
+  <g class="ishikawa chubu prefecture" data-code="17" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(448.000000, 541.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
+   <title>石川 / Ishikawa</title>
+   <path d="M37,26 L34,23 L41,23 L37,26 Z  M28,77 L31,80 L26,90 L21,91 L16,86 L6,85 L0,77 L15,62 L26,44 L27,33 L25,29 L25,24 L22,23 L27,10 L52,0 L56,1 L57,5 L51,6 L50,15 L46,14 L39,22 L37,18 L34,19 L32,28 L38,30 L41,26 L41,36 L33,38 L31,48 L28,50 L30,54 L28,57 L29,61 L27,69 L28,77 Z" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>山梨の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(16.00000000 0 0 16.00000000 -8620.00000000 -10113.00000000)">
+  <g class="yamanashi chubu prefecture" data-code="19" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(546.000000, 638.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
+   <title>山梨 / Yamanashi</title>
+   <polygon points="2 21 0 16 3 14 0 11 10 0 15 5 21 3 25 6 28 4 39 7 43 15 48 18 47 27 38 35 26 38 21 33 17 41 18 48 13 50 9 41 4 40 5 29" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>広島の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(10.95890411 0 0 10.95890411 -2420.54794521 -7378.97260274)">
+  <g class="hiroshima chugoku prefecture" data-code="34" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(230.000000, 687.000000)" data-anchor-x="500.000" data-anchor-y="456.644">
+   <title>広島 / Hiroshima</title>
+   <path d="M73,40 L72,42 L69,40 L72,43 L70,42 L68,47 L63,45 L63,42 L54,44 L51,48 L39,49 L37,53 L30,55 L28,53 L25,56 L26,53 L23,47 L25,45 L17,44 L9,51 L10,54 L5,52 L4,46 L2,44 L2,37 L0,35 L5,30 L7,24 L6,22 L12,17 L20,19 L22,16 L27,18 L35,16 L32,11 L38,8 L45,0 L58,2 L65,4 L68,7 L66,14 L70,19 L69,24 L73,40 Z  M45,53 L43,56 L41,53 L46,51 L45,53 Z  M21,54 L20,50 L23,51 L22,59 L19,59 L21,56 L17,51 L21,54 Z  M15,48 L16,50 L12,52 L15,48 Z  M35,57 L33,56 L36,56 L35,57 Z  M24,58 L26,58 L25,61 L28,61 L26,63 L20,62 L23,56 L26,56 L24,58 Z  M59,49 L59,52 L56,49 L59,49 Z  M57,50 L53,52 L54,50 L57,50 Z  M60,44 L62,45 L59,47 L60,44 Z" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

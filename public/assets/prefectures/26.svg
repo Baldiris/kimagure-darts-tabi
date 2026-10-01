@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>京都の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(11.76470588 0 0 11.76470588 -4288.23529412 -7540.29411765)">
+  <g class="kyoto kinki prefecture" data-code="26" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(377.000000, 649.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
+   <title>京都 / Kyoto</title>
+   <polygon points="44 63 41 55 37 54 38 51 34 54 26 46 27 41 17 39 15 32 10 34 3 29 4 23 10 23 10 17 9 15 4 16 0 11 1 7 3 10 2 8 19 0 23 7 15 14 18 15 20 11 20 15 24 17 23 21 25 18 27 19 25 14 31 11 32 14 31 20 34 25 46 27 51 32 48 46 51 56 55 56 59 62 60 66 58 68 54 65 50 68" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

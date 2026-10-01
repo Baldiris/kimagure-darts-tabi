@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>三重の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(8.42105263 0 0 8.42105263 -3323.15789474 -5656.57894737)">
+  <g class="mie kinki prefecture" data-code="24" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(426.000000, 683.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
+   <title>三重 / Mie</title>
+   <polygon points="8 95 3 92 0 86 1 86 1 83 3 83 8 80 8 77 13 76 14 73 13 66 15 62 13 59 15 58 12 53 20 47 11 42 12 38 10 37 13 36 11 32 10 28 13 27 14 22 21 25 27 22 31 12 30 2 36 0 43 7 48 15 42 16 43 20 36 32 35 40 51 47 53 52 56 51 55 55 50 55 55 56 55 61 51 62 53 60 50 58 49 60 43 61 46 57 42 57 39 62 39 60 36 63 34 61 34 64 32 62 25 66 22 68 23 73 21 72 22 70 18 73 22 77 20 77 22 80 19 78 20 81 13 85" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>福岡の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(13.33333333 0 0 13.33333333 -1540.00000000 -9918.33333333)">
+  <g class="fukuoka kyushu kyushu-okinawa prefecture" data-code="40" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(123.000000, 752.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
+   <title>福岡 / Fukuoka</title>
+   <polygon points="40 53 32 48 31 52 27 51 22 55 23 58 18 58 18 52 15 49 17 42 25 37 26 31 19 33 13 27 0 27 7 23 3 20 10 15 13 21 20 20 21 15 17 17 14 14 19 15 23 12 25 5 35 3 36 0 42 1 38 5 41 5 43 2 46 4 53 0 49 8 52 10 50 11 55 22 60 22 59 29 52 28 45 32 41 38 42 43 40 45 43 48" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

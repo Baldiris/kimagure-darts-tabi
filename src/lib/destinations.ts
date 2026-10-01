@@ -10,4 +10,5 @@ const rows=[
 ['福岡県','柳川市',6],['佐賀県','唐津市',6],['長崎県','長崎市',6],['熊本県','阿蘇市',6],['大分県','別府市',6],['宮崎県','日南市',6],['鹿児島県','指宿市',6],['沖縄県','那覇市',6]
 ]as const;
 export const destinations:Destination[]=rows.map(([prefecture,city,region],i)=>({code:i+1,prefecture,city,region:regions[region]}));
-export function pickDestination(area:string,random=Math.random){const pool=destinations.filter(d=>area==='全国'||d.region===area);if(!pool.length)throw new Error('有効なエリアを選んでください');return pool[Math.min(pool.length-1,Math.max(0,Math.floor(random()*pool.length)))]}
+export function destinationPool(area:string,prefectureCode:number|null=null){return destinations.filter(d=>(area==='全国'||d.region===area)&&(prefectureCode===null||d.code===prefectureCode))}
+export function pickDestination(area:string,random=Math.random,prefectureCode:number|null=null){const pool=destinationPool(area,prefectureCode);if(!pool.length)throw new Error('有効なエリアを選んでください');return pool[Math.min(pool.length-1,Math.max(0,Math.floor(random()*pool.length)))]}

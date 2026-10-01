@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>山形の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(9.19540230 0 0 9.19540230 -5371.26436782 -3941.78160920)">
+  <g class="yamagata tohoku prefecture" data-code="6" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(612.000000, 439.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
+   <title>山形 / Yamagata</title>
+   <polygon points="14 1 24 0 28 5 42 8 44 13 48 14 53 22 51 30 48 30 52 41 45 53 46 59 43 65 36 67 37 72 36 81 38 82 35 86 29 87 26 85 22 86 20 82 14 83 7 81 4 76 7 68 7 60 15 57 17 53 8 47 8 40 0 37 13 14" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

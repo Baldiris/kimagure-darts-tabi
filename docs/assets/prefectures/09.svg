@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="prefecture-svg-map" viewBox="0 0 1000 1000">
+ <title>栃木の地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(13.33333333 0 0 13.33333333 -7860.00000000 -7411.66666667)">
+  <g class="tochigi kanto prefecture" data-code="9" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(603.000000, 563.000000)" data-anchor-x="500.000" data-anchor-y="495.000">
+   <title>栃木 / Tochigi</title>
+   <polygon points="19 60 18 59 16 55 7 56 2 49 8 36 0 33 1 24 4 21 1 19 3 16 28 0 40 3 46 7 47 13 47 24 48 27 45 29 47 39 44 46 33 48 30 53 27 53 26 57" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

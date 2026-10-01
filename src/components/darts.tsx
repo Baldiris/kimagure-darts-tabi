@@ -3,13 +3,15 @@ import {ArrowRight} from 'lucide-react';
 import {type Destination} from '@/lib/destinations';
 import {findDestination, type Area} from '@/lib/travel-state';
 import {regionalAssets} from '@/lib/region-map-assets';
+import {prefectureAssets} from '@/lib/prefecture-map-assets';
 
 export type DartPhase = 'preview' | 'windup' | 'flying' | 'landed' | 'result';
 export type DartCharge = {active:boolean; power:number};
 export type DartShot = {id:string; destination:Destination; power:number; flightMs:number};
 const mapRequests = new Map<string,Promise<string>>();
-export function preloadDartMap(area:Area = '全国') {
- const asset = regionalAssets[area] ?? './assets/japan.svg';
+const mapAsset = (area:Area, prefectureCode:number|null) => (prefectureCode && prefectureAssets[prefectureCode]) || regionalAssets[area] || './assets/japan.svg';
+export function preloadDartMap(area:Area = '全国', prefectureCode:number|null = null) {
+ const asset = mapAsset(area,prefectureCode);
  if (!mapRequests.has(asset)) mapRequests.set(asset, fetch(asset).then(response => {if (!response.ok) throw new Error('map'); return response.text();}).catch(error => {mapRequests.delete(asset); throw error;}));
  return mapRequests.get(asset)!;
 }
@@ -38,12 +40,14 @@ export function DartIcon({className = ''}: {className?:string}) {
  return <svg className={`dart-icon ${className}`} viewBox="0 0 245 88" aria-hidden="true"><g transform="translate(8 44)"><DartShape/></g></svg>;
 }
 
-export function DartMap({area, destination, phase, shot}: {area:Area; destination:Destination | null; phase:DartPhase; shot?:DartShot}) {
- const [map, setMap] = useState({area:'',markup:''}), [labels,setLabels] = useState<PrefectureLabel[]>([]), [failed, setFailed] = useState(false), [point, setPoint] = useState<{x:number;y:number} | null>(null);
+export function DartMap({area, prefectureCode = null, destination, phase, shot}: {area:Area; prefectureCode?:number|null; destination:Destination | null; phase:DartPhase; shot?:DartShot}) {
+ const [map, setMap] = useState({asset:'',markup:''}), [labels,setLabels] = useState<PrefectureLabel[]>([]), [failed, setFailed] = useState(false), [point, setPoint] = useState<{x:number;y:number} | null>(null);
  const mapRef = useRef<HTMLDivElement>(null);
- const markup = map.area === area ? map.markup : '', regional = Boolean(regionalAssets[area]);
+ const asset = mapAsset(area,prefectureCode), single = Boolean(prefectureCode && prefectureAssets[prefectureCode]);
+ const markup = map.asset === asset ? map.markup : '', regional = single || Boolean(regionalAssets[area]);
+ const mapName = single ? findDestination(prefectureCode!)!.prefecture : area;
  const hit = phase === 'landed' || phase === 'result';
- useEffect(() => {let alive = true; setFailed(false); preloadDartMap(area).then(value => {if (alive) setMap({area,markup:value});}).catch(() => {if (alive) setFailed(true);}); return () => {alive = false;};}, [area]);
+ useEffect(() => {let alive = true; setFailed(false); preloadDartMap(area,prefectureCode).then(value => {if (alive) setMap({asset,markup:value});}).catch(() => {if (alive) setFailed(true);}); return () => {alive = false;};}, [area, prefectureCode, asset]);
  const coloredMarkup = useMemo(() => {
   if (!markup) return '';
   const document = new DOMParser().parseFromString(markup, 'image/svg+xml');
@@ -57,8 +61,8 @@ export function DartMap({area, destination, phase, shot}: {area:Area; destinatio
  useLayoutEffect(() => {
   const group = mapRef.current?.querySelector<SVGGraphicsElement>(`[data-code="${destination?.code}"]`), svg = mapRef.current?.querySelector('svg');
   setLabels(regional && svg ? Array.from(svg.querySelectorAll<SVGElement>('[data-anchor-x]')).map(element => {
-   const code = Number(element.dataset.code), anchorX = Number(element.dataset.anchorX), anchorY = Number(element.dataset.anchorY), offset = labelOffsets[area]?.[code] ?? [0,0];
-   return {code,x:anchorX+offset[0],y:anchorY+offset[1],anchorX,anchorY,name:findDestination(code)!.prefecture.replace(/[都府県]$/, '')};
+   const code = Number(element.dataset.code), anchorX = Number(element.dataset.anchorX), anchorY = Number(element.dataset.anchorY), offset = single ? [0,-90] : labelOffsets[area]?.[code] ?? [0,0];
+   return {code,x:anchorX+offset[0],y:Math.max(65,anchorY+offset[1]),anchorX,anchorY,name:single ? findDestination(code)!.prefecture : findDestination(code)!.prefecture.replace(/[都府県]$/, '')};
   }) : []);
   if (regional && group) {setPoint({x:Number(group.dataset.anchorX),y:Number(group.dataset.anchorY)}); return;}
   const prefecture = group && (Array.from(group.querySelectorAll<SVGGraphicsElement>('polygon,path')).sort((a,b) => {const x = a.getBBox(), y = b.getBBox(); return y.width*y.height-x.width*x.height;})[0] ?? group);
@@ -79,14 +83,14 @@ export function DartMap({area, destination, phase, shot}: {area:Area; destinatio
   }
   const target = center.matrixTransform(matrix).matrixTransform(inverse);
   setPoint({x:target.x,y:target.y});
- }, [coloredMarkup, area, regional, destination?.code]);
+ }, [coloredMarkup, area, regional, single, destination?.code]);
  const power = shot?.power ?? 65;
  const position = point ?? {x:510,y:520};
  const style = {'--launch-x':`${790-position.x}px`, '--launch-y':`${845-position.y}px`, '--pullback':`${32+power*.45}px`, '--flight-ms':`${shot?.flightMs ?? 690}ms`} as CSSProperties;
- return <div className={`japan-map dart-stage ${regional ? 'regional-map' : ''} phase-${phase}`} role="img" aria-label={hit && destination ? `${destination.prefecture}にダーツが刺さった${regional ? area+'の地域地図' : '日本地図'}。一部の離島は省略されています。` : phase === 'preview' ? `${area}の地域地図。県名の表示された都道府県から旅先を抽選します。${area === '九州・沖縄' ? '沖縄は別枠で表示しています。' : ''}` : `${area}の地図にダーツを投げています。`}>
+ return <div className={`japan-map dart-stage ${regional ? 'regional-map' : ''} ${single ? 'prefecture-map' : ''} phase-${phase}`} role="img" aria-label={hit && destination ? `${destination.prefecture}にダーツが刺さった${mapName}の地図。一部の離島は省略されています。` : phase === 'preview' ? `${mapName}の地図。${single ? 'この都道府県の代表の町を案内します。' : '表示された都道府県から旅先を抽選します。'}${!single && area === '九州・沖縄' ? '沖縄は別枠で表示しています。' : ''}` : `${mapName}の地図にダーツを投げています。`}>
   {coloredMarkup ? <div className="map-svg" ref={mapRef} aria-hidden="true" dangerouslySetInnerHTML={{__html:coloredMarkup}}/> : <p className="map-placeholder">{failed ? '地図を表示できませんでした。抽選結果は表示できます。' : '地図を読み込み中…'}</p>}
   {(point || failed || (regional && coloredMarkup)) && <svg className="map-marker dart-layer" viewBox="0 0 1000 1000" style={style} aria-hidden="true">
-   {regional && <g className="prefecture-map-labels">{labels.map(label => {const chosen = hit && label.code === destination?.code, y = label.y+(chosen ? -44 : 0); return <g key={label.code}>{(label.x !== label.anchorX || label.y !== label.anchorY) && <path className="prefecture-label-line" d={`M${label.anchorX} ${label.anchorY}L${label.x} ${y}`}/>}<text x={label.x} y={y} className={chosen ? 'is-hit' : ''}>{label.name}</text></g>;})}</g>}
+   {regional && <g className="prefecture-map-labels">{labels.map(label => {const chosen = hit && label.code === destination?.code, y = label.y+(chosen && !single ? -44 : 0); return <g key={label.code}>{!single && (label.x !== label.anchorX || label.y !== label.anchorY) && <path className="prefecture-label-line" d={`M${label.anchorX} ${label.anchorY}L${label.x} ${y}`}/>}<text x={label.x} y={y} className={chosen ? 'is-hit' : ''}>{label.name}</text></g>;})}</g>}
    {hit && <g className="dart-impact" transform={`translate(${position.x} ${position.y})`} key={shot?.id ?? destination?.code}>
     <circle className="impact-ring ring-one" r="21"/><circle className="impact-ring ring-two" r="21"/>
     <circle className="dart-target-halo" r="28"/><circle r="11" fill="#eaff48" stroke="#163af1" strokeWidth="4"/>
