@@ -3,14 +3,18 @@ import {ArrowRight} from 'lucide-react';
 import {type Destination} from '@/lib/destinations';
 import {findDestination, type Area} from '@/lib/travel-state';
 
-export type DartPhase = 'windup' | 'flying' | 'landed' | 'result';
+export type DartPhase = 'preview' | 'windup' | 'flying' | 'landed' | 'result';
 export type DartCharge = {active:boolean; power:number};
 export type DartShot = {id:string; destination:Destination; power:number; flightMs:number};
-let mapRequest: Promise<string> | undefined;
-export function preloadDartMap() {
- if (!mapRequest) mapRequest = fetch('./assets/japan.svg').then(response => {if (!response.ok) throw new Error('map'); return response.text();}).catch(error => {mapRequest = undefined; throw error;});
- return mapRequest;
+const regionalAssets: Record<string,string> = {'北海道・東北':'hokkaido-tohoku','関東':'kanto','中部':'chubu','近畿':'kinki','中国':'chugoku','四国':'shikoku','九州・沖縄':'kyushu-okinawa'};
+const mapRequests = new Map<string,Promise<string>>();
+export function preloadDartMap(area:Area = '全国') {
+ const asset = regionalAssets[area] ? `./assets/regions/${regionalAssets[area]}.svg` : './assets/japan.svg';
+ if (!mapRequests.has(asset)) mapRequests.set(asset, fetch(asset).then(response => {if (!response.ok) throw new Error('map'); return response.text();}).catch(error => {mapRequests.delete(asset); throw error;}));
+ return mapRequests.get(asset)!;
 }
+type PrefectureLabel = {code:number; x:number; y:number; anchorX:number; anchorY:number; name:string};
+const labelOffsets: Record<string,Record<number,[number,number]>> = {'北海道・東北':{3:[64,0],4:[76,0],5:[-64,0],6:[-64,0]},'中部':{17:[-28,0]},'九州・沖縄':{41:[-65,-15],42:[-55,20]}};
 
 // The needle is at (0,0), so the same dart can land precisely on the map marker.
 function DartShape() {
@@ -35,22 +39,28 @@ export function DartIcon({className = ''}: {className?:string}) {
 }
 
 export function DartMap({area, destination, phase, shot}: {area:Area; destination:Destination | null; phase:DartPhase; shot?:DartShot}) {
- const [markup, setMarkup] = useState(''), [failed, setFailed] = useState(false), [point, setPoint] = useState<{x:number;y:number} | null>(null);
+ const [map, setMap] = useState({area:'',markup:''}), [labels,setLabels] = useState<PrefectureLabel[]>([]), [failed, setFailed] = useState(false), [point, setPoint] = useState<{x:number;y:number} | null>(null);
  const mapRef = useRef<HTMLDivElement>(null);
+ const markup = map.area === area ? map.markup : '', regional = Boolean(regionalAssets[area]);
  const hit = phase === 'landed' || phase === 'result';
- useEffect(() => {let alive = true; preloadDartMap().then(value => {if (alive) setMarkup(value);}).catch(() => {if (alive) setFailed(true);}); return () => {alive = false;};}, []);
+ useEffect(() => {let alive = true; setFailed(false); preloadDartMap(area).then(value => {if (alive) setMap({area,markup:value});}).catch(() => {if (alive) setFailed(true);}); return () => {alive = false;};}, [area]);
  const coloredMarkup = useMemo(() => {
   if (!markup) return '';
   const document = new DOMParser().parseFromString(markup, 'image/svg+xml');
   document.querySelectorAll<SVGElement>('.prefecture').forEach(element => {
    const candidate = findDestination(Number(element.dataset.code));
    element.style.fill = hit && destination?.code === candidate?.code ? '#163af1' : candidate && (area === '全国' || candidate.region === area) ? '#a9c2ee' : '#dde5ef';
-   element.style.stroke = '#f4f7fb'; element.style.strokeWidth = '2.5';
+   element.style.stroke = '#f4f7fb'; element.style.strokeWidth = regional ? '1' : '2.5';
   });
   return new XMLSerializer().serializeToString(document.documentElement);
- }, [markup, area, hit, destination?.code]);
+ }, [markup, area, regional, hit, destination?.code]);
  useLayoutEffect(() => {
   const group = mapRef.current?.querySelector<SVGGraphicsElement>(`[data-code="${destination?.code}"]`), svg = mapRef.current?.querySelector('svg');
+  setLabels(regional && svg ? Array.from(svg.querySelectorAll<SVGElement>('[data-anchor-x]')).map(element => {
+   const code = Number(element.dataset.code), anchorX = Number(element.dataset.anchorX), anchorY = Number(element.dataset.anchorY), offset = labelOffsets[area]?.[code] ?? [0,0];
+   return {code,x:anchorX+offset[0],y:anchorY+offset[1],anchorX,anchorY,name:findDestination(code)!.prefecture.replace(/[都府県]$/, '')};
+  }) : []);
+  if (regional && group) {setPoint({x:Number(group.dataset.anchorX),y:Number(group.dataset.anchorY)}); return;}
   const prefecture = group && (Array.from(group.querySelectorAll<SVGGraphicsElement>('polygon,path')).sort((a,b) => {const x = a.getBBox(), y = b.getBBox(); return y.width*y.height-x.width*x.height;})[0] ?? group);
   if (!prefecture || !svg) {setPoint(null); return;}
   const box = prefecture.getBBox(), matrix = prefecture.getCTM(), inverse = svg.getCTM()?.inverse();
@@ -69,21 +79,22 @@ export function DartMap({area, destination, phase, shot}: {area:Area; destinatio
   }
   const target = center.matrixTransform(matrix).matrixTransform(inverse);
   setPoint({x:target.x,y:target.y});
- }, [coloredMarkup, destination?.code]);
+ }, [coloredMarkup, area, regional, destination?.code]);
  const power = shot?.power ?? 65;
  const position = point ?? {x:510,y:520};
  const style = {'--launch-x':`${790-position.x}px`, '--launch-y':`${845-position.y}px`, '--pullback':`${32+power*.45}px`, '--flight-ms':`${shot?.flightMs ?? 690}ms`} as CSSProperties;
- return <div className={`japan-map dart-stage phase-${phase}`} role="img" aria-label={hit && destination ? `${destination.prefecture}にダーツが刺さった日本地図。一部の離島は省略されています。` : `${area}の地図にダーツを投げています。`}>
+ return <div className={`japan-map dart-stage ${regional ? 'regional-map' : ''} phase-${phase}`} role="img" aria-label={hit && destination ? `${destination.prefecture}にダーツが刺さった${regional ? area+'の地域地図' : '日本地図'}。一部の離島は省略されています。` : phase === 'preview' ? `${area}の地域地図。県名の表示された都道府県から旅先を抽選します。${area === '九州・沖縄' ? '沖縄は別枠で表示しています。' : ''}` : `${area}の地図にダーツを投げています。`}>
   {coloredMarkup ? <div className="map-svg" ref={mapRef} aria-hidden="true" dangerouslySetInnerHTML={{__html:coloredMarkup}}/> : <p className="map-placeholder">{failed ? '地図を表示できませんでした。抽選結果は表示できます。' : '地図を読み込み中…'}</p>}
-  {(point || failed) && <svg className="map-marker dart-layer" viewBox="0 0 1000 1000" style={style} aria-hidden="true">
+  {(point || failed || (regional && coloredMarkup)) && <svg className="map-marker dart-layer" viewBox="0 0 1000 1000" style={style} aria-hidden="true">
+   {regional && <g className="prefecture-map-labels">{labels.map(label => {const chosen = hit && label.code === destination?.code, y = label.y+(chosen ? -44 : 0); return <g key={label.code}>{(label.x !== label.anchorX || label.y !== label.anchorY) && <path className="prefecture-label-line" d={`M${label.anchorX} ${label.anchorY}L${label.x} ${y}`}/>}<text x={label.x} y={y} className={chosen ? 'is-hit' : ''}>{label.name}</text></g>;})}</g>}
    {hit && <g className="dart-impact" transform={`translate(${position.x} ${position.y})`} key={shot?.id ?? destination?.code}>
     <circle className="impact-ring ring-one" r="21"/><circle className="impact-ring ring-two" r="21"/>
     <circle className="dart-target-halo" r="28"/><circle r="11" fill="#eaff48" stroke="#163af1" strokeWidth="4"/>
     {phase === 'landed' && <g className="impact-sparks">{[0,60,120,180,240,300].map(angle => <path key={angle} d="M32 0h18" transform={`rotate(${angle})`}/>)}</g>}
    </g>}
-   <g transform={`translate(${position.x} ${position.y})`}><g className={`dart-projectile ${phase}`}><DartShape/></g></g>
+   {phase !== 'preview' && <g transform={`translate(${position.x} ${position.y})`}><g className={`dart-projectile ${phase}`}><DartShape/></g></g>}
   </svg>}
-  {phase !== 'result' && <div className="throw-phase" aria-hidden="true"><span className={phase==='windup'?'active':'complete'}>かまえる</span><i/><span className={phase==='flying'?'active':phase==='landed'?'complete':''}>投げる</span><i/><span className={phase==='landed'?'active':''}>着地</span></div>}
+  {phase !== 'result' && phase !== 'preview' && <div className="throw-phase" aria-hidden="true"><span className={phase==='windup'?'active':'complete'}>かまえる</span><i/><span className={phase==='flying'?'active':phase==='landed'?'complete':''}>投げる</span><i/><span className={phase==='landed'?'active':''}>着地</span></div>}
  </div>;
 }
 

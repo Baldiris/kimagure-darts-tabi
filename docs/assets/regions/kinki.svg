@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="regional-svg-map" viewBox="0 0 1000 1000">
+ <title>近畿の地域地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(5.34013605 0 0 5.34013605 -1708.14625850 -3365.74829932)">
+  <g class="mie kinki prefecture" data-code="24" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(426.000000, 683.000000)" data-anchor-x="716.276" data-anchor-y="535.221">
+   <title>三重 / Mie</title>
+   <polygon points="8 95 3 92 0 86 1 86 1 83 3 83 8 80 8 77 13 76 14 73 13 66 15 62 13 59 15 58 12 53 20 47 11 42 12 38 10 37 13 36 11 32 10 28 13 27 14 22 21 25 27 22 31 12 30 2 36 0 43 7 48 15 42 16 43 20 36 32 35 40 51 47 53 52 56 51 55 55 50 55 55 56 55 61 51 62 53 60 50 58 49 60 43 61 46 57 42 57 39 62 39 60 36 63 34 61 34 64 32 62 25 66 22 68 23 73 21 72 22 70 18 73 22 77 20 77 22 80 19 78 20 81 13 85" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="shiga kinki prefecture" data-code="25" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(423.000000, 655.000000)" data-anchor-x="653.529" data-anchor-y="289.041">
+   <title>滋賀 / Shiga</title>
+   <path d="M20,0 L27,3 L28,9 L31,9 L34,16 L35,19 L31,29 L33,30 L34,40 L30,50 L24,53 L17,50 L16,55 L13,56 L9,50 L5,50 L2,40 L5,26 L0,21 L3,17 L6,18 L9,11 L12,13 L18,10 L18,7 L21,8 L20,0 Z  M20,13 L20,16 L18,13 L14,16 L16,24 L8,32 L8,36 L5,42 L7,45 L9,36 L15,35 L16,31 L25,25 L26,21 L20,13 Z" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="kyoto kinki prefecture" data-code="26" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(377.000000, 649.000000)" data-anchor-x="465.289" data-anchor-y="281.565">
+   <title>京都 / Kyoto</title>
+   <polygon points="44 63 41 55 37 54 38 51 34 54 26 46 27 41 17 39 15 32 10 34 3 29 4 23 10 23 10 17 9 15 4 16 0 11 1 7 3 10 2 8 19 0 23 7 15 14 18 15 20 11 20 15 24 17 23 21 25 18 27 19 25 14 31 11 32 14 31 20 34 25 46 27 51 32 48 46 51 56 55 56 59 62 60 66 58 68 54 65 50 68" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="osaka kinki prefecture" data-code="27" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(387.000000, 695.000000)" data-anchor-x="453.808" data-anchor-y="473.810">
+   <title>大阪 / Osaka</title>
+   <polygon points="16 0 24 8 28 5 27 8 31 9 34 17 29 28 31 37 29 42 3 48 0 45 7 44 14 37 17 28 19 30 17 22 20 20 18 9 20 8 14 5 13 1" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="hyogo kinki prefecture" data-code="28" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(345.000000, 655.000000)" data-anchor-x="299.745" data-anchor-y="308.265">
+   <title>兵庫 / Hyogo</title>
+   <path d="M31,90 L23,93 L23,88 L20,89 L20,86 L38,67 L39,69 L32,79 L35,88 L31,90 Z  M3,59 L4,56 L0,50 L2,47 L1,40 L9,32 L8,26 L14,24 L14,20 L7,3 L16,0 L33,1 L32,5 L36,10 L41,9 L42,11 L42,17 L36,17 L35,23 L42,28 L47,26 L49,33 L59,35 L58,40 L55,41 L56,45 L62,48 L60,49 L62,60 L59,62 L53,60 L40,66 L25,56 L11,57 L11,53 L8,58 L5,56 L3,59 Z" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="nara kinki prefecture" data-code="29" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(410.000000, 712.000000)" data-anchor-x="577.432" data-anchor-y="588.622">
+   <title>奈良 / Nara</title>
+   <polygon points="24 48 19 51 19 54 17 54 17 57 16 57 3 55 5 49 0 42 6 35 10 34 6 25 8 20 6 11 11 0 17 5 21 2 25 5 27 3 29 7 26 8 28 9 27 13 36 18 28 24 31 29 29 30 31 33 29 37 30 44 29 47" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="wakayama kinki prefecture" data-code="30" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(385.000000, 737.000000)" data-anchor-x="478.639" data-anchor-y="727.466">
+   <title>和歌山 / Wakayama</title>
+   <path d="M41,32 L44,38 L49,41 L45,46 L46,50 L38,55 L37,59 L35,59 L36,56 L19,51 L14,44 L17,41 L9,37 L4,30 L0,30 L3,25 L0,24 L6,21 L1,18 L5,16 L4,14 L8,14 L0,6 L2,3 L5,6 L31,0 L35,9 L31,10 L25,17 L30,24 L28,30 L41,32 Z  M49,23 L49,26 L44,29 L44,26 L49,23 Z" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

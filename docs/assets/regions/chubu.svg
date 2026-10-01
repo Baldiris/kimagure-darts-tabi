@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="regional-svg-map" viewBox="0 0 1000 1000">
+ <title>中部の地域地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(3.15261044 0 0 3.15261044 -1134.62851406 -1400.64257028)">
+  <g class="niigata chubu prefecture" data-code="15" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(518.000000, 476.000000)" data-anchor-x="682.142" data-anchor-y="279.699">
+   <title>新潟 / Niigata</title>
+   <path d="M7,113 L4,102 L0,99 L14,94 L23,87 L30,87 L45,75 L55,60 L60,46 L79,34 L80,36 L79,35 L85,28 L94,0 L102,3 L102,10 L111,16 L109,20 L101,23 L101,31 L98,39 L101,44 L104,46 L95,56 L97,65 L89,65 L88,68 L79,69 L78,72 L80,76 L76,82 L81,87 L80,101 L73,94 L71,98 L67,99 L68,104 L65,105 L65,108 L53,114 L53,107 L48,103 L48,98 L45,96 L38,98 L33,103 L33,108 L29,106 L21,110 L19,109 L19,104 L12,103 L12,106 L7,113 Z  M36,46 L28,47 L35,38 L33,35 L30,37 L30,31 L34,23 L43,14 L39,30 L46,31 L43,40 L36,46 Z" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="toyama chubu prefecture" data-code="16" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(475.000000, 575.000000)" data-anchor-x="441.677" data-anchor-y="481.466">
+   <title>富山 / Toyama</title>
+   <polygon points="41 37 31 33 27 35 27 33 22 35 19 33 10 44 9 40 5 38 1 43 0 35 2 27 1 23 3 20 1 16 4 14 6 4 14 2 11 8 23 15 31 11 33 3 43 0 47 3 50 14 49 25 46 26 47 29" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="ishikawa chubu prefecture" data-code="17" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(448.000000, 541.000000)" data-anchor-x="367.590" data-anchor-y="448.363">
+   <title>石川 / Ishikawa</title>
+   <path d="M37,26 L34,23 L41,23 L37,26 Z  M28,77 L31,80 L26,90 L21,91 L16,86 L6,85 L0,77 L15,62 L26,44 L27,33 L25,29 L25,24 L22,23 L27,10 L52,0 L56,1 L57,5 L51,6 L50,15 L46,14 L39,22 L37,18 L34,19 L32,28 L38,30 L41,26 L41,36 L33,38 L31,48 L28,50 L30,54 L28,57 L29,61 L27,69 L28,77 Z" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="fukui chubu prefecture" data-code="18" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(408.000000, 618.000000)" data-anchor-x="261.978" data-anchor-y="639.096">
+   <title>福井 / Fukui</title>
+   <polygon points="40 0 46 8 56 9 61 14 66 13 64 19 70 27 67 31 54 32 53 34 47 31 42 40 35 37 36 45 33 44 33 47 27 50 24 48 21 55 18 54 15 58 3 56 0 51 1 45 3 49 10 46 6 49 13 50 15 47 13 48 13 45 19 47 17 45 20 43 18 40 26 41 25 35 28 33 29 38 31 39 32 32 25 19 34 6 34 2" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="yamanashi chubu prefecture" data-code="19" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(546.000000, 638.000000)" data-anchor-x="662.359" data-anchor-y="689.538">
+   <title>山梨 / Yamanashi</title>
+   <polygon points="2 21 0 16 3 14 0 11 10 0 15 5 21 3 25 6 28 4 39 7 43 15 48 18 47 27 38 35 26 38 21 33 17 41 18 48 13 50 9 41 4 40 5 29" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="nagano chubu prefecture" data-code="20" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(503.000000, 572.000000)" data-anchor-x="563.052" data-anchor-y="583.926">
+   <title>長野 / Nagano</title>
+   <polygon points="68 18 59 21 60 23 55 27 54 34 57 39 66 39 67 45 64 47 66 53 63 54 66 57 66 63 70 65 71 70 68 72 64 69 58 71 53 66 43 77 46 80 43 82 45 87 41 92 41 104 26 114 18 112 13 115 12 109 14 106 12 102 15 102 13 99 15 95 9 89 11 86 6 79 0 76 2 71 7 71 13 64 14 60 11 56 16 46 13 40 19 32 18 29 21 28 22 17 27 10 27 7 34 8 34 13 36 14 44 10 48 12 48 7 53 2 60 0 63 2 63 7 68 11" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="gifu chubu prefecture" data-code="21" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(450.000000, 608.000000)" data-anchor-x="392.811" data-anchor-y="645.402">
+   <title>岐阜 / Gifu</title>
+   <polygon points="66 4 69 10 64 20 67 24 66 28 60 35 55 35 53 40 59 43 64 50 62 53 68 59 66 63 68 66 65 66 67 70 65 73 58 77 52 73 45 75 40 73 34 65 24 68 20 76 19 82 12 75 6 77 4 76 8 66 7 63 4 56 1 56 0 50 5 41 11 44 12 42 25 41 28 37 22 29 24 23 29 13 26 10 30 5 34 7 35 11 44 0 47 2 52 0 52 2 56 0" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="shizuoka chubu prefecture" data-code="22" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(511.000000, 659.000000)" data-anchor-x="610.341" data-anchor-y="779.388">
+   <title>静岡 / Shizuoka</title>
+   <polygon points="73 14 77 14 77 27 83 31 81 36 85 42 85 46 78 55 77 61 70 65 64 59 67 45 65 41 66 38 72 37 62 31 55 33 51 38 53 41 44 45 42 54 36 61 38 65 25 61 0 60 0 52 8 47 18 27 33 17 33 5 37 0 40 8 39 19 44 20 48 29 53 27 52 20 56 12 61 17" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="aichi chubu prefecture" data-code="23" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(469.000000, 673.000000)" data-anchor-x="438.524" data-anchor-y="803.032">
+   <title>愛知 / Aichi</title>
+   <polygon points="42 46 18 52 20 47 23 49 31 43 33 46 35 43 34 40 28 37 26 41 18 40 14 37 16 29 12 40 16 45 13 45 9 41 10 36 8 33 8 28 12 21 5 25 0 17 1 11 5 3 15 0 21 8 26 10 33 8 39 12 46 8 47 14 52 11 60 13 50 33 42 38" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>

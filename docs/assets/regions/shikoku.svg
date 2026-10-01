@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" class="regional-svg-map" viewBox="0 0 1000 1000">
+ <title>四国の地域地図</title>
+ <desc>Adapted from Geolonia / Wikipedia. GFDL. Some remote islands omitted.</desc>
+ <g transform="matrix(5.62500000 0 0 5.62500000 -1170.62500000 -3892.18750000)">
+  <g class="tokushima shikoku prefecture" data-code="36" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(312.000000, 744.000000)" data-anchor-x="744.688" data-anchor-y="413.750">
+   <title>徳島 / Tokushima</title>
+   <path d="M50,2 L52,0 L51,4 L50,2 Z  M41,2 L49,0 L49,3 L52,4 L48,13 L55,20 L50,24 L57,26 L38,36 L33,43 L27,42 L25,38 L27,34 L20,33 L19,25 L13,27 L0,21 L2,13 L11,7 L18,10 L27,3 L40,5 L41,2 Z" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="kagawa shikoku prefecture" data-code="37" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(308.000000, 724.000000)" data-anchor-x="688.438" data-anchor-y="298.438">
+   <title>香川 / Kagawa</title>
+   <path d="M6,33 L1,31 L4,21 L0,17 L6,20 L19,10 L26,13 L30,9 L31,14 L34,11 L37,14 L36,17 L45,22 L44,25 L31,23 L22,30 L15,27 L6,33 Z  M27,5 L25,4 L29,4 L27,5 Z  M40,0 L42,0 L40,8 L38,7 L38,5 L35,9 L35,5 L31,3 L40,0 Z" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="ehime shikoku prefecture" data-code="38" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(225.000000, 737.000000)" data-anchor-x="345.312" data-anchor-y="523.438">
+   <title>愛媛 / Ehime</title>
+   <path d="M34,21 L31,20 L35,17 L34,21 Z  M55,6 L51,6 L55,0 L57,3 L55,6 Z  M60,5 L61,5 L60,7 L57,6 L60,5 Z  M58,10 L54,12 L55,7 L60,8 L58,10 Z  M32,85 L25,83 L25,86 L23,86 L24,81 L27,82 L21,76 L24,76 L22,72 L25,72 L22,71 L23,69 L20,67 L24,70 L28,66 L28,63 L24,63 L27,60 L19,60 L21,57 L19,56 L22,51 L16,50 L8,56 L0,57 L35,37 L41,18 L50,15 L48,11 L51,10 L59,24 L70,20 L80,22 L84,18 L89,20 L87,28 L63,32 L56,41 L53,51 L42,52 L46,61 L41,64 L35,72 L31,69 L34,82 L32,85 Z" vector-effect="non-scaling-stroke" />
+  </g>
+  <g class="kochi shikoku prefecture" data-code="39" stroke-linejoin="round" fill="#EEEEEE" fill-rule="nonzero" stroke="#000000" stroke-width="1.0" transform="translate(251.000000, 765.000000)" data-anchor-x="519.688" data-anchor-y="568.438">
+   <title>高知 / Kochi</title>
+   <path d="M61,0 L74,6 L80,4 L81,12 L88,13 L86,17 L88,21 L94,22 L87,41 L75,25 L65,21 L55,23 L55,21 L56,24 L44,28 L50,28 L44,29 L42,32 L41,29 L38,33 L39,38 L37,44 L34,44 L30,52 L25,53 L25,61 L22,64 L25,70 L21,66 L14,68 L9,65 L5,67 L6,61 L10,60 L9,57 L6,57 L8,54 L5,41 L9,44 L15,36 L20,33 L16,24 L27,23 L30,13 L37,4 L61,0 Z  M1,69 L0,70 L0,67 L1,69 Z" vector-effect="non-scaling-stroke" />
+  </g>
+ </g>
+</svg>
