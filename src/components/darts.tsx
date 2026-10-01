@@ -14,7 +14,7 @@ export function preloadDartMap(area:Area = '全国') {
  return mapRequests.get(asset)!;
 }
 type PrefectureLabel = {code:number; x:number; y:number; anchorX:number; anchorY:number; name:string};
-const labelOffsets: Record<string,Record<number,[number,number]>> = {'北海道・東北':{3:[64,0],4:[76,0],5:[-64,0],6:[-64,0]},'中部':{17:[-28,0]},'九州・沖縄':{41:[-65,-15],42:[-55,20]}};
+const labelOffsets: Record<string,Record<number,[number,number]>> = {'北海道・東北':{3:[64,0],4:[76,0],5:[-64,0],6:[-64,0]},'中部':{17:[-28,0]},'九州・沖縄':{41:[-65,-15],42:[-55,20],47:[0,-75]}};
 
 // The needle is at (0,0), so the same dart can land precisely on the map marker.
 function DartShape() {

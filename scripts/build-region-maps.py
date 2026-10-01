@@ -67,7 +67,7 @@ def prepare(original):
         box = bounds(f[2])
         distance = math.hypot(max(b[0]-box[2], box[0]-b[2], 0),
                               max(b[1]-box[3], box[1]-b[3], 0))
-        if distance <= 65 or group.get("data-code") == "47":
+        if distance <= 65:
             kept.append(f)
     # Keep subpaths in the same path so lakes retain their original winding.
     for child in list(group):
