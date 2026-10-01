@@ -73,7 +73,7 @@ export default function App() {
   const land = () => {
    setStage('landed');
    if (!reduced && navigator.vibrate) {try {navigator.vibrate([25,30,45]);} catch {}}
-   timeouts.current.push(setTimeout(() => {setTravel(current => ({...current, lastResult:record, history:[record, ...current.history].slice(0, 30)})); setStage('ready'); navigate('result', record.id); setAnnouncement(`旅先は${chosen.prefecture}の${chosen.city}に決まりました。`); running.current = false;}, reduced ? 0 : 1150));
+   timeouts.current.push(setTimeout(() => {setTravel(current => ({...current, lastResult:record, history:[record, ...current.history].slice(0, 30)})); setStage('ready'); navigate('result', record.id); setAnnouncement(`旅先は${chosen.prefecture}の${chosen.city}に決まりました。`); running.current = false;}, reduced ? 0 : 1700));
   };
   if (reduced) timeouts.current.push(setTimeout(land,100));
   else {timeouts.current.push(setTimeout(() => setStage('flying'),180)); timeouts.current.push(setTimeout(land,spinMs+100));}
