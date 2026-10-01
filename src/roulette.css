@@ -100,6 +100,10 @@
   text-shadow:none;
   box-shadow:0 0 0 2px #fff9,0 0 20px 6px #eaff48b5;
 }
+.phase-landed .roulette-disk {
+  animation:none;
+  transform:rotate(calc(360deg - var(--winner-angle)));
+}
 .roulette-hub {
   position:absolute;
   z-index:2;
@@ -152,6 +156,7 @@
   animation:roulette-orbit var(--spin-ms) cubic-bezier(.17,.48,.14,1) both;
   will-change:transform;
 }
+.phase-landed .roulette-ball-orbit {animation:none;transform:rotate(0deg)}
 .roulette-ball {
   position:absolute;
   top:2.5%;
@@ -165,6 +170,7 @@
   box-shadow:inset -2px -3px 3px #28415b6b,0 2px 6px #0008,0 0 14px #fff9;
   animation:roulette-drop var(--spin-ms) linear both;
 }
+.phase-landed .roulette-ball {animation:none;top:11.5%}
 .roulette-pointer {
   position:absolute;
   z-index:6;

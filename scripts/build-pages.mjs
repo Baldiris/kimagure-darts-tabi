@@ -13,7 +13,7 @@ const historyBytes = await read(join(docs, 'asset-history.json'));
 const history = historyBytes ? JSON.parse(historyBytes.toString()) : [];
 const candidates = [previous, ...history]
  .filter((names,index,all) => names.length && all.findIndex(other => JSON.stringify(other) === JSON.stringify(names)) === index)
- .slice(0,3);
+ .slice(0,4);
 const retained = new Map();
 for (const name of new Set(candidates.flat())) {
  if (!/^index-[A-Za-z0-9_-]+\.(js|css)$/.test(name)) throw new Error('Unexpected build asset name');
@@ -27,7 +27,7 @@ await new Promise((resolve,reject) => {
 });
 const currentNames = references((await readFile(join(docs,'index.html'))).toString());
 const current = new Set(currentNames);
-const generations = candidates.filter(names => JSON.stringify(names) !== JSON.stringify(currentNames)).slice(0,2);
+const generations = candidates.filter(names => JSON.stringify(names) !== JSON.stringify(currentNames)).slice(0,3);
 const retainedNames = new Set(generations.flat());
 await mkdir(join(docs,'assets'),{recursive:true});
 for (const [name,bytes] of retained) if (retainedNames.has(name) && !current.has(name)) await writeFile(join(docs,'assets',name),bytes);
