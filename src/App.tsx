@@ -62,6 +62,11 @@ export default function App() {
     if(running.current)return;
     setStage('ready');setShot(undefined);
     if(selected) setTravel(current=>({...current,area:selected,prefectureCode:null}));
+    if(screen==='explore') {
+      requestAnimationFrame(()=>selected
+        ? document.getElementById('trip-picker')?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})
+        : window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));
+    }
     navigate('explore');
   }
   function openResult(record:TripRecord) {setTravel(current=>({...current,lastResult:record}));navigate('result',record.id);}
