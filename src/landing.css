@@ -90,7 +90,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible, select:focus-visib
 }
 .hero-bottom span:last-child { letter-spacing: .18em; }
 
-.trip-section { max-width: 1180px; margin: 0 auto; padding: 86px 24px 95px; scroll-margin-top: 74px; }
+.trip-section { max-width: 1180px; margin: 0 auto; padding: 86px 24px 95px; }
 .explore-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 31px; }
 .explore-heading h2 { margin-top: 10px; font-size: clamp(33px, 4vw, 52px); line-height: 1.28; letter-spacing: -.075em; font-weight: 900; }
 .explore-heading p:last-child { margin-top: 10px; font-size: 14px; color: #526674; }
@@ -100,6 +100,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible, select:focus-visib
   display: grid; grid-template-columns: minmax(330px, .85fr) minmax(0, 1.15fr); grid-template-rows: auto 1fr;
   border: 1px solid #dcd8ce; border-radius: 24px; background: #fffdfa;
   box-shadow: 0 22px 55px #17294319, 0 5px 0 #e7ded0;
+  scroll-margin-top: 0;
 }
 .selection-panel { grid-column: 1; grid-row: 1; padding: 37px 37px 0; }
 .details-panel { grid-column: 1; grid-row: 2; padding: 8px 37px 35px; }
@@ -107,7 +108,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible, select:focus-visib
   position: relative; isolation: isolate; grid-column: 2; grid-row: 1 / span 2;
   min-height: 592px; padding: 45px 39px 55px;
   background: radial-gradient(circle at 65% 8%, #4f7df4, transparent 38%), linear-gradient(145deg, #356ce4, #1c48c2 57%, #173ab1);
-  color: #fff; scroll-margin-top: 88px;
+  color: #fff; scroll-margin-top: 0;
 }
 .picker-visual::before {
   content: ''; position: absolute; z-index: -1; width: 310px; height: 310px; right: -100px; bottom: -120px;
@@ -241,7 +242,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible, select:focus-visib
   .hero-cta { min-height: 56px; min-width: 220px; margin-top: 27px; }
   .hero-bottom { left: 22px; right: 22px; font-size: 10px; }
   .hero-bottom span:last-child { display: none; }
-  .trip-section { padding: 65px 16px 75px; scroll-margin-top: 62px; }
+  .trip-section { padding: 65px 16px 75px; }
   .explore-heading { display: block; margin-bottom: 24px; }
   .explore-heading h2 { font-size: 34px; }
   .explore-heading p:last-child { font-size: 13px; }
@@ -253,7 +254,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible, select:focus-visib
   .selection-panel .panel-heading h3 { font-size: 19px; }
   .selection-panel .panel-heading p { display: block; }
   .selection-panel .scope-confirm { display: flex; margin: 18px 0 0; }
-  .picker-visual { order: 1; min-height: 430px; padding: 33px 19px 44px; scroll-margin-top: 62px; }
+  .picker-visual { order: 1; min-height: 430px; padding: 33px 19px 44px; scroll-margin-top: 0; }
   .slot-stage { padding: 20px 17px 19px; }
   .slot-path { margin-bottom: 19px; }
   .slot-window { height: 183px; }
