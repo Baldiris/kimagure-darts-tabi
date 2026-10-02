@@ -287,6 +287,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible, select:focus-visib
   .hero-lead { font-size: 12px; }
   .hero-bottom { left: 18px; right: 18px; }
   .trip-section { padding-inline: 12px; }
+  .explore-heading h2 { font-size: 27px; letter-spacing: -.085em; }
   .selection-panel { padding: 23px 18px 16px; }
   .details-panel { padding: 21px 18px 26px; }
   .picker-visual { min-height: 406px; padding: 26px 11px 37px; }
@@ -300,6 +301,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible, select:focus-visib
   .slot-row { height: 54px; }
   .slot-row strong { font-size: 19px; }
   .journey-steps { padding-inline: 18px; }
+  .journey-heading h2 { font-size: 27px; }
   .result-top h1 { font-size: 32px; }
   .destination-city { font-size: 42px; }
 }
