@@ -41,8 +41,8 @@ export function TravelMap({area,prefectureCode,destination}: {
     const doc = new DOMParser().parseFromString(loaded.markup,'image/svg+xml');
     doc.querySelectorAll<SVGElement>('.prefecture').forEach(element => {
       const code = Number(element.dataset.code);
-      element.style.fill = destination?.code === code ? '#294c43' : '#a9c5b7';
-      element.style.stroke = '#f4f5ef';
+      element.style.fill = destination?.code === code ? '#ef704f' : '#9bbbd9';
+      element.style.stroke = '#f6f4ea';
       element.style.strokeWidth = single || area !== '全国' ? '1.5' : '2.5';
     });
     const labels:Label[] = single || area !== '全国' ? Array.from(doc.querySelectorAll<SVGElement>('[data-anchor-x]')).map(element => {
