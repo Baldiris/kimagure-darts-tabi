@@ -123,16 +123,17 @@ export default function App() {
       {screen==='explore'&&<>
         <div className="screen-top"><div><p className="eyebrow">A SMALL DETOUR, A NEW PLACE.</p><h1 ref={screenHeading} tabIndex={-1}>次は、どの町へ。</h1><p className="intro">行ける範囲を決めたら、スロットを回そう。</p></div><span className="screen-count">全国 <strong>{count(destinations.length)}</strong> 市区町村</span></div>
         <section className="picker-shell" aria-label="旅先の抽選">
-          <div className="picker-visual" ref={stageRef}>
-            <SlotMachine key={shot?.id??`preview-${area}-${prefectureCode}`} phase={stage} destination={shot?.destination??pool[0]} pool={pool} area={area} prefectureCode={prefectureCode} seed={shot?.id??'preview'} spinMs={shot?.spinMs??3150}/>
-            <p className="visual-footnote">{busy?'リールが順に止まります':`${scopeName}の${count(pool.length)}候補から選びます`}</p>
-          </div>
-          <div className="draw-panel">
+          <div className="draw-panel selection-panel">
             <div className="panel-heading"><span className="step-number">01</span><div><h2>行ける範囲</h2><p>全国からでも、県を指定しても。</p></div></div>
             <div className="scope-fields"><label htmlFor="area-select">地域</label><div className="select-wrap"><select id="area-select" value={area} disabled={busy} onChange={event=>{const next=event.target.value;setTravel(current=>({...current,area:next,prefectureCode:null}));setAnnouncement(`${next}を選びました。${count(destinationPool(next).length)}市区町村が候補です。`);}}>{validAreas.map(option=><option key={option} value={option}>{option}（{count(destinationPool(option).length)}候補）</option>)}</select><ChevronDown size={17} aria-hidden="true"/></div>
               <label htmlFor="prefecture-select">都道府県 <span>任意</span></label><div className="select-wrap"><select id="prefecture-select" value={prefectureCode??''} disabled={busy} onChange={event=>{const chosen=findPrefecture(Number(event.target.value));setTravel(current=>({...current,area:chosen?.region??current.area,prefectureCode:chosen?.code??null}));setAnnouncement(chosen?`${chosen.prefecture}の${count(destinationPool(chosen.region,chosen.code).length)}市区町村が候補です。`:`${area}の${count(destinationPool(area).length)}市区町村が候補です。`);}}><option value="">{area}の中からおまかせ</option>{area==='全国'?regions.map(region=><optgroup key={region} label={region}>{prefectures.filter(p=>p.region===region).map(p=><option key={p.code} value={p.code}>{p.prefecture}（{destinationPool(region,p.code).length}候補）</option>)}</optgroup>):regionPrefectures.map(p=><option key={p.code} value={p.code}>{p.prefecture}（{destinationPool(area,p.code).length}候補）</option>)}</select><ChevronDown size={17} aria-hidden="true"/></div>
             </div>
             <p className="scope-confirm"><span className="scope-dot"/>{scopeName}の<strong>{count(pool.length)}市区町村</strong>が候補</p>
+          </div>
+          <div className="picker-visual" ref={stageRef}>
+            <SlotMachine key={shot?.id??`preview-${area}-${prefectureCode}`} phase={stage} destination={shot?.destination??pool[0]} pool={pool} area={area} prefectureCode={prefectureCode} seed={shot?.id??'preview'} spinMs={shot?.spinMs??3150}/>
+          </div>
+          <div className="draw-panel details-panel">
             <div className="secondary-disclosures">
               <details className="pool-details" key={`pool-${area}-${prefectureCode}`} onToggle={event=>setPoolOpen(event.currentTarget.open)}><summary><Search size={16}/>候補の町を見る<ChevronDown size={16}/></summary>{poolOpen&&<div className="candidate-browser"><input type="search" aria-label="候補一覧を検索" placeholder="市区町村名を検索" value={poolSearch} onChange={event=>setPoolSearch(event.target.value)} disabled={busy}/><p className="candidate-count">{count(visibleCandidates.length)} / {count(pool.length)}件</p>{visibleCandidates.length?<ul className="municipality-list">{visibleCandidates.map(d=><li key={d.id}>{!selectedPrefecture&&<small>{d.prefecture}</small>}<span>{d.city}</span></li>)}</ul>:<p>一致する市区町村がありません。</p>}</div>}</details>
               <details className="map-details" key={`map-${area}-${prefectureCode}`} onToggle={event=>setMapOpen(event.currentTarget.open)}><summary><MapPin size={16}/>範囲を地図で見る<ChevronDown size={16}/></summary>{mapOpen&&<div className="map-preview"><TravelMap area={area} prefectureCode={prefectureCode} destination={null}/></div>}</details>
