@@ -72,7 +72,9 @@ function reveal(item) {
   refreshEligibility();
   label.textContent = 'もう一度、投げる';
   card.focus({ preventScroll: true });
-  if (matchMedia('(max-width: 720px)').matches) card.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'center' });
+  // The button can be near the viewport bottom on desktop too. Keep the entire
+  // result card visible after landing, regardless of the current scroll offset.
+  card.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'center' });
 }
 
 form.addEventListener('submit', event => {
