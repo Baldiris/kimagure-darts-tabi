@@ -19,6 +19,7 @@
     mapKeyText: $('#map-key-text'),
     mapLocation: $('#map-location'),
     mapNote: $('#map-note'),
+    coordinateBottom: $('#coordinate-bottom'),
     selectedScope: $('#selected-scope'),
     candidateCount: $('#candidate-count'),
     totalCount: $('#total-count'),
@@ -151,6 +152,7 @@
     activeTarget = {pool, city, place, canvas, dart, impact, label};
     drawTargetMap();
     els.mapKeyText.textContent = '1点＝1市区町村の位置';
+    els.coordinateBottom.textContent = `POSITION DATA / ${pool.length.toLocaleString('ja-JP')} MUNICIPALITIES`;
     els.mapNote.textContent = '候補の町を位置データから描いています。ダーツは選ばれた町に着弾します。';
     return activeTarget;
   }
@@ -247,6 +249,7 @@
     const count = eligible().length;
     els.mapLocation.textContent = name === '全国' ? '日本全国' : name;
     els.mapKeyText.textContent = prefectureCode === null ? '地図をタップして県を選択' : '選択範囲の地図';
+    els.coordinateBottom.textContent = name === '全国' ? 'JAPAN / 47 PREFECTURES' : 'AREA / PREFECTURE MAP';
     els.mapNote.innerHTML = '地図上の県をタップしても選べます。<br>一部の離島は地図表示を省略しています。';
     els.selectedScope.textContent = name;
     els.candidateCount.innerHTML = `${count.toLocaleString('ja-JP')} <small>市区町村</small>`;
@@ -299,6 +302,7 @@
   els.prefectureSelect.addEventListener('change', () => {
     if (busy) return;
     prefectureCode = els.prefectureSelect.value ? Number(els.prefectureSelect.value) : null;
+    if (prefectureCode !== null) region = prefecture().region;
     updateSelection();
   });
   els.throwButton.addEventListener('click', throwDart);
