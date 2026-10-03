@@ -52,7 +52,7 @@
           <div class="map-orientation" aria-hidden="true"><span>N</span><i></i><span>S</span></div>
           <div id="map-stage" class="map-stage" role="group" aria-label="選択中の地図"><p class="map-loading">地図を読み込んでいます…</p></div>
           <div class="map-key"><span class="key-swatch"></span> <span id="map-key-text">地図をタップして県を選択</span></div>
-          <div class="map-note">地図上の県をタップしても選べます。<br>一部の離島は地図表示を省略しています。</div>
+          <div class="map-note" id="map-note">地図上の県をタップしても選べます。<br>一部の離島は地図表示を省略しています。</div>
         </div>
 
         <div class="atlas-controls">
@@ -68,7 +68,7 @@
             <div class="selection-summary" aria-live="polite"><span>いまの候補</span><strong id="candidate-count">1,741 <small>市区町村</small></strong><span id="selected-scope">全国</span></div>
             <button class="throw-button" id="throw-button" type="button" disabled><span class="throw-icon" aria-hidden="true">➶</span><span class="throw-copy"><strong>この地図に投げる</strong><small>一投で、旅先を決めよう</small></span><span class="throw-arrow" aria-hidden="true">↗</span></button>
           </div>
-          <p class="scope-note">※ ダーツの着弾は抽選を表す演出です。地図上の位置や市区町村の境界を示すものではありません。候補の各市区町村は同じ確率で選ばれます。</p>
+          <p class="scope-note">候補の各市区町村は同じ確率で選ばれます。投げると候補の位置を点で描き、選ばれた町に着弾します。点は市区町村の位置データで、境界を表しません。</p>
         </div>
       </div>
       <p class="intro-foot"><span>01 / 03</span> 知らなかった町に、会いにいこう。 <span aria-hidden="true">↓</span></p>
