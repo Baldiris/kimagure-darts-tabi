@@ -31,7 +31,7 @@ export function DartTarget({phase,destination,pool,scopeName,onThrow}:Props) {
     <p className="board-intro">次の行き先は、<strong>一投で。</strong></p>
     <div className="target-scene">
       <button type="button" className="dart-target-button" onClick={onThrow} disabled={phase!=='ready'} aria-label={`${scopeName}の${pool.length}市区町村へダーツを投げる`}>
-        <span className="dart-board" aria-hidden="true"><span className="board-number twelve">12</span><span className="board-number three">03</span><span className="board-number six">06</span><span className="board-number nine">09</span><span className="board-ring outer"/><span className="board-ring inner"/><span className="board-bull"/>
+        <span className="dart-board" aria-hidden="true"><span className="board-number twelve">20</span><span className="board-number three">06</span><span className="board-number six">03</span><span className="board-number nine">11</span><span className="board-ring outer"/><span className="board-ring inner"/><span className="board-bull"/>
           <span className="board-cross horizontal"/><span className="board-cross vertical"/>
           <span className="impact-mark" style={{left:`${x}%`,top:`${y}%`}}/>
           <span className="dart-flight" style={{left:`${x}%`,top:`${y}%`}}><Dart/></span>
