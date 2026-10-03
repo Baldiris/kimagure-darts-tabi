@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f2efe7" />
+    <meta name="description" content="ダーツを一投。知らなかった町へ。全国1,741市区町村から、次の旅先を気まぐれに見つけよう。" />
+    <title>きまぐれダーツ旅 — 行先を、偶然にまかせよう。</title>
+    <link rel="preload" href="./journey-dart.webp" as="image" type="image/webp" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="きまぐれダーツ旅 トップ">
+          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <span class="brand-name">きまぐれ<span>ダーツ旅</span></span>
+        </a>
+        <nav aria-label="メインナビゲーション">
+          <a href="#how-it-works">あそびかた</a>
+          <a href="#experience" class="nav-cta">旅先を決める <span aria-hidden="true">↗</span></a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero" id="experience" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <div class="overline"><span class="overline-rule"></span> WHERE TO NEXT? <span class="overline-number">01 / 03</span></div>
+            <h1 id="hero-title">行先を、<br /><em>偶然</em>に<br />まかせよう。</h1>
+            <p class="hero-lead">決めきれない週末に、ダーツを一投。<br />知らなかった町が、次の旅になる。</p>
+
+            <form id="dart-form" class="journey-form">
+              <div class="form-heading"><span class="form-heading-dart" aria-hidden="true">↗</span><span>YOUR JOURNEY STARTS HERE</span></div>
+              <div class="select-grid">
+                <label class="field">
+                  <span class="field-label">01 &nbsp; 地域を選ぶ</span>
+                  <span class="select-wrap"><select id="region" name="region" aria-label="地域"><option value="">全国から</option></select></span>
+                </label>
+                <label class="field">
+                  <span class="field-label">02 &nbsp; 都道府県</span>
+                  <span class="select-wrap"><select id="prefecture" name="prefecture" aria-label="都道府県"><option value="">すべて</option></select></span>
+                </label>
+              </div>
+              <div class="scope-line"><span id="scope-text">全国の <strong>1,741</strong> 市区町村が候補</span><span class="scope-line-dot" aria-hidden="true"></span></div>
+              <button id="throw-button" class="throw-button" type="submit" disabled>
+                <span id="throw-label">読み込み中…</span>
+                <span class="button-arrow" aria-hidden="true">↗</span>
+              </button>
+              <p class="form-note">登録不要・無料。候補の中から一投ごとに等確率で選びます。</p>
+            </form>
+          </div>
+
+          <div class="hero-visual" id="hero-visual">
+            <img src="./journey-dart.webp" alt="車窓から眺める海辺の町と、旅のノートに置いた赤いダーツ" />
+            <div class="photo-topline"><span>THE UNPLANNED JOURNEY</span><span>JAPAN · 47 PREFECTURES</span></div>
+            <div class="photo-caption"><span class="caption-dot"></span><span>次の景色は、一本のダーツから。</span></div>
+            <div class="flight-stage" id="flight-stage" aria-hidden="true">
+              <div class="flight-board"><span class="board-center"></span></div>
+              <svg class="flight-dart" viewBox="0 0 120 120" aria-hidden="true">
+                <path d="M22 74 48 79 52 104 36 97 20 99 25 87Z" fill="#bd4a32" stroke="#f6e8d4" stroke-width="2" />
+                <path d="M28 82 48 84 55 102" fill="none" stroke="#842f25" stroke-width="2" />
+                <path d="M42 93 87 42" fill="none" stroke="#3c423b" stroke-width="6" stroke-linecap="round" />
+                <path d="M68 65 84 47" fill="none" stroke="#d6ae70" stroke-width="12" stroke-linecap="round" />
+                <path d="M75 57 86 44" fill="none" stroke="#60422f" stroke-width="2" />
+                <path d="m87 43 17-25-12 29Z" fill="#b9bdad" stroke="#3d4640" stroke-width="2" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="result-card" id="result-card" tabindex="-1" aria-live="polite" hidden>
+              <div class="result-top"><span class="result-kicker">DART LANDED IN</span><span class="result-cross" aria-hidden="true">✳</span></div>
+              <p class="result-prefecture" id="result-prefecture"></p>
+              <h2 id="result-city"></h2>
+              <div class="result-bottom"><span>あなたの次の旅先</span><a id="maps-link" target="_blank" rel="noopener noreferrer">地図で見る ↗</a></div>
+            </div>
+          </div>
+          <div class="hero-side-label" aria-hidden="true">LEAVE ROOM FOR THE UNEXPECTED</div>
+        </section>
+
+        <section class="manifesto" id="how-it-works" aria-labelledby="manifesto-title">
+          <div class="manifesto-index"><span>ABOUT THE JOURNEY</span><span>02 / 03</span></div>
+          <div class="manifesto-body">
+            <h2 id="manifesto-title">旅は、<br /><em>知らない方へ。</em></h2>
+            <div class="manifesto-right"><p>行ってみたかった場所を探す旅もいい。<br />まだ名前も知らない町に、選ばれてみる旅もいい。</p><p>地域を決めて、ダーツを投げる。<br />あとは、出会った町の地図をひらくだけ。</p><a href="#experience" class="text-link">さっそく一投する <span aria-hidden="true">↗</span></a></div>
+          </div>
+        </section>
+
+        <section class="steps" aria-label="旅先が決まるまで">
+          <div class="step"><span class="step-number">01</span><span class="step-icon" aria-hidden="true">◌</span><h3>範囲を選ぶ</h3><p>全国でも、好きな地域でも。都道府県まで絞ることもできます。</p></div>
+          <div class="step"><span class="step-number">02</span><span class="step-icon" aria-hidden="true">↗</span><h3>ダーツを投げる</h3><p>候補の町から一つだけ。あなたの一投で旅先が決まります。</p></div>
+          <div class="step"><span class="step-number">03</span><span class="step-icon" aria-hidden="true">◎</span><h3>地図をひらく</h3><p>知らなかった町への入口。気になったら、そこから旅を考えよう。</p></div>
+        </section>
+      </main>
+
+      <footer class="site-footer"><span class="footer-brand">きまぐれダーツ旅<span class="footer-star">✳</span></span><span>FOR EVERY DETOUR WORTH TAKING.</span><a href="#top">BACK TO TOP ↑</a></footer>
+    </div>
+  </body>
+</html>

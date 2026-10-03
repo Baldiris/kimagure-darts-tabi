@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f4eb" />
+    <title>きまぐれダーツ旅 — 次の休み、知らない町へ。</title>
+    <meta name="description" content="行き先はダーツの一投で。日本の1,741市区町村から、次の旅先を見つけよう。" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">本文へ移動</a>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="きまぐれダーツ旅 トップ">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span>きまぐれ<span class="brand-em">ダーツ</span>旅</span>
+      </a>
+      <nav aria-label="メインナビゲーション"><a href="#how">旅のたのしみ方</a><a class="nav-cta" href="#throw">旅先を決める <span aria-hidden="true">↗</span></a></nav>
+    </header>
+
+    <main id="main">
+      <section class="hero page-gutter" id="top" aria-labelledby="hero-title">
+        <div class="hero-intro">
+          <div class="edition"><span class="edition-line"></span> A LITTLE ADVENTURE, ANY DAY <span class="edition-number">01 / JAPAN</span></div>
+          <h1 id="hero-title">次の休み、<br /><em>知らない町</em>へ<span class="period">。</span></h1>
+          <p class="hero-lead">いつもの行き先に迷ったら、<br />ダーツを一投。偶然の町が、旅のはじまりになる。</p>
+          <a class="hero-button" href="#throw"><span class="button-symbol" aria-hidden="true">↗</span> ダーツで旅先を決める <span class="button-arrow" aria-hidden="true">→</span></a>
+          <p class="hero-footnote">登録不要・無料で遊べます <span class="dot"></span> 全国 <span id="hero-count">1,741</span> 市区町村</p>
+        </div>
+        <div class="hero-art" aria-label="旅先で出会う町をイメージした写真">
+          <div class="hero-art-frame"><img src="./assets/station-journey.webp" alt="山あいの小さな駅から町へ歩き出す旅人のイメージ" fetchpriority="high" /></div>
+          <div class="hero-photo-number">NOT ON THE ITINERARY<br /><strong>but just right for you.</strong></div>
+          <div class="postcard"><img src="./assets/harbor-journey.webp" alt="海辺の町を見渡す旅のイメージ" /><span class="postcard-label">どこへ行くかは、まだ秘密。</span></div>
+          <div class="round-stamp" aria-hidden="true"><span>きまぐれに</span><strong>↗</strong><span>行ってみよう</span></div>
+        </div>
+        <div class="hero-index" aria-hidden="true"><span>SCROLL TO EXPLORE</span><span class="index-line"></span><span>01 — 03</span></div>
+      </section>
+
+      <section class="idea-strip page-gutter" id="how" aria-labelledby="idea-title">
+        <div class="idea-heading"><span class="eyebrow">THE IDEA <span>↗</span></span><h2 id="idea-title">旅に、<br />小さな偶然を。</h2></div>
+        <div class="idea-text"><p>目的地が決まらない日こそ、面白い。行ける範囲だけ選んだら、あとはダーツにおまかせ。知っているはずの日本に、まだ知らない町が見つかります。</p><div class="mini-steps"><span><b>01</b> 範囲を選ぶ</span><span class="step-arrow">→</span><span><b>02</b> 投げる</span><span class="step-arrow">→</span><span><b>03</b> 町を知る</span></div></div>
+      </section>
+
+      <section class="experience" id="throw" aria-labelledby="throw-title">
+        <div class="experience-inner page-gutter">
+          <div class="experience-heading"><div><span class="eyebrow">YOUR NEXT DESTINATION <span>↗</span></span><h2 id="throw-title">行き先を、<em>投げてみる。</em></h2></div><p>決めるのは範囲だけ。<br />一投の先に、次の町があります。</p></div>
+          <div class="scope-selector" aria-label="旅先の範囲を選択">
+            <div class="scope-topline"><span class="scope-label">01 <span>/</span> どこまで行こう？</span><span id="pool-count" class="pool-count" aria-live="polite">全国から 1,741 の候補</span></div>
+            <div class="regions" id="regions" role="group" aria-label="地域"></div>
+            <div class="prefecture-row"><label for="prefecture">もっと絞りたいなら</label><div class="select-wrap"><select id="prefecture" aria-label="都道府県を選ぶ"><option value="">都道府県は指定しない</option></select><span aria-hidden="true">⌄</span></div></div>
+          </div>
+
+          <div class="throw-stage">
+            <div class="stage-margin-note" aria-hidden="true"><span>02 / JUST ONE THROW</span><span>偶然を、きっかけに。</span></div>
+            <div class="board-scene">
+              <div class="board-shadow" aria-hidden="true"></div>
+              <button class="dartboard" id="dartboard" type="button" aria-label="ダーツを投げて旅先を決める" disabled>
+                <span class="ring ring-outer" aria-hidden="true"></span><span class="ring ring-mid" aria-hidden="true"></span><span class="ring ring-inner" aria-hidden="true"></span><span class="bull" aria-hidden="true"></span>
+                <svg class="dart-arrow" viewBox="0 0 200 72" aria-hidden="true"><path d="M13 35 0 10l34 18 8 7-8 7L0 60l13-25Z" fill="#f26943"/><path d="M31 28 3 2l17 30v6L3 69l28-25 15-9Z" fill="#d84d2f"/><path d="M38 31h129v8H38z" fill="#efb36d"/><path d="M58 31h21v8H58zM112 31h9v8h-9z" fill="#365d54"/><path d="m167 31 31 4-31 4z" fill="#293b38"/></svg>
+              </button>
+              <div class="tap-cue" id="tap-cue"><span class="cue-arrow" aria-hidden="true">↖</span> 盤面をタップして、ダーツを投げる</div>
+            </div>
+            <div class="stage-right-note" aria-hidden="true"><span>1,741</span><small>PLACES<br />TO EXPLORE</small></div>
+          </div>
+
+          <p id="status" class="status" role="status" aria-live="polite">行き先を読み込んでいます…</p>
+          <article id="result" class="result" hidden aria-live="polite">
+            <div class="result-visual"><img src="./assets/harbor-journey.webp" alt="旅のイメージ写真" /><span>THE JOURNEY BEGINS HERE ↗</span></div>
+            <div class="result-content"><span class="result-kicker">ダーツが選んだ、次の町</span><p class="result-pref" id="result-pref"></p><h3 id="result-city"></h3><div class="result-rule"></div><p>ここから、あなただけの旅をはじめよう。<br />気になる場所を地図でのぞいてみてください。</p><div class="result-actions"><a id="map-link" class="map-link" href="#" target="_blank" rel="noopener noreferrer">Google マップで見る <span aria-hidden="true">↗</span></a><button id="again" type="button">もう一投 <span aria-hidden="true">↗</span></button></div></div>
+          </article>
+          <p id="photo-note" class="photo-note" hidden>写真は旅のイメージです。選ばれた町の実際の風景ではありません。</p>
+        </div>
+      </section>
+
+      <section class="outro page-gutter"><span class="eyebrow">ONE THROW, A NEW STORY</span><p>遠くても、近くても。<br /><em>知らない町</em>なら、それは旅。</p><a href="#throw">もう一度、投げてみる <span aria-hidden="true">↗</span></a></section>
+    </main>
+    <footer class="site-footer page-gutter"><span class="brand"><span class="brand-mark" aria-hidden="true"><span></span></span>きまぐれ<span class="brand-em">ダーツ</span>旅</span><span>知らない町に、出会いにいこう。</span><small>© KIMAGURE DARTS TABI</small></footer>
+  </body>
+</html>

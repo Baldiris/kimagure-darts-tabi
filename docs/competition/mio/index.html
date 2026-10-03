@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f1e8" />
+    <meta name="description" content="旅先は、一投で決めよう。日本全国1,741市区町村から、ダーツが次の行き先を選ぶ。" />
+    <title>きまぐれダーツ旅｜次の旅先は、一投で。</title>
+    <link rel="preload" href="./coastal-dart.webp" as="image" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="site-shell" id="top">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="きまぐれダーツ旅 トップへ">
+          <span class="brand-mark" aria-hidden="true"><i></i></span>
+          <span class="brand-word">きまぐれ<br /><strong>ダーツ旅</strong></span>
+        </a>
+        <nav aria-label="メインナビゲーション">
+          <a href="#how">旅の始め方</a>
+          <a class="nav-cta" href="#play">行き先を決める <span aria-hidden="true">↗</span></a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy" id="play">
+            <p class="eyebrow"><span class="eyebrow-line"></span> THE NEXT STOP IS YOURS</p>
+            <h1 id="hero-title">次の旅先は、<br /><em>一投</em>で。</h1>
+            <p class="hero-lead">行き先を決めすぎない旅は、<br class="wide-only" />いつもの週末を、少し冒険に変える。</p>
+
+            <div class="play-panel" aria-label="旅先を選ぶ">
+              <div class="panel-head"><span>01 / 旅の範囲を選ぶ</span><span class="panel-head-side">AIM YOUR TRIP</span></div>
+              <div class="select-grid">
+                <label class="field" for="region">
+                  <span>エリア</span>
+                  <select id="region" disabled><option>読み込み中...</option></select>
+                </label>
+                <label class="field" for="prefecture">
+                  <span>都道府県</span>
+                  <select id="prefecture" disabled><option>指定なし</option></select>
+                </label>
+              </div>
+              <p class="pool-summary" id="pool-summary" role="status">旅先を読み込んでいます...</p>
+              <button class="throw-button" id="throw-button" type="button" disabled>
+                <span class="throw-button-icon" aria-hidden="true">↗</span>
+                <span class="throw-button-label">ダーツを投げる</span>
+                <span class="button-index">02 / THROW</span>
+              </button>
+              <div class="outcome" id="outcome" role="status" aria-live="polite" aria-atomic="true">
+                <span class="outcome-kicker" id="outcome-kicker">YOUR DESTINATION</span>
+                <div class="outcome-row">
+                  <div>
+                    <span class="outcome-sub" id="outcome-sub">まだ知らない街へ。</span>
+                    <strong id="outcome-place">あなたの一投を待っています</strong>
+                  </div>
+                  <a id="maps-link" class="maps-link" href="#" target="_blank" rel="noopener noreferrer" hidden>Google マップで見る <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="facts" aria-label="サービスの概要">
+              <span><b>47</b> 都道府県</span><span class="fact-divider"></span>
+              <span><b>1,741</b> 市区町村</span><span class="fact-divider"></span>
+              <span>登録不要・無料</span>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="列車から望む港町と旅のダーツ">
+            <div class="image-caption"><span class="caption-line"></span> LET CHANCE LEAD THE WAY</div>
+            <button class="board-scene" id="board-button" type="button" aria-label="ダーツ盤に投げて旅先を決める" disabled>
+              <span class="board-topline"><span class="red-dot"></span> TAP TO THROW</span>
+              <span class="board-plate" id="board-plate"><svg class="dartboard" id="dartboard" viewBox="0 0 320 320" role="img" aria-label="ダーツ盤"><title>ダーツ盤</title></svg><svg class="flying-dart" viewBox="0 0 150 55" aria-hidden="true"><path d="M3 28 28 25 93 25" fill="none" stroke="#c0c7c1" stroke-width="3" stroke-linecap="round"/><path d="M26 22 101 22 101 32 26 32Z" fill="#d2d8d2"/><path d="M101 22 123 9 117 27 123 47 101 32Z" fill="#c94435"/><path d="M107 27 145 13 126 27 145 41Z" fill="#dc5948"/><circle cx="29" cy="27" r="4" fill="#b9a778"/></svg></span>
+              <span class="board-foot">WHERE WILL YOU GO? <span aria-hidden="true">↗</span></span>
+            </button>
+            <div class="photo-credit">JAPAN, SOMEWHERE NEW <span>— 01 / 47</span></div>
+          </div>
+        </section>
+
+        <section class="how" id="how" aria-labelledby="how-title">
+          <div class="how-heading"><span class="section-index">THE LITTLE ADVENTURE</span><h2 id="how-title">旅は、決める瞬間から<br />もう始まっている。</h2></div>
+          <div class="steps">
+            <article><span class="step-no">01</span><h3>範囲を選ぶ</h3><p>全国をおまかせにしても、行きたいエリアや都道府県に絞っても。</p></article>
+            <article><span class="step-no">02</span><h3>一投に託す</h3><p>ダーツを投げるだけ。選んだ範囲の市区町村から一つが決まります。</p></article>
+            <article><span class="step-no">03</span><h3>街へ向かう</h3><p>当たった場所を地図で確認。知らない街の風景を探しに出かけよう。</p></article>
+          </div>
+        </section>
+      </main>
+      <footer class="site-footer"><span>きまぐれダーツ旅</span><span>次の旅は、あなたの一投から。</span><a href="#top">PAGE TOP ↑</a></footer>
+    </div>
+  </body>
+</html>
