@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#153d36">
   <meta name="description" content="日本の地図から範囲を選び、ダーツの一投で次の旅先を決める。47都道府県・1,741市区町村から出会う、きまぐれな旅。">
   <title>地図から始まる旅 | きまぐれダーツ旅・レン案</title>
-  <link rel="stylesheet" href="./style.css?v=00926b43">
+  <link rel="stylesheet" href="./style.css?v=de1ad0a2">
   <script src="./app.js?v=f76ba03a" defer></script>
 </head>
 <body>
@@ -41,7 +41,7 @@
       <div id="explore" class="atlas" aria-label="ダーツ旅の範囲選択">
         <div class="atlas-toolbar">
           <div class="atlas-label"><span class="label-dot"></span> EXPLORE THE MAP <span class="slash">/</span> 行きたい範囲を選ぶ</div>
-          <div class="atlas-count"><span>ALL JAPAN</span><strong id="total-count">1,741</strong><span>CITIES</span></div>
+          <div class="atlas-count"><span>ALL JAPAN</span><strong id="total-count">1,741</strong><span>PLACES</span></div>
         </div>
 
         <div class="atlas-stage">
@@ -68,7 +68,8 @@
             <div class="selection-summary" aria-live="polite"><span>いまの候補</span><strong id="candidate-count">1,741 <small>市区町村</small></strong><span id="selected-scope">全国</span></div>
             <button class="throw-button" id="throw-button" type="button" disabled><span class="throw-icon" aria-hidden="true">➶</span><span class="throw-copy"><strong>この地図に投げる</strong><small>一投で、旅先を決めよう</small></span><span class="throw-arrow" aria-hidden="true">↗</span></button>
           </div>
-          <p class="scope-note">候補の各市区町村は同じ確率で選ばれます。投げると地理院地図に候補地点を描き、選ばれた町に着弾します。点は市区町村の位置データで、境界を表しません。</p>
+          <div class="candidate-rule"><span>候補の基準</span><p>全国の市・町・村と東京23区を各1件。政令指定都市の区は市と重なるため除外しています。</p><a href="./candidates.html">1,741件の内訳と候補一覧を見る <span aria-hidden="true">↗</span></a></div>
+          <p class="scope-note">範囲内の各候補は同じ確率で選ばれます。人口・面積・交通の便では重み付けしません。着弾点は自治体の位置データで、地理的な境界やランダムな地点を表すものではありません。</p>
           <p class="gsi-source-note" id="gsi-source-note" hidden>地図の出典：<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener noreferrer">国土地理院・地理院タイル</a>。<span class="shoreline-credit">小縮尺地図の海岸線：Shoreline data is derived from: United States. National Imagery and Mapping Agency. "Vector Map Level 0 (VMAP0)." Bethesda, MD: Denver, CO: The Agency; USGS Information Services, 1997.</span></p>
         </div>
       </div>

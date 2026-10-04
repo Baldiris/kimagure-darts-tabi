@@ -13,3 +13,19 @@ remove spaces from display names; omit designated-city wards to avoid overlap
 with their parent cities. Tokyo's 23 special wards remain individual choices.
 Result: 1,741 choices across 47 prefectures. No live external API is required.
 Regenerate with: node scripts/import-municipalities.mjs /path/to/localgovjp.json
+
+Eligibility policy: one choice for every city, town and village in this snapshot,
+plus Tokyo's 23 special wards. The six Northern Territories villages counted in
+e-Stat's municipality total are not present in the source snapshot. Population,
+area, tourism and transport access are not used to filter or weight choices.
+The lottery is uniform across choices in the selected scope, not prefectures.
+
+Audit (2026-10-04): 792 cities, 743 towns, 183 villages and 23 special wards.
+All 47 adjusted prefecture totals match GSI's 2025-10-01 municipality counts. IDs,
+names and points match this source snapshot with no duplicates or missing points.
+The source still includes Hamamatsu's old seven wards after its 2024 change to
+three; all 175 source ward rows are excluded, so the lottery is unaffected.
+Government sources: https://www.gsi.go.jp/KOKUJYOHO/MENCHO/backnumber/GSI-menseki20251001.pdf
+https://www.e-stat.go.jp/municipalities/number-of-municipalities
+Ward change: https://www.city.hamamatsu.shizuoka.jp/kikaku/kuseido/
+Check local data: npm run audit:candidates
