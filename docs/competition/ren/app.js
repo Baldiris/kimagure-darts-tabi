@@ -20,6 +20,7 @@
     mapLocation: $('#map-location'),
     mapNote: $('#map-note'),
     coordinateBottom: $('#coordinate-bottom'),
+    sourceNote: $('#gsi-source-note'),
     selectedScope: $('#selected-scope'),
     candidateCount: $('#candidate-count'),
     totalCount: $('#total-count'),
@@ -30,6 +31,7 @@
     resultCaption: $('#result-caption'),
     resultIndex: $('#result-index'),
     resultLink: $('#result-map-link'),
+    focusMapButton: $('#focus-map-button'),
     retryButton: $('#retry-button')
   };
 
@@ -65,57 +67,120 @@
     return value[0] % length;
   }
 
-  // The map of dots uses a geographic projection of every eligible municipality.
-  // A single scale for both axes keeps directions and relative distances intact.
-  function projectedPoints(pool, width, height) {
-    const points = pool.map((city) => {
-      const [lat, lng] = coordinates[city.id];
-      return {city, lat, lng};
-    });
-    const midLatitude = (Math.min(...points.map((point) => point.lat)) + Math.max(...points.map((point) => point.lat))) / 2;
-    const longitudeScale = Math.cos(midLatitude * Math.PI / 180);
-    const xs = points.map((point) => point.lng * longitudeScale);
-    const ys = points.map((point) => -point.lat);
-    const minX = Math.min(...xs), maxX = Math.max(...xs);
-    const minY = Math.min(...ys), maxY = Math.max(...ys);
-    const availableWidth = Math.max(1, width - Math.max(80, width * .19));
-    const availableHeight = Math.max(1, height - Math.max(100, height * .29));
-    const scale = Math.min(availableWidth / (maxX - minX || 1), availableHeight / (maxY - minY || 1));
-    return points.map((point, index) => ({
-      city: point.city,
-      x: width / 2 + (xs[index] - (minX + maxX) / 2) * scale,
-      y: height / 2 + (ys[index] - (minY + maxY) / 2) * scale
-    }));
+  // XYZ tiles and municipal coordinates use the same Web Mercator projection.
+  // Work at zoom 0, then scale both tiles and points by 2^zoom.
+  function mercator(lat, lng) {
+    const radians = Math.max(-85, Math.min(85, lat)) * Math.PI / 180;
+    return {
+      x: (lng + 180) / 360 * 256,
+      y: (1 - Math.asinh(Math.tan(radians)) / Math.PI) / 2 * 256
+    };
+  }
+
+  function cityPoint(city) {
+    const [lat, lng] = coordinates[city.id];
+    return mercator(lat, lng);
+  }
+
+  function fitView(pool, width, height) {
+    const points = pool.map(cityPoint);
+    const minX = Math.min(...points.map((point) => point.x));
+    const maxX = Math.max(...points.map((point) => point.x));
+    const minY = Math.min(...points.map((point) => point.y));
+    const maxY = Math.max(...points.map((point) => point.y));
+    const availableWidth = Math.max(100, width - Math.max(120, width * .22));
+    const availableHeight = Math.max(100, height - Math.max(125, height * .32));
+    const zoom = Math.max(3, Math.min(12, Math.log2(Math.min(
+      availableWidth / (maxX - minX || .01),
+      availableHeight / (maxY - minY || .01)
+    ))));
+    return {x: (minX + maxX) / 2, y: (minY + maxY) / 2, zoom};
+  }
+
+  function screenPoint(point, view, width, height) {
+    const scale = 2 ** view.zoom;
+    return {x: width / 2 + (point.x - view.x) * scale, y: height / 2 + (point.y - view.y) * scale};
+  }
+
+  function drawTiles(target, width, height) {
+    const {view, tileLayer, mapStatus} = target;
+    const tileZoom = Math.max(5, Math.min(18, Math.floor(view.zoom)));
+    const tileScale = 2 ** (view.zoom - tileZoom);
+    const tileSize = 256 * tileScale;
+    const centerX = view.x * (2 ** tileZoom);
+    const centerY = view.y * (2 ** tileZoom);
+    const firstX = Math.floor((centerX - width / (2 * tileScale)) / 256);
+    const lastX = Math.floor((centerX + width / (2 * tileScale)) / 256);
+    const firstY = Math.floor((centerY - height / (2 * tileScale)) / 256);
+    const lastY = Math.floor((centerY + height / (2 * tileScale)) / 256);
+    const sequence = ++target.tileSequence;
+    const tiles = document.createDocumentFragment();
+    let count = 0;
+    let failed = 0;
+    mapStatus.textContent = '地理院地図を読み込み中…';
+    mapStatus.hidden = false;
+    for (let x = firstX; x <= lastX; x += 1) {
+      for (let y = firstY; y <= lastY; y += 1) {
+        if (x < 0 || y < 0 || x >= 2 ** tileZoom || y >= 2 ** tileZoom) continue;
+        count += 1;
+        const tile = document.createElement('img');
+        tile.className = 'gsi-tile';
+        tile.alt = '';
+        tile.draggable = false;
+        tile.style.left = `${width / 2 + (x * 256 - centerX) * tileScale}px`;
+        tile.style.top = `${height / 2 + (y * 256 - centerY) * tileScale}px`;
+        tile.style.width = `${tileSize + .5}px`;
+        tile.style.height = `${tileSize + .5}px`;
+        tile.addEventListener('load', () => {
+          if (sequence === target.tileSequence) mapStatus.hidden = true;
+        }, {once:true});
+        tile.addEventListener('error', () => {
+          failed += 1;
+          if (sequence === target.tileSequence && failed === count) {
+            mapStatus.textContent = '地図の画像を取得できません。町の位置は点で表示しています。';
+          }
+        }, {once:true});
+        tile.src = `https://cyberjapandata.gsi.go.jp/xyz/pale/${tileZoom}/${x}/${y}.png`;
+        tiles.append(tile);
+      }
+    }
+    tileLayer.replaceChildren(tiles);
+    els.sourceNote.hidden = false;
+    els.sourceNote.querySelector('.shoreline-credit').hidden = tileZoom >= 9;
   }
 
   function drawTargetMap() {
     if (!activeTarget) return;
-    const {pool, city, place, canvas, impact, dart, label} = activeTarget;
+    const target = activeTarget;
+    const {pool, city, place, canvas, impact, dart, label, view} = target;
     const {width, height} = els.mapStage.getBoundingClientRect();
     if (!width || !height) return;
+    if (!view) target.view = fitView(pool, width, height);
+    drawTiles(target, width, height);
     const ratio = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(width * ratio);
     canvas.height = Math.round(height * ratio);
     const context = canvas.getContext('2d');
     context.scale(ratio, ratio);
-    const points = projectedPoints(pool, width, height);
-    context.fillStyle = '#4b856d';
-    context.globalAlpha = pool.length > 500 ? .68 : .83;
+    context.fillStyle = '#27674b';
+    context.globalAlpha = pool.length > 500 ? .68 : .78;
     context.beginPath();
-    const radius = pool.length > 500 ? 2 : pool.length > 60 ? 2.7 : 3.8;
-    for (const point of points) {
+    const radius = pool.length > 500 ? 2.2 : pool.length > 60 ? 2.9 : 3.7;
+    for (const item of pool) {
+      const point = screenPoint(cityPoint(item), target.view, width, height);
+      if (point.x < -10 || point.x > width + 10 || point.y < -10 || point.y > height + 10) continue;
       context.moveTo(point.x + radius, point.y);
       context.arc(point.x, point.y, radius, 0, Math.PI * 2);
     }
     context.fill();
     context.globalAlpha = 1;
-    const winner = points.find((point) => point.city.id === city.id);
+    const winner = screenPoint(cityPoint(city), target.view, width, height);
     context.beginPath();
-    context.arc(winner.x, winner.y, radius + 3, 0, Math.PI * 2);
+    context.arc(winner.x, winner.y, radius + 4, 0, Math.PI * 2);
     context.fillStyle = '#fffdf7';
     context.fill();
     context.beginPath();
-    context.arc(winner.x, winner.y, radius + 1, 0, Math.PI * 2);
+    context.arc(winner.x, winner.y, radius + 1.5, 0, Math.PI * 2);
     context.fillStyle = '#de6746';
     context.fill();
     const x = `${winner.x / width * 100}%`;
@@ -128,15 +193,51 @@
     label.classList.toggle('is-low', winner.y < height * .25);
     label.querySelector('strong').textContent = city.city;
     label.querySelector('small').textContent = place.name;
-    els.mapStage.setAttribute('aria-label', `${scopeName()}の市区町村の位置。${place.name}${city.city}に着弾`);
+    target.focusButton.textContent = target.detail ? '範囲全体に戻す ↗' : '着弾地点を拡大 ↗';
+    els.mapStage.setAttribute('aria-label', `${scopeName()}の地理院地図。${place.name}${city.city}に着弾`);
+  }
+
+  function focusWinner() {
+    if (!activeTarget || busy) return;
+    const target = activeTarget;
+    if (target.detail) {
+      const {width, height} = els.mapStage.getBoundingClientRect();
+      target.view = fitView(target.pool, width, height);
+      target.detail = false;
+    } else {
+      const point = cityPoint(target.city);
+      target.view = {...point, zoom: 11};
+      target.detail = true;
+    }
+    drawTargetMap();
   }
 
   function prepareTargetMap(pool, city, place) {
-    // Invalidate any still-loading decorative SVG before replacing the stage.
     mapRequest += 1;
+    const mapRoot = document.createElement('div');
+    mapRoot.className = 'gsi-map';
+    const tileLayer = document.createElement('div');
+    tileLayer.className = 'gsi-tiles';
+    tileLayer.setAttribute('aria-hidden', 'true');
     const canvas = document.createElement('canvas');
-    canvas.className = 'point-map';
+    canvas.className = 'gsi-points';
     canvas.setAttribute('aria-hidden', 'true');
+    const mapStatus = document.createElement('p');
+    mapStatus.className = 'gsi-status';
+    mapStatus.setAttribute('role', 'status');
+    const controls = document.createElement('div');
+    controls.className = 'gsi-controls';
+    const focusButton = document.createElement('button');
+    focusButton.type = 'button';
+    focusButton.addEventListener('click', focusWinner);
+    controls.append(focusButton);
+    const attribution = document.createElement('a');
+    attribution.className = 'gsi-attribution';
+    attribution.href = 'https://maps.gsi.go.jp/development/ichiran.html';
+    attribution.target = '_blank';
+    attribution.rel = 'noopener noreferrer';
+    attribution.textContent = '出典：国土地理院・地理院タイル ↗';
+    mapRoot.append(tileLayer, canvas, mapStatus, controls, attribution);
     const dart = document.createElement('div');
     dart.className = 'throw-dart';
     dart.setAttribute('aria-hidden', 'true');
@@ -148,12 +249,14 @@
     label.className = 'impact-label';
     label.setAttribute('aria-hidden', 'true');
     label.innerHTML = '<small></small><strong></strong><span>↗</span>';
-    els.mapStage.replaceChildren(canvas, dart, impact, label);
-    activeTarget = {pool, city, place, canvas, dart, impact, label};
+    els.mapStage.classList.add('gsi-mode');
+    els.mapStage.parentElement.classList.add('gsi-active');
+    els.mapStage.replaceChildren(mapRoot, dart, impact, label);
+    activeTarget = {pool, city, place, mapRoot, tileLayer, canvas, mapStatus, focusButton, dart, impact, label, view:null, detail:false, tileSequence:0};
     drawTargetMap();
-    els.mapKeyText.textContent = '1点＝1市区町村の位置';
-    els.coordinateBottom.textContent = `POSITION DATA / ${pool.length.toLocaleString('ja-JP')} MUNICIPALITIES`;
-    els.mapNote.textContent = '候補の町を位置データから描いています。ダーツは選ばれた町に着弾します。';
+    els.mapKeyText.textContent = '緑の点＝候補の市区町村';
+    els.coordinateBottom.textContent = `GSI TILES / ${pool.length.toLocaleString('ja-JP')} MUNICIPALITIES`;
+    els.mapNote.textContent = '地理院地図に候補の町を表示。赤い点へダーツが着弾します。';
     return activeTarget;
   }
 
@@ -242,7 +345,9 @@
 
   function updateSelection() {
     activeTarget = null;
-    els.mapStage.classList.remove('throwing');
+    els.mapStage.classList.remove('throwing', 'gsi-mode');
+    els.mapStage.parentElement.classList.remove('gsi-active');
+    els.sourceNote.hidden = true;
     setRegionButtons();
     setPrefectureOptions();
     const name = scopeName();
@@ -296,7 +401,13 @@
   }
 
   window.addEventListener('resize', () => {
-    if (activeTarget) drawTargetMap();
+    if (activeTarget) {
+      if (!activeTarget.detail) {
+        const {width, height} = els.mapStage.getBoundingClientRect();
+        activeTarget.view = fitView(activeTarget.pool, width, height);
+      }
+      drawTargetMap();
+    }
   });
 
   els.prefectureSelect.addEventListener('change', () => {
@@ -306,6 +417,14 @@
     updateSelection();
   });
   els.throwButton.addEventListener('click', throwDart);
+  els.focusMapButton.addEventListener('click', () => {
+    if (!activeTarget) return;
+    if (!activeTarget.detail) focusWinner();
+    els.mapStage.parentElement.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      block: 'center'
+    });
+  });
   els.retryButton.addEventListener('click', () => {
     document.getElementById('explore').scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block:'start'});
     setTimeout(throwDart, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 320);

@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#153d36">
   <meta name="description" content="日本の地図から範囲を選び、ダーツの一投で次の旅先を決める。47都道府県・1,741市区町村から出会う、きまぐれな旅。">
   <title>地図から始まる旅 | きまぐれダーツ旅・レン案</title>
-  <link rel="stylesheet" href="./style.css?v=8dfad7c4">
-  <script src="./app.js?v=2ad8cee2" defer></script>
+  <link rel="stylesheet" href="./style.css?v=00926b43">
+  <script src="./app.js?v=f76ba03a" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -68,7 +68,8 @@
             <div class="selection-summary" aria-live="polite"><span>いまの候補</span><strong id="candidate-count">1,741 <small>市区町村</small></strong><span id="selected-scope">全国</span></div>
             <button class="throw-button" id="throw-button" type="button" disabled><span class="throw-icon" aria-hidden="true">➶</span><span class="throw-copy"><strong>この地図に投げる</strong><small>一投で、旅先を決めよう</small></span><span class="throw-arrow" aria-hidden="true">↗</span></button>
           </div>
-          <p class="scope-note">候補の各市区町村は同じ確率で選ばれます。投げると候補の位置を点で描き、選ばれた町に着弾します。点は市区町村の位置データで、境界を表しません。</p>
+          <p class="scope-note">候補の各市区町村は同じ確率で選ばれます。投げると地理院地図に候補地点を描き、選ばれた町に着弾します。点は市区町村の位置データで、境界を表しません。</p>
+          <p class="gsi-source-note" id="gsi-source-note" hidden>地図の出典：<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener noreferrer">国土地理院・地理院タイル</a>。<span class="shoreline-credit">小縮尺地図の海岸線：Shoreline data is derived from: United States. National Imagery and Mapping Agency. "Vector Map Level 0 (VMAP0)." Bethesda, MD: Denver, CO: The Agency; USGS Information Services, 1997.</span></p>
         </div>
       </div>
       <p class="intro-foot"><span>01 / 03</span> 知らなかった町に、会いにいこう。 <span aria-hidden="true">↓</span></p>
@@ -82,7 +83,7 @@
             <p class="result-kicker"><span class="result-burst" aria-hidden="true">✳</span> ダーツが選んだ町</p>
             <h2 id="result-title" tabindex="-1"><span id="result-prefecture"></span><br><strong id="result-city"></strong></h2>
             <p id="result-caption">予定にないからこそ、出会える景色がある。</p>
-            <div class="result-actions"><a id="result-map-link" href="#" target="_blank" rel="noopener noreferrer">Google マップで見る <span aria-hidden="true">↗</span></a><button id="retry-button" type="button">もう一度投げる <span aria-hidden="true">↻</span></button></div>
+            <div class="result-actions"><button id="focus-map-button" type="button">着弾地点を地図で見る <span aria-hidden="true">↗</span></button><a id="result-map-link" href="#" target="_blank" rel="noopener noreferrer">Google マップで見る <span aria-hidden="true">↗</span></a><button id="retry-button" type="button">もう一度投げる <span aria-hidden="true">↻</span></button></div>
           </div>
           <div class="result-stamp" aria-hidden="true"><span>GO<br>EXPLORE</span><small>JAPAN / DARTS TRIP</small></div>
         </div>
