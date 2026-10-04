@@ -29,6 +29,7 @@
     resultPrefecture: $('#result-prefecture'),
     resultCity: $('#result-city'),
     resultCaption: $('#result-caption'),
+    resultReason: $('#result-reason'),
     resultIndex: $('#result-index'),
     resultLink: $('#result-map-link'),
     focusMapButton: $('#focus-map-button'),
@@ -37,6 +38,7 @@
 
   let data = null;
   let coordinates = null;
+  let selection = null;
   let region = '全国';
   let prefectureCode = null;
   let mapRequest = 0;
@@ -387,6 +389,12 @@
       els.resultPrefecture.textContent = place.name;
       els.resultCity.textContent = city.city;
       els.resultCaption.textContent = `${scopeName()}の${pool.length.toLocaleString('ja-JP')}市区町村から、あなたの一投が選びました。`;
+      const basis = selection.places[city.id];
+      const reasons = [
+        ...(basis.population >= selection.threshold ? [`人口 ${basis.population.toLocaleString('ja-JP')}人`] : []),
+        ...basis.evidence.map(item => item.type === 'heritage' ? '日本遺産の構成文化財' : item.type === 'district' ? `${item.name}（伝統的建造物群）` : item.type === 'nature' ? `${item.name}（世界自然遺産）` : item.type === 'onsen' ? `${item.name}（温泉100選 上位10位）` : item.name)
+      ];
+      els.resultReason.textContent = `選定理由：${reasons.join('・')}`;
       els.resultIndex.textContent = `${String(thrown).padStart(2, '0')} / UNEXPECTED JOURNEY`;
       els.resultLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + city.city)}`;
       els.result.hidden = false;
@@ -430,17 +438,21 @@
     setTimeout(throwDart, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 320);
   });
 
-  Promise.all(['../data/destinations.json', './coordinates.json'].map(async (path) => {
+  Promise.all(['../data/destinations.json', './coordinates.json', '../data/selection.json'].map(async (path) => {
     const response = await fetch(path);
     if (!response.ok) throw new Error('data failed');
     return response.json();
-  })).then(([payload, coordinatesPayload]) => {
+  })).then(([payload, coordinatesPayload, policy]) => {
     const points = coordinatesPayload.points;
+    if (payload.municipalities.length !== policy.total ||
+        Object.keys(policy.places).length !== policy.total ||
+        payload.municipalities.filter(item => policy.places[item.id]?.eligible).length !== policy.eligible) throw new Error('incomplete selection');
     if (!payload.municipalities.every((item) => {
       const position = points[item.id];
       return position && position.length === 2 && position.every(Number.isFinite);
     })) throw new Error('incomplete coordinates');
-    data = payload;
+    data = {...payload, municipalities: payload.municipalities.filter(item => policy.places[item.id].eligible)};
+    selection = policy;
     coordinates = points;
     els.totalCount.textContent = data.municipalities.length.toLocaleString('ja-JP');
     updateSelection();

@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#153d36">
-  <meta name="description" content="日本の地図から範囲を選び、ダーツの一投で次の旅先を決める。47都道府県・1,741市区町村から出会う、きまぐれな旅。">
+  <meta name="description" content="人口と観光資源を基準に選んだ47都道府県・1,432市区町村から、ダーツの一投で次の旅先を決める。">
   <title>地図から始まる旅 | きまぐれダーツ旅・レン案</title>
   <link rel="stylesheet" href="./style.css?v=de1ad0a2">
-  <script src="./app.js?v=f76ba03a" defer></script>
+  <script src="./app.js?v=selection2026" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -41,7 +41,7 @@
       <div id="explore" class="atlas" aria-label="ダーツ旅の範囲選択">
         <div class="atlas-toolbar">
           <div class="atlas-label"><span class="label-dot"></span> EXPLORE THE MAP <span class="slash">/</span> 行きたい範囲を選ぶ</div>
-          <div class="atlas-count"><span>ALL JAPAN</span><strong id="total-count">1,741</strong><span>PLACES</span></div>
+          <div class="atlas-count"><span>ALL JAPAN</span><strong id="total-count">1,432</strong><span>PLACES</span></div>
         </div>
 
         <div class="atlas-stage">
@@ -65,11 +65,11 @@
             <label class="pref-select-label" for="prefecture-select">都道府県を選択
               <span class="select-wrap"><select id="prefecture-select"><option value="">すべての都道府県</option></select><span aria-hidden="true">⌄</span></span>
             </label>
-            <div class="selection-summary" aria-live="polite"><span>いまの候補</span><strong id="candidate-count">1,741 <small>市区町村</small></strong><span id="selected-scope">全国</span></div>
+            <div class="selection-summary" aria-live="polite"><span>いまの候補</span><strong id="candidate-count">1,432 <small>市区町村</small></strong><span id="selected-scope">全国</span></div>
             <button class="throw-button" id="throw-button" type="button" disabled><span class="throw-icon" aria-hidden="true">➶</span><span class="throw-copy"><strong>この地図に投げる</strong><small>一投で、旅先を決めよう</small></span><span class="throw-arrow" aria-hidden="true">↗</span></button>
           </div>
-          <div class="candidate-rule"><span>候補の基準</span><p>全国の市・町・村と東京23区を各1件。政令指定都市の区は市と重なるため除外しています。</p><a href="./candidates.html">1,741件の内訳と候補一覧を見る <span aria-hidden="true">↗</span></a></div>
-          <p class="scope-note">範囲内の各候補は同じ確率で選ばれます。人口・面積・交通の便では重み付けしません。着弾点は自治体の位置データで、地理的な境界やランダムな地点を表すものではありません。</p>
+          <div class="candidate-rule"><span>候補の基準</span><p>人口1万人以上、または国立公園・文化財など観光資源の根拠がある町。元の1,741件を照合し、1,432件を抽選対象にしました。</p><a href="./candidates.html">選定理由と全件を見る <span aria-hidden="true">↗</span></a></div>
+          <p class="scope-note">選ばれた範囲の抽選対象は各1件・等確率。人口が多いほど当たりやすくはなりません。着弾点は自治体の位置データで、地理的な境界やランダムな地点を表すものではありません。</p>
           <p class="gsi-source-note" id="gsi-source-note" hidden>地図の出典：<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener noreferrer">国土地理院・地理院タイル</a>。<span class="shoreline-credit">小縮尺地図の海岸線：Shoreline data is derived from: United States. National Imagery and Mapping Agency. "Vector Map Level 0 (VMAP0)." Bethesda, MD: Denver, CO: The Agency; USGS Information Services, 1997.</span></p>
         </div>
       </div>
@@ -84,6 +84,7 @@
             <p class="result-kicker"><span class="result-burst" aria-hidden="true">✳</span> ダーツが選んだ町</p>
             <h2 id="result-title" tabindex="-1"><span id="result-prefecture"></span><br><strong id="result-city"></strong></h2>
             <p id="result-caption">予定にないからこそ、出会える景色がある。</p>
+            <p id="result-reason" class="result-reason"></p>
             <div class="result-actions"><button id="focus-map-button" type="button">着弾地点を地図で見る <span aria-hidden="true">↗</span></button><a id="result-map-link" href="#" target="_blank" rel="noopener noreferrer">Google マップで見る <span aria-hidden="true">↗</span></a><button id="retry-button" type="button">もう一度投げる <span aria-hidden="true">↻</span></button></div>
           </div>
           <div class="result-stamp" aria-hidden="true"><span>GO<br>EXPLORE</span><small>JAPAN / DARTS TRIP</small></div>

@@ -1,4 +1,5 @@
 import municipalities from './municipalities.json';
+import selection from '../../public/competition/data/selection.json';
 export type Prefecture={code:number;prefecture:string;region:string};
 export type Destination=Prefecture & {id:string;city:string};
 export const regions=['北海道・東北','関東','中部','近畿','中国','四国','九州・沖縄'];
@@ -13,13 +14,14 @@ const rows=[
 ]as const;
 export const prefectures:Prefecture[]=rows.map(([prefecture,,region],i)=>({code:i+1,prefecture,region:regions[region]}));
 export const findPrefecture = (code:number) => prefectures.find(prefecture => prefecture.code === code);
-export const destinations:Destination[]=municipalities.map(city=>({...findPrefecture(city.code)!,id:city.id,city:city.city}));
-const destinationById = new Map(destinations.map(destination => [destination.id,destination]));
+const allDestinations:Destination[]=municipalities.map(city=>({...findPrefecture(city.code)!,id:city.id,city:city.city}));
+export const destinations:Destination[]=allDestinations.filter(destination=>selection.places[destination.id as keyof typeof selection.places]?.eligible);
+const destinationById = new Map(allDestinations.map(destination => [destination.id,destination]));
 export const findDestination = (id:string):Destination|undefined => destinationById.get(id);
 // Preserve the actual towns shown by the original 47-choice version.
 export function findLegacyDestination(code:number):Destination|undefined {
  const name = rows[code-1]?.[1];
- return name ? destinations.find(destination => destination.code === code && (destination.city === name || destination.city.endsWith(name))) : undefined;
+ return name ? allDestinations.find(destination => destination.code === code && (destination.city === name || destination.city.endsWith(name))) : undefined;
 }
 export function destinationPool(area:string,prefectureCode:number|null=null){return destinations.filter(d=>(area==='全国'||d.region===area)&&(prefectureCode===null||d.code===prefectureCode))}
 export function pickDestination(area:string,random=Math.random,prefectureCode:number|null=null,previousId?:string){

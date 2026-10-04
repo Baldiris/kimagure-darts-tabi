@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#153d36">
-  <meta name="description" content="きまぐれダーツ旅の1,741候補を公開。市・町・村・東京23区の選定基準、47都道府県別件数、全候補を確認できます。">
+  <meta name="description" content="1,741市区町村を人口と観光資源で精査。抽選対象1,432件と保留309件の理由を公開します。">
   <title>候補の基準と全一覧 | きまぐれダーツ旅</title>
   <link rel="stylesheet" href="./style.css?v=de1ad0a2">
   <link rel="stylesheet" href="./candidates.css?v=c6df0e63">
-  <script src="./candidates.js?v=ae6101c6" defer></script>
+  <script src="./candidates.js?v=selection2026" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -19,46 +19,48 @@
     <section class="catalog-hero" aria-labelledby="catalog-title">
       <div class="catalog-eyebrow"><span class="eyebrow-line"></span> CANDIDATE INDEX / 47 PREFECTURES</div>
       <h1 id="catalog-title">次の旅先に、<br><em>選ばれる町。</em></h1>
-      <p>候補を曖昧にしないために。行政上の市・町・村と東京都の特別区を、一つずつ数えた1,741件を公開します。</p>
+      <p>全国1,741市区町村を、人口と観光資源で照合。抽選される1,432件も、いまは保留の309件も、理由を公開します。</p>
       <div class="type-totals" aria-label="候補の内訳">
-        <div><span>市</span><strong>792</strong><small>件</small></div><div><span>町</span><strong>743</strong><small>件</small></div><div><span>村</span><strong>183</strong><small>件</small></div><div><span>東京23区</span><strong>23</strong><small>件</small></div>
+        <div><span>市</span><strong>792</strong><small>対象</small></div><div><span>町</span><strong>534</strong><small>対象</small></div><div><span>村</span><strong>83</strong><small>対象</small></div><div><span>東京23区</span><strong>23</strong><small>対象</small></div>
       </div>
     </section>
 
     <section class="catalog-policy" aria-labelledby="policy-title">
       <div class="catalog-section-head"><span>THE RULE / 01</span><h2 id="policy-title">候補を決める基準</h2></div>
       <div class="policy-cards">
-        <article><span>01 / 含める</span><h3>市・町・村・東京23区</h3><p>各自治体を1候補にします。離島の市町村も含みます。町内の地区、駅、観光施設は個別候補にしません。</p></article>
-        <article><span>02 / 重複を除く</span><h3>政令指定都市は「市」で1件</h3><p>市とその行政区を両方入れると同じ土地を二重に数えるため、指定都市の区は候補から外します。東京23区はそれぞれ独立した候補です。</p></article>
-        <article><span>03 / 抽選する</span><h3>範囲内で各候補が等確率</h3><p>人口・面積・観光地の数・交通の便では重み付けしません。全国で投げた場合、候補数の多い都道府県ほど選ばれる確率は高くなります。</p></article>
+        <article><span>01 / 人口</span><h3>1万人以上なら対象</h3><p>2026年1月1日の住民基本台帳人口を自治体コードで全件照合。旅の拠点としての規模を見る目安であり、観光客数を表す数字ではありません。</p></article>
+        <article><span>02 / 観光資源</span><h3>小さな町も残す</h3><p>人口1万人未満でも、日本遺産の構成文化財、重要伝統的建造物群、国立公園の関係市町村、世界自然遺産、温泉100選上位10位のいずれかに該当すれば対象です。</p></article>
+        <article><span>03 / 抽選</span><h3>対象内は等確率</h3><p>全国・地域・都道府県を選んだ後、その範囲の対象から各1件として抽選します。人口や観光資源の数で確率を増やしません。</p></article>
       </div>
-      <div class="count-formula"><strong>1,741件の算出</strong><span>国土地理院の市町村計 1,724件 <b>＋</b> 東京23特別区 <b>−</b> 元データに含まれない北方領土の6村 <b>＝</b> 1,741件</span></div>
-      <p class="policy-detail">地図上の点はデータに記録された自治体の位置で、行政界やその自治体内のランダムな地点ではありません。行き先が決まったら、移動手段や現地の状況を確認してください。</p>
+      <div class="count-formula"><strong>1,432件の算出</strong><span>人口1万人以上 <b>1,191</b> 件 <b>＋</b> 人口1万人未満で観光根拠あり <b>241</b> 件 <b>＝</b> 抽選対象 <b>1,432</b> 件</span></div>
+      <p class="policy-detail">元の1,741件のうち309件は、今回の参照資料では根拠を確認できず保留です。観光地がないという意味ではありません。政令指定都市の行政区は市との重複を避け、東京23特別区は各1件にしています。地図の点は自治体の位置で、観光施設の所在地や行政界ではありません。</p>
     </section>
 
     <section class="catalog-counts" aria-labelledby="counts-title">
-      <div class="catalog-section-head"><span>BY PREFECTURE / 02</span><h2 id="counts-title">47都道府県の件数</h2><p>県名を選ぶと、下の一覧を絞り込めます。</p></div>
+      <div class="catalog-section-head"><span>BY PREFECTURE / 02</span><h2 id="counts-title">47都道府県の対象件数</h2><p>県名を選ぶと、下の一覧を絞り込めます。</p></div>
       <div id="prefecture-grid" class="prefecture-grid" role="group" aria-label="都道府県別の候補件数"><p>候補を読み込んでいます…</p></div>
     </section>
 
     <section id="list" class="catalog-list" aria-labelledby="list-title">
-      <div class="catalog-section-head"><span>ALL PLACES / 03</span><h2 id="list-title">候補一覧</h2><p>名称・コードで検索できます。</p></div>
+      <div class="catalog-section-head"><span>ALL PLACES / 03</span><h2 id="list-title">全1,741件の判定</h2><p>名称・コードで検索できます。保留の町も表示します。</p></div>
       <div class="list-controls">
         <label>市区町村を探す<input id="candidate-search" type="search" placeholder="例：松本市、利尻町、13101" autocomplete="off"></label>
         <label>都道府県<select id="candidate-prefecture"><option value="">全国すべて</option></select></label>
         <label>区分<select id="candidate-type"><option value="">すべて</option><option value="市">市</option><option value="町">町</option><option value="村">村</option><option value="区">東京23区</option></select></label>
+        <label>判定<select id="candidate-status"><option value="">すべて</option><option value="eligible">抽選対象</option><option value="held">保留</option></select></label>
       </div>
       <p class="list-status" id="list-status" role="status" aria-live="polite">候補を読み込んでいます…</p>
-      <div class="list-scroll"><table><thead><tr><th scope="col">都道府県</th><th scope="col">市区町村</th><th scope="col">区分</th><th scope="col">コード</th><th scope="col">着弾点</th></tr></thead><tbody id="candidate-rows"></tbody></table></div>
+      <div class="list-scroll"><table><thead><tr><th scope="col">都道府県</th><th scope="col">市区町村</th><th scope="col">人口</th><th scope="col">判定・根拠</th><th scope="col">コード</th><th scope="col">位置</th></tr></thead><tbody id="candidate-rows"></tbody></table></div>
       <button id="load-more" class="load-more" type="button" hidden>続きを表示 <span aria-hidden="true">↓</span></button>
-      <noscript>一覧の検索にはJavaScriptが必要です。<a href="../data/destinations.json">候補データ（JSON）</a>をご覧ください。</noscript>
+      <noscript>一覧の検索にはJavaScriptが必要です。<a href="../data/selection.json">判定データ（JSON）</a>をご覧ください。</noscript>
     </section>
 
     <section class="catalog-sources" aria-labelledby="sources-title">
       <div class="catalog-section-head"><span>DATA NOTES / 04</span><h2 id="sources-title">データと確認結果</h2></div>
       <p><a href="https://github.com/code4fukui/localgovjp" target="_blank" rel="noopener noreferrer">Code for FUKUI / localgovjp</a> の2026年7月9日版を元にしています。ID・名称・位置の1,741件を照合し、IDや県内名称の重複、位置の欠落はありません。47都道府県別の件数は<a href="https://www.gsi.go.jp/KOKUJYOHO/MENCHO/backnumber/GSI-menseki20251001.pdf" target="_blank" rel="noopener noreferrer">国土地理院の都道府県別一覧（2025年10月1日）</a>と上記の6村・23区を調整して一致します。</p>
-      <p>元データに収録された指定都市の区は175行ありますが、浜松市の2024年の区再編前の7区が残っています。現在の指定都市の区数は171区です。これらの区はすべて候補から外しているため、1,741件の抽選対象には影響しません。元データの自治体名・位置の全件を行政機関の個別記録と照合したものではありません。</p>
-      <p class="source-date">データ版：2026.07.09　/　監査：2026.10.04　/　<a href="../data/destinations.json">候補データ JSON</a></p>
+      <p>人口は<a href="https://www.e-stat.go.jp/stat-search/files?cycle=7&amp;layout=datalist&amp;month=0&amp;page=1&amp;tclass1=000001039601&amp;toukei=00200241&amp;tstat=000001039591&amp;year=20260" target="_blank" rel="noopener noreferrer">e-Statの2026年1月1日住民基本台帳人口「26-03」</a>。観光根拠は<a href="https://japan-heritage.bunka.go.jp/ja/culturalproperties/region/" target="_blank" rel="noopener noreferrer">文化庁・日本遺産の地域別構成文化財</a>、<a href="https://www.bunka.go.jp/seisaku/bunkazai/shokai/hozonchiku/judenken_ichiran.html" target="_blank" rel="noopener noreferrer">重要伝統的建造物群保存地区</a>、<a href="https://www.env.go.jp/park/parks/" target="_blank" rel="noopener noreferrer">環境省・国立公園35件の関係市町村</a>、<a href="https://www.env.go.jp/nature/isan/worldheritage.html" target="_blank" rel="noopener noreferrer">世界自然遺産</a>、<a href="https://www.kankokeizai.com/index_100sen/" target="_blank" rel="noopener noreferrer">第39回にっぽんの温泉100選上位10位</a>です。掲載や指定は、宿泊・交通・立入条件を保証するものではありません。</p>
+      <p>元データに収録された指定都市の区は175行ありますが、浜松市の2024年の区再編前の7区が残っています。現在の指定都市の区数は171区です。これらの区はすべて基礎台帳から除外しているため、今回の判定には影響しません。元データの自治体名・位置の全件を行政機関の個別記録と照合したものではありません。</p>
+      <p class="source-date">自治体データ：2026.07.09　/　人口基準日：2026.01.01　/　判定：2026.10.04　/　<a href="../data/selection.json">全件の判定データ JSON</a></p>
     </section>
   </main>
   <footer><span>きまぐれダーツ旅 <small>© 2026</small></span><span>地図から、まだ知らない日本へ。</span><a href="./">地図に戻る ↑</a></footer>

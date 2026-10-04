@@ -9,15 +9,19 @@ const read = path => fs.readFileSync(join(root,path),'utf8');
 const compile = text => ts.transpileModule(text,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
 const uri = text => 'data:text/javascript;base64,'+Buffer.from(text).toString('base64');
 const municipalities = JSON.parse(read('src/lib/municipalities.json'));
-const destinationsUri = uri(compile(read('src/lib/destinations.ts').replace("import municipalities from './municipalities.json';",'const municipalities = '+JSON.stringify(municipalities)+';')));
+const selection = JSON.parse(read('public/competition/data/selection.json'));
+const destinationsUri = uri(compile(read('src/lib/destinations.ts')
+ .replace("import municipalities from './municipalities.json';",'const municipalities = '+JSON.stringify(municipalities)+';')
+ .replace("import selection from '../../public/competition/data/selection.json';",'const selection = '+JSON.stringify(selection)+';')));
 const {destinations,prefectures,regions,destinationPool,pickDestination,findDestination,findLegacyDestination} = await import(destinationsUri);
 const {parseTravelState,resolveRoute,loadTravelState,travelStorageKey} = await import(uri(compile(read('src/lib/travel-state.ts')).replaceAll("'./destinations'",JSON.stringify(destinationsUri))));
 
-assert.equal(destinations.length,1741);
+assert.equal(destinations.length,1432);
 assert.equal(prefectures.length,47);
-assert.equal(new Set(destinations.map(city=>city.id)).size,1741);
-assert.equal(destinationPool('全国',13).length,62);
-assert.equal(destinationPool('全国',14).length,33);
+assert.equal(new Set(destinations.map(city=>city.id)).size,1432);
+assert.equal(destinationPool('全国',13).length,61);
+assert.equal(destinationPool('全国',14).length,29);
+for (const city of ['草津町','白川村','竹富町','小笠原村','ニセコ町','美瑛町']) assert.ok(destinations.some(destination=>destination.city===city), `${city} is eligible`);
 assert.ok(destinationPool('全国',13).some(city=>city.city==='大田区'));
 assert.ok(destinationPool('全国',14).some(city=>city.city==='横浜市'));
 assert.ok(!destinations.some(city=>/市.*区$/.test(city.city)));
@@ -63,4 +67,4 @@ globalThis.localStorage = {getItem:key=>storage.get(key)??null};
 assert.equal(loadTravelState().history[0].destinationId,'13205');
 storage.set(travelStorageKey,JSON.stringify(samePrefecture));
 assert.equal(loadTravelState().lastResult.destinationId,'13101','New state takes precedence over legacy state');
-console.log('1741 reachable municipalities, all 47 scopes, repeat avoidance, independent saves and legacy migration passed.');
+console.log('1432 reachable municipalities, all 47 scopes, repeat avoidance, independent saves and legacy migration passed.');
