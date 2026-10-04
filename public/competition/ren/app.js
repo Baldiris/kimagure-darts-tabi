@@ -30,6 +30,7 @@
     resultCity: $('#result-city'),
     resultCaption: $('#result-caption'),
     resultReason: $('#result-reason'),
+    resultFacts: $('#result-facts'),
     resultIndex: $('#result-index'),
     resultLink: $('#result-map-link'),
     focusMapButton: $('#focus-map-button'),
@@ -39,6 +40,7 @@
   let data = null;
   let coordinates = null;
   let selection = null;
+  let placeFacts = null;
   let region = '全国';
   let prefectureCode = null;
   let mapRequest = 0;
@@ -59,6 +61,44 @@
     if (region === '全国') return data.municipalities;
     const codes = new Set(data.prefectures.filter((item) => item.region === region).map((item) => item.code));
     return data.municipalities.filter((item) => codes.has(item.code));
+  }
+
+  function renderFacts(id) {
+    const fact = placeFacts.places[id];
+    const cards = [];
+    if (fact.sight) {
+      const {kind, name, url} = fact.sight;
+      const copy = {
+        nature: ['世界自然遺産', `環境省の世界自然遺産「${name}」の構成地域です。`, '環境省'],
+        district: ['歴史の町並み', `文化庁が「${name}」を重要伝統的建造物群保存地区に選定しています。`, '文化庁'],
+        park: ['国立公園', `環境省が示す「${name}」の関係市町村に含まれます。`, '環境省'],
+        heritage: ['日本遺産', '文化庁の日本遺産ポータルに、この町の構成文化財が掲載されています。', '文化庁']
+      }[kind];
+      cards.push({title: copy[0], body: copy[1], source: copy[2], url});
+    }
+    if (fact.crop) {
+      const [product, amount, rank] = fact.crop;
+      const value = (amount / 10).toLocaleString('ja-JP', {maximumFractionDigits: 1});
+      cards.push({title: '農業の一面', body: `2024年の農業産出額（推計）では、${product}が${value}億円${rank <= 100 ? `・全国${rank}位` : ''}。`, source: '農林水産省', url: placeFacts.sourceUrls.agriculture});
+    }
+    const [area, habitable] = fact.area;
+    cards.push({title: '町のスケール', body: `2024年の総面積は${area.toLocaleString('ja-JP')}km²、可住地面積は${habitable.toLocaleString('ja-JP')}km²。`, source: '総務省統計局', url: placeFacts.sourceUrls.area});
+
+    els.resultFacts.replaceChildren(...cards.map(({title, body, source, url}) => {
+      const card = document.createElement('article');
+      card.className = 'local-note';
+      const heading = document.createElement('h4');
+      heading.textContent = title;
+      const description = document.createElement('p');
+      description.textContent = body;
+      const link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = `${source}の資料 ↗`;
+      card.append(heading, description, link);
+      return card;
+    }));
   }
 
   function uniformIndex(length) {
@@ -395,6 +435,7 @@
         ...basis.evidence.map(item => item.type === 'heritage' ? '日本遺産の構成文化財' : item.type === 'district' ? `${item.name}（伝統的建造物群）` : item.type === 'nature' ? `${item.name}（世界自然遺産）` : item.type === 'onsen' ? `${item.name}（温泉100選 上位10位）` : item.name)
       ];
       els.resultReason.textContent = `選定理由：${reasons.join('・')}`;
+      renderFacts(city.id);
       els.resultIndex.textContent = `${String(thrown).padStart(2, '0')} / UNEXPECTED JOURNEY`;
       els.resultLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + city.city)}`;
       els.result.hidden = false;
@@ -404,7 +445,7 @@
       els.prefectureSelect.disabled = false;
       els.throwButton.querySelector('.throw-copy strong').textContent = 'この地図に投げる';
       els.mapStage.classList.remove('throwing');
-      els.result.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'center' });
+      els.result.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
     }, delay + 1250);
   }
 
@@ -438,21 +479,24 @@
     setTimeout(throwDart, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 320);
   });
 
-  Promise.all(['../data/destinations.json', './coordinates.json', '../data/selection.json'].map(async (path) => {
+  Promise.all(['../data/destinations.json', './coordinates.json', '../data/selection.json', '../data/place-facts.json'].map(async (path) => {
     const response = await fetch(path);
     if (!response.ok) throw new Error('data failed');
     return response.json();
-  })).then(([payload, coordinatesPayload, policy]) => {
+  })).then(([payload, coordinatesPayload, policy, facts]) => {
     const points = coordinatesPayload.points;
     if (payload.municipalities.length !== policy.total ||
         Object.keys(policy.places).length !== policy.total ||
-        payload.municipalities.filter(item => policy.places[item.id]?.eligible).length !== policy.eligible) throw new Error('incomplete selection');
+        payload.municipalities.filter(item => policy.places[item.id]?.eligible).length !== policy.eligible ||
+        Object.keys(facts.places).length !== policy.eligible ||
+        payload.municipalities.some(item => policy.places[item.id]?.eligible && !facts.places[item.id])) throw new Error('incomplete selection');
     if (!payload.municipalities.every((item) => {
       const position = points[item.id];
       return position && position.length === 2 && position.every(Number.isFinite);
     })) throw new Error('incomplete coordinates');
     data = {...payload, municipalities: payload.municipalities.filter(item => policy.places[item.id].eligible)};
     selection = policy;
+    placeFacts = facts;
     coordinates = points;
     els.totalCount.textContent = data.municipalities.length.toLocaleString('ja-JP');
     updateSelection();

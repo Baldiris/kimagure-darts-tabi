@@ -24,6 +24,10 @@ npm run build
 
 出典から抽出したデータは `data/selection-sources/`、変換と照合は `scripts/build-selection.mjs` に記録しています。更新後は `node scripts/build-selection.mjs` で判定データを再生成します。国立公園は35件すべての「関係市町村名」を読んでいます。元の1,741件は基礎台帳として維持し、以前の履歴も表示します。
 
+抽選結果の「町の手掛かり」は、上記の文化庁・環境省の資料にある固有名詞に加え、[総務省統計局「統計でみる市区町村のすがた2026」B 自然環境](https://www.e-stat.go.jp/stat-search/files?layout=datalist&lid=000001484933&page=1)の2024年面積と、[農林水産省「令和6年市町村別農業産出額（推計）詳細品目別データ」](https://www.maff.go.jp/j/tokei/kouhyou/sityoson_sansyutu/)の2024年品目・額・順位から作成しています。数値は資料の基準時点のもので、産出額は各市町村で直接測定した販売額や特産品の認定ではありません。非公表の `x` は利用しません。サイトでは各特徴から元資料へ移動できます。
+
+元のExcelをサイトには同梱しません。取得した `.xls` と `.xlsx` を `python scripts/extract-place-facts.py <e-Stat B .xls> <MAFF 2024 .xlsx>` で小さな `data/feature-sources/` に抽出し、`node scripts/build-place-facts.mjs` で `public/competition/data/place-facts.json` を更新します。後者の照合は `npm run check` に含まれます。観光資料が見つからない町でも統計値を表示し、未掲載を観光地の不存在とは扱いません。
+
 7地域と47都道府県の地図は同梱の日本地図から生成しています。地図の出典と利用条件は `public/assets/map-source.txt` と `map-license.txt` に記載しています。地図更新時は `python scripts/build-region-maps.py` を実行してください。
 
 `npm run check` で全候補の到達性、地域・県の絞り込み、連続重複の回避、旧履歴の移行と町ごとの保存を確認します。

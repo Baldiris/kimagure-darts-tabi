@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite",
     "build": "node scripts/build-pages.mjs",
-    "check": "node scripts/audit-candidates.mjs && node scripts/build-selection.mjs --check && node scripts/check-travel.mjs && tsc --noEmit",
+    "check": "node scripts/audit-candidates.mjs && node scripts/build-selection.mjs --check && node scripts/build-place-facts.mjs --check && node scripts/check-travel.mjs && tsc --noEmit",
     "audit:candidates": "node scripts/audit-candidates.mjs",
     "preview": "vite preview"
   },

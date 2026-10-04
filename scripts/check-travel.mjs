@@ -10,6 +10,7 @@ const compile = text => ts.transpileModule(text,{compilerOptions:{module:ts.Modu
 const uri = text => 'data:text/javascript;base64,'+Buffer.from(text).toString('base64');
 const municipalities = JSON.parse(read('src/lib/municipalities.json'));
 const selection = JSON.parse(read('public/competition/data/selection.json'));
+const facts = JSON.parse(read('public/competition/data/place-facts.json'));
 const destinationsUri = uri(compile(read('src/lib/destinations.ts')
  .replace("import municipalities from './municipalities.json';",'const municipalities = '+JSON.stringify(municipalities)+';')
  .replace("import selection from '../../public/competition/data/selection.json';",'const selection = '+JSON.stringify(selection)+';')));
@@ -17,6 +18,12 @@ const {destinations,prefectures,regions,destinationPool,pickDestination,findDest
 const {parseTravelState,resolveRoute,loadTravelState,travelStorageKey} = await import(uri(compile(read('src/lib/travel-state.ts')).replaceAll("'./destinations'",JSON.stringify(destinationsUri))));
 
 assert.equal(destinations.length,1432);
+assert.equal(Object.keys(facts.places).length,destinations.length);
+assert.ok(destinations.every(city=>facts.places[city.id]?.area[0] > 0),'Every selectable place has a government statistical fact');
+assert.equal(facts.places['21604'].sight.name,'白川村荻町');
+assert.equal(facts.places['10426'].sight.kind,'park');
+assert.equal(facts.places['47207'].crop[0],'パインアップル');
+assert.equal(facts.places['10204'].crop[0],'なす');
 assert.equal(prefectures.length,47);
 assert.equal(new Set(destinations.map(city=>city.id)).size,1432);
 assert.equal(destinationPool('全国',13).length,61);
