@@ -81,6 +81,7 @@ body{background:#f4f0e6}
 .map-location:before{content:"選んだ範囲";letter-spacing:.06em}
 .map-stage svg{filter:none}
 .map-stage .geolonia-svg-map{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
+.map-stage .boundary-line{display:none}
 .atlas-controls{padding-bottom:28px}
 .controls-head h2{font-size:22px}
 .region-button{border-radius:0}
