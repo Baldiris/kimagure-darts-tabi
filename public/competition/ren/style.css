@@ -66,7 +66,7 @@ body{background:#f4f0e6}
 .hero-link{display:inline-flex;align-items:center;justify-content:space-between;gap:35px;min-height:49px;padding:11px 17px;background:var(--ink);color:#fff;font-size:12px;font-weight:800}
 .hero-link:hover{background:#286055}
 .hero-photo{width:39%;max-width:475px;margin:0;flex:none}
-.hero-photo img{display:block;width:100%;aspect-ratio:1.48;object-fit:cover;object-position:center 56%}
+.hero-photo img{display:block;width:100%;height:auto;aspect-ratio:1.48;object-fit:cover;object-position:center 56%}
 .hero-photo figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:9px;color:#68786b;font-size:9px;line-height:1.5}
 .hero-photo figcaption span{font-weight:800;color:#375649}
 .hero-photo figcaption span:last-child{font-weight:500;color:#68786b;text-align:right}
