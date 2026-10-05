@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#153d36">
   <meta name="description" content="人口と観光資源を基準に選んだ47都道府県・1,432市区町村から、ダーツの一投で次の旅先を決める。">
-  <title>地図から始まる旅 | きまぐれダーツ旅・レン案</title>
-  <link rel="stylesheet" href="./style.css?v=placefacts2026">
-  <script src="./app.js?v=placefacts2026" defer></script>
+  <title>きまぐれダーツ旅 | 地図から始まる旅</title>
+  <link rel="stylesheet" href="./style.css?v=editorial2026">
+  <script src="./app.js?v=editorial2026" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -24,30 +24,30 @@
   <main id="top">
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-intro">
-        <div class="eyebrow"><span class="eyebrow-line"></span> JAPAN, AT A GLANCE <span class="edition">FIELD GUIDE NO. 01</span></div>
+        <p class="hero-overline">きまぐれダーツ旅 <span>／ 47都道府県・1,432の町</span></p>
         <div class="hero-heading-row">
           <div>
-            <p class="kicker">行き先の選び方を、少し変えてみる。</p>
-            <h1 id="page-title">地図を選ぶ。<br><em>ダーツを投げる。</em><br>知らない町へ。</h1>
+            <h1 id="page-title">週末の行き先、<br><em>ダーツで決める。</em></h1>
+            <p class="hero-lead">行ける範囲を選んで、ひと投げ。<br>当たった町を、次の旅先にしてみよう。</p>
+            <a class="hero-link" href="#explore">地図を開いて投げる <span aria-hidden="true">↗</span></a>
           </div>
-          <div class="hero-aside">
-            <span class="compass" aria-hidden="true">N<span class="needle"></span></span>
-            <p>次の休日を、<br>思いがけない景色へ。</p>
-            <a href="#explore">旅先を決める <span aria-hidden="true">↓</span></a>
-          </div>
+          <figure class="hero-photo">
+            <img src="../../assets/onomichi-senkoji.jpg" alt="千光寺公園から見た尾道の町と尾道水道" width="1280" height="960" fetchpriority="high">
+            <figcaption><span>広島県・尾道市の風景</span><span>写真：<a href="https://commons.wikimedia.org/wiki/File:Onomichi_Bridge_and_Shin-Onomichi_Bridge_from_Senkoji_Park.jpg" target="_blank" rel="noopener noreferrer">そらみみ</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>（縮小）</span></figcaption>
+          </figure>
         </div>
       </div>
 
       <div id="explore" class="atlas" aria-label="ダーツ旅の範囲選択">
         <div class="atlas-toolbar">
-          <div class="atlas-label"><span class="label-dot"></span> EXPLORE THE MAP <span class="slash">/</span> 行きたい範囲を選ぶ</div>
-          <div class="atlas-count"><span>ALL JAPAN</span><strong id="total-count">1,432</strong><span>PLACES</span></div>
+          <div class="atlas-label">地図で行き先を選ぶ</div>
+          <div class="atlas-count"><span>全国</span><strong id="total-count">1,432</strong><span>市区町村</span></div>
         </div>
 
         <div class="atlas-stage">
           <div class="stage-grid" aria-hidden="true"></div>
-          <div class="coordinate coordinate-top" aria-hidden="true">MAP / AREA SELECTOR</div>
-          <div class="coordinate coordinate-bottom" id="coordinate-bottom" aria-hidden="true">JAPAN / 47 PREFECTURES</div>
+          <div class="coordinate coordinate-top" aria-hidden="true"></div>
+          <div class="coordinate coordinate-bottom" id="coordinate-bottom" aria-hidden="true"></div>
           <div class="map-location" id="map-location">日本全国</div>
           <div class="map-orientation" aria-hidden="true"><span>N</span><i></i><span>S</span></div>
           <div id="map-stage" class="map-stage" role="group" aria-label="選択中の地図"><p class="map-loading">地図を読み込んでいます…</p></div>
@@ -57,8 +57,8 @@
 
         <div class="atlas-controls">
           <div class="controls-head">
-            <div><span class="step-no">01</span><h2>投げる範囲</h2></div>
-            <p>絞るほど、その土地の町に出会いやすくなります。</p>
+          <div><h2>投げる範囲を決める</h2></div>
+            <p>全国からでも、都道府県を指定しても。</p>
           </div>
           <div class="region-list" id="region-list" role="group" aria-label="地域を選択"></div>
           <div class="selection-row">
@@ -66,39 +66,37 @@
               <span class="select-wrap"><select id="prefecture-select"><option value="">すべての都道府県</option></select><span aria-hidden="true">⌄</span></span>
             </label>
             <div class="selection-summary" aria-live="polite"><span>いまの候補</span><strong id="candidate-count">1,432 <small>市区町村</small></strong><span id="selected-scope">全国</span></div>
-            <button class="throw-button" id="throw-button" type="button" disabled><span class="throw-icon" aria-hidden="true">➶</span><span class="throw-copy"><strong>この地図に投げる</strong><small>一投で、旅先を決めよう</small></span><span class="throw-arrow" aria-hidden="true">↗</span></button>
+            <button class="throw-button" id="throw-button" type="button" disabled><span class="throw-icon" aria-hidden="true">➶</span><span class="throw-copy"><strong>この範囲から投げる</strong><small>ダーツで町をひとつ選ぶ</small></span><span class="throw-arrow" aria-hidden="true">↗</span></button>
           </div>
           <div class="candidate-rule"><span>候補の基準</span><p>人口1万人以上、または国立公園・文化財など観光資源の根拠がある町。元の1,741件を照合し、1,432件を抽選対象にしました。</p><a href="./candidates.html">選定理由と全件を見る <span aria-hidden="true">↗</span></a></div>
           <p class="scope-note">選ばれた範囲の抽選対象は各1件・等確率。人口が多いほど当たりやすくはなりません。着弾点は自治体の位置データで、地理的な境界やランダムな地点を表すものではありません。</p>
           <p class="gsi-source-note" id="gsi-source-note" hidden>地図の出典：<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener noreferrer">国土地理院・地理院タイル</a>。<span class="shoreline-credit">小縮尺地図の海岸線：Shoreline data is derived from: United States. National Imagery and Mapping Agency. "Vector Map Level 0 (VMAP0)." Bethesda, MD: Denver, CO: The Agency; USGS Information Services, 1997.</span></p>
         </div>
       </div>
-      <p class="intro-foot"><span>01 / 03</span> 知らなかった町に、会いにいこう。 <span aria-hidden="true">↓</span></p>
     </section>
 
     <section id="result" class="result-section" aria-labelledby="result-title" hidden>
       <div class="result-shell">
-        <div class="result-topline"><span>YOUR NEXT DESTINATION</span><span id="result-index">01 / UNEXPECTED JOURNEY</span></div>
+        <div class="result-topline"><span>ダーツが当たった町</span><span id="result-index">1投目</span></div>
         <div class="result-body">
           <div class="result-main">
-            <p class="result-kicker"><span class="result-burst" aria-hidden="true">✳</span> ダーツが選んだ町</p>
+            <p class="result-kicker">行き先が決まりました</p>
             <h2 id="result-title" tabindex="-1"><span id="result-prefecture"></span><br><strong id="result-city"></strong></h2>
-            <p id="result-caption">予定にないからこそ、出会える景色がある。</p>
+            <p id="result-caption"></p>
             <p id="result-reason" class="result-reason"></p>
             <div class="result-actions"><button id="focus-map-button" type="button">着弾地点を地図で見る <span aria-hidden="true">↗</span></button><a id="result-map-link" href="#" target="_blank" rel="noopener noreferrer">Google マップで見る <span aria-hidden="true">↗</span></a><button id="retry-button" type="button">もう一度投げる <span aria-hidden="true">↻</span></button></div>
           </div>
-          <div class="result-stamp" aria-hidden="true"><span>GO<br>EXPLORE</span><small>JAPAN / DARTS TRIP</small></div>
         </div>
       </div>
       <aside class="local-notes" aria-labelledby="local-notes-title">
-        <div class="local-notes-heading"><div><span>FIELD NOTES / OFFICIAL DATA</span><h3 id="local-notes-title">この町の、手掛かり。</h3></div><p>観光・食・土地のデータから、気になる入口をひとつ。</p></div>
+        <div class="local-notes-heading"><div><span>国の公開資料から</span><h3 id="local-notes-title">この町を知る</h3></div><p>町の名前だけでは見えない情報を、少しだけ。</p></div>
         <div class="local-notes-grid" id="result-facts"></div>
         <p class="local-notes-caveat">掲載情報は資料の基準時点のものです。施設の営業、交通、立入条件は現地の案内でご確認ください。</p>
       </aside>
     </section>
 
     <section id="how" class="how-section" aria-labelledby="how-title">
-      <div class="section-heading"><span class="section-index">HOW IT WORKS / 03 STEPS</span><h2 id="how-title">旅先は、<br><em>一投から。</em></h2><p>決めすぎない旅が、いちばん面白い。<br>地図を開くところから始めよう。</p></div>
+      <div class="section-heading"><h2 id="how-title">旅先の決め方</h2><p>範囲を選んで投げる。それだけで、次の町が決まります。</p></div>
       <div class="steps">
         <div class="step"><span>01 <i aria-hidden="true">↗</i></span><h3>地図を選ぶ</h3><p>全国、地域、都道府県から、旅に出られる範囲を決める。</p></div>
         <div class="step"><span>02 <i aria-hidden="true">➶</i></span><h3>ダーツを投げる</h3><p>選んだ範囲の市区町村から、一つが等確率で選ばれる。</p></div>
@@ -106,6 +104,6 @@
       </div>
     </section>
   </main>
-  <footer><span>きまぐれダーツ旅 <small>© 2026</small></span><span>地図から、まだ知らない日本へ。</span><a href="#top">TOP ↑</a></footer>
+  <footer><span>きまぐれダーツ旅 <small>© 2026</small></span><a href="#top">ページの先頭へ ↑</a></footer>
 </body>
 </html>

@@ -51,3 +51,64 @@
 .local-notes-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:19px}.local-notes-heading span{font:10px Georgia,serif;letter-spacing:.15em;color:var(--rust-dark)}.local-notes-heading h3{font:600 clamp(23px,2.5vw,33px)/1.3 var(--serif);margin:9px 0 0}.local-notes-heading p{color:var(--ink-2);font-size:11px;margin:0 0 3px}
 .local-notes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0}.local-note{padding:22px 24px 16px 0;display:flex;flex-direction:column;min-width:0}.local-note+.local-note{border-left:1px solid var(--line);padding-left:24px}.local-note h4{margin:0;color:var(--rust-dark);font-size:11px;letter-spacing:.07em}.local-note p{margin:12px 0 14px;font:500 15px/1.75 var(--serif);color:var(--ink);flex:1}.local-note a{font-size:10px;font-weight:800;text-decoration:underline;text-underline-offset:4px;color:var(--ink-2);align-self:flex-start}.local-note a:hover{color:var(--rust-dark)}.local-notes-caveat{border-top:1px solid var(--line);padding-top:14px;margin:0;color:#71837a;font-size:10px;line-height:1.7}
 @media(max-width:750px){.local-notes{padding:21px 23px}.local-notes-heading{display:block}.local-notes-heading p{margin-top:9px}.local-notes-grid{display:block}.local-note,.local-note+.local-note{padding:17px 0;border-left:0;border-top:1px solid var(--line)}.local-note:first-child{border-top:0}.local-note p{margin:7px 0 9px;font-size:14px}}
+
+/* A destination page, with the map and the throw as the focus. */
+body{background:#f4f0e6}
+.site-header{height:72px;background:#f9f6ef}
+.hero-intro{max-width:1280px;padding:47px 0 54px}
+.hero-overline{margin:0;color:#536b5f;font-size:11px;font-weight:800;letter-spacing:.035em}
+.hero-overline span{font-weight:500;color:#7d8b7f}
+.hero-heading-row{margin-top:19px;gap:5vw;align-items:center}
+.hero-heading-row>div{flex:1;min-width:0}
+.hero h1{font-size:clamp(43px,5.25vw,70px);line-height:1.32;letter-spacing:.025em}
+.hero h1 em{color:#b5533b}
+.hero-lead{max-width:490px;margin:23px 0 25px;font-size:15px;line-height:1.9;color:#4c6258}
+.hero-link{display:inline-flex;align-items:center;justify-content:space-between;gap:35px;min-height:49px;padding:11px 17px;background:var(--ink);color:#fff;font-size:12px;font-weight:800}
+.hero-link:hover{background:#286055}
+.hero-photo{width:39%;max-width:475px;margin:0;flex:none}
+.hero-photo img{display:block;width:100%;aspect-ratio:1.48;object-fit:cover;object-position:center 56%}
+.hero-photo figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:9px;color:#68786b;font-size:9px;line-height:1.5}
+.hero-photo figcaption span{font-weight:800;color:#375649}
+.hero-photo figcaption span:last-child{font-weight:500;color:#68786b;text-align:right}
+.hero-photo figcaption a{text-decoration:underline;text-underline-offset:3px;text-align:right}
+.atlas{max-width:1280px;box-shadow:none;background:#fbf8f1}
+.atlas-toolbar{height:62px}
+.atlas-label{font-size:13px;letter-spacing:0}
+.atlas-count{letter-spacing:0;font-size:10px}
+.atlas-count strong{font-size:27px}
+.atlas-stage{height:min(44vw,570px);min-height:400px;background:#dceae2}
+.stage-grid,.coordinate,.map-orientation{display:none}
+.map-location:before{content:"選んだ範囲";letter-spacing:.06em}
+.map-stage svg{filter:none}
+.atlas-controls{padding-bottom:28px}
+.controls-head h2{font-size:22px}
+.region-button{border-radius:0}
+.throw-button{box-shadow:none}
+.throw-button:hover:not(:disabled){box-shadow:none}
+.candidate-rule{margin-top:24px}
+.result-section{padding-bottom:83px}
+.result-shell{max-width:1280px;box-shadow:none;background:#1c4037}
+.result-topline{padding:18px 34px;letter-spacing:.035em;font:700 11px var(--sans)}
+.result-body{min-height:0;padding:35px 48px 41px}
+.result-main h2{font-size:clamp(39px,4.6vw,64px)}
+.result-kicker{letter-spacing:.04em;color:#f2c8aa}
+.result-main #result-caption{font-size:13px;color:#d5e3d5}
+.result-actions a,.result-actions button{font-size:11px}
+.local-notes{max-width:1280px;margin-top:32px;padding:24px 0 16px;border:0;border-top:1px solid #b8c4b4;border-bottom:1px solid #b8c4b4;background:transparent}
+.local-notes-heading{padding-bottom:17px}
+.local-notes-heading span{font:700 10px var(--sans);letter-spacing:0;color:#ad533b}
+.local-notes-heading h3{font-size:29px;margin-top:6px}
+.local-notes-heading p{font-size:11px}
+.local-note{padding-top:20px}
+.local-notes-grid:not(:has(.local-note:nth-child(2))) .local-note{max-width:620px}
+.local-note h4{letter-spacing:0}
+.local-note p{font-size:15px}
+.how-section{padding:62px max(5.2vw,28px) 77px;background:#eae7dc}
+.section-heading{max-width:1280px;align-items:center}
+.section-heading h2{font-size:clamp(26px,3.4vw,43px)}
+.section-heading p{margin-left:auto;margin-bottom:0;color:#4e6357}
+.steps{max-width:1280px;margin-top:28px}
+.step h3{margin-top:20px}
+footer{background:#1c4037}
+@media(max-width:850px){.hero-heading-row{gap:30px}.hero-photo{width:37%}.hero h1{font-size:clamp(38px,5.2vw,55px)}.hero-lead{font-size:13px}}
+@media(max-width:620px){.site-header{height:64px}.hero-intro{padding:29px 6px 31px}.hero-overline{font-size:9px}.hero-overline span{display:block;margin-top:3px}.hero-heading-row{display:block;margin-top:16px}.hero h1{font-size:clamp(32px,8.6vw,43px)}.hero-lead{font-size:12px;margin:14px 0 18px}.hero-link{min-height:46px}.hero-photo{width:100%;max-width:none;margin-top:29px}.hero-photo img{aspect-ratio:2.05}.hero-photo figcaption{font-size:8px}.atlas-toolbar{height:56px}.atlas-label{font-size:11px}.atlas-count strong{font-size:21px}.atlas-stage{min-height:0;height:400px}.controls-head h2{font-size:18px}.result-section{padding:0 13px 62px}.result-topline{padding:14px 20px;font-size:10px}.result-topline span:last-child{display:block}.result-body{padding:31px 24px 35px}.result-main h2{font-size:40px}.local-notes{padding:20px 6px;margin-top:27px}.local-notes-heading h3{font-size:25px}.local-note{padding-right:0}.section-heading h2{font-size:30px}.section-heading p{margin:8px 0 0}.how-section{padding-top:53px}}

@@ -297,7 +297,7 @@
     activeTarget = {pool, city, place, mapRoot, tileLayer, canvas, mapStatus, focusButton, dart, impact, label, view:null, detail:false, tileSequence:0};
     drawTargetMap();
     els.mapKeyText.textContent = '緑の点＝候補の市区町村';
-    els.coordinateBottom.textContent = `GSI TILES / ${pool.length.toLocaleString('ja-JP')} MUNICIPALITIES`;
+    els.coordinateBottom.textContent = `${pool.length.toLocaleString('ja-JP')}市区町村`;
     els.mapNote.textContent = '地理院地図に候補の町を表示。赤い点へダーツが着弾します。';
     return activeTarget;
   }
@@ -396,7 +396,7 @@
     const count = eligible().length;
     els.mapLocation.textContent = name === '全国' ? '日本全国' : name;
     els.mapKeyText.textContent = prefectureCode === null ? '地図をタップして県を選択' : '選択範囲の地図';
-    els.coordinateBottom.textContent = name === '全国' ? 'JAPAN / 47 PREFECTURES' : 'AREA / PREFECTURE MAP';
+    els.coordinateBottom.textContent = name === '全国' ? '47都道府県' : '地域地図';
     els.mapNote.innerHTML = '地図上の県をタップしても選べます。<br>一部の離島は地図表示を省略しています。';
     els.selectedScope.textContent = name;
     els.candidateCount.innerHTML = `${count.toLocaleString('ja-JP')} <small>市区町村</small>`;
@@ -428,7 +428,7 @@
       thrown += 1;
       els.resultPrefecture.textContent = place.name;
       els.resultCity.textContent = city.city;
-      els.resultCaption.textContent = `${scopeName()}の${pool.length.toLocaleString('ja-JP')}市区町村から、あなたの一投が選びました。`;
+      els.resultCaption.textContent = `${scopeName()}の${pool.length.toLocaleString('ja-JP')}市区町村から選ばれました。`;
       const basis = selection.places[city.id];
       const reasons = [
         ...(basis.population >= selection.threshold ? [`人口 ${basis.population.toLocaleString('ja-JP')}人`] : []),
@@ -436,14 +436,14 @@
       ];
       els.resultReason.textContent = `選定理由：${reasons.join('・')}`;
       renderFacts(city.id);
-      els.resultIndex.textContent = `${String(thrown).padStart(2, '0')} / UNEXPECTED JOURNEY`;
+      els.resultIndex.textContent = `${thrown}投目`;
       els.resultLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + city.city)}`;
       els.result.hidden = false;
       $('#result-title').focus({preventScroll:true});
       busy = false;
       els.throwButton.disabled = false;
       els.prefectureSelect.disabled = false;
-      els.throwButton.querySelector('.throw-copy strong').textContent = 'この地図に投げる';
+      els.throwButton.querySelector('.throw-copy strong').textContent = 'この範囲から投げる';
       els.mapStage.classList.remove('throwing');
       els.result.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
     }, delay + 1250);

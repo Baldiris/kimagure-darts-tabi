@@ -30,4 +30,6 @@ npm run build
 
 7地域と47都道府県の地図は同梱の日本地図から生成しています。地図の出典と利用条件は `public/assets/map-source.txt` と `map-license.txt` に記載しています。地図更新時は `python scripts/build-region-maps.py` を実行してください。
 
+トップページとレン案の風景写真は、実際の尾道市を千光寺公園から撮影した[そらみみ氏の写真](https://commons.wikimedia.org/wiki/File:Onomichi_Bridge_and_Shin-Onomichi_Bridge_from_Senkoji_Park.jpg)を1,280pxに縮小したものです（[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)）。抽選結果の町を写した写真ではありません。ページ内にも撮影地・作者・ライセンスを表示しています。
+
 `npm run check` で全候補の到達性、地域・県の絞り込み、連続重複の回避、旧履歴の移行と町ごとの保存を確認します。
