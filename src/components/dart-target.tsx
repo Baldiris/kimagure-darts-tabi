@@ -27,7 +27,7 @@ export function DartTarget({phase,destination,pool,scopeName,onThrow}:Props) {
   const radius=destination ? 5+Math.sqrt((index+.5)/Math.max(1,pool.length))*26 : 0;
   const x=(50+Math.cos(angle)*radius).toFixed(2), y=(50+Math.sin(angle)*radius).toFixed(2);
   return <div className={`dart-stage ${phase}`}>
-    <div className="dart-stage-top"><span><Crosshair size={17}/> TRAVEL DARTS</span><span>JAPAN / 47 PREFECTURES</span></div>
+    <div className="dart-stage-top"><span><Crosshair size={17}/>旅先ダーツ</span><span>{scopeName} / {pool.length.toLocaleString('ja-JP')}候補</span></div>
     <p className="board-intro">次の行き先は、<strong>一投で。</strong></p>
     <div className="target-scene">
       <button type="button" className="dart-target-button" onClick={onThrow} disabled={phase!=='ready'} aria-label={`${scopeName}の${pool.length}市区町村へダーツを投げる`}>
@@ -40,7 +40,7 @@ export function DartTarget({phase,destination,pool,scopeName,onThrow}:Props) {
       </button>
       <span className="board-orbit orbit-one"/><span className="board-orbit orbit-two"/>
     </div>
-    <div className="board-status" aria-live="off"><div><span className="status-pulse"/><span>{phase==='ready'?'READY TO THROW':phase==='flying'?'DART IN FLIGHT':'DESTINATION FOUND'}</span></div><strong>{phase==='landed'&&destination?`${destination.prefecture}  ${destination.city}`:`${scopeName} / ${pool.length.toLocaleString('ja-JP')} の町`}</strong></div>
+    <div className="board-status" aria-live="off"><div><span className="status-pulse"/><span>{phase==='ready'?'投げられます':phase==='flying'?'着弾を待っています':'行き先が決まりました'}</span></div><strong>{phase==='landed'&&destination?`${destination.prefecture}  ${destination.city}`:`${scopeName} / ${pool.length.toLocaleString('ja-JP')} の町`}</strong></div>
     <p className="board-footnote">{phase==='ready'?'盤面をタップ、または下のボタンから投げられます。':phase==='flying'?'着弾したら、当たった町を発表します。':'旅先の地図へ進みます。'}<ArrowUpRight size={13}/></p>
   </div>;
 }
