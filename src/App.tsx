@@ -1,5 +1,5 @@
 import {lazy,Suspense,useCallback,useEffect,useMemo,useRef,useState} from 'react';
-import {ArrowDown,ArrowLeft,ArrowRight,Bookmark,Check,ChevronDown,Compass,Crosshair,ExternalLink,History,Info,MapPin,RotateCcw,Search,Utensils,X} from 'lucide-react';
+import {ArrowLeft,ArrowRight,Bookmark,Check,ChevronDown,Compass,Crosshair,ExternalLink,History,Info,MapPin,RotateCcw,Search,Utensils,X} from 'lucide-react';
 import {Dialog,DialogClose,DialogContent,DialogDescription,DialogTitle} from '@/components/ui/dialog';
 import {destinations,prefectures,destinationPool,pickDestination,regions,type Destination} from '@/lib/destinations';
 import {DartTarget} from '@/components/dart-target';
@@ -130,15 +130,13 @@ export default function App() {
           <img className="hero-photo" src="./assets/onomichi-senkoji.jpg" alt="千光寺公園から見た尾道の町と尾道水道" fetchPriority="high"/>
           <div className="hero-shade" aria-hidden="true"/>
           <div className="hero-content">
-            <p className="hero-kicker"><span/>きまぐれダーツ旅</p>
+            <p className="hero-kicker"><span/>47都道府県・1,432市区町村</p>
             <h1 ref={screenHeading} tabIndex={-1}>ダーツで、<br/><em>旅先を決める。</em></h1>
-            <p className="hero-lead">全国1,432市区町村から、一つの町へ。<br/>地域を絞ってから投げることもできます。</p>
-            <button className="hero-cta" onClick={()=>document.getElementById('trip-picker')?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})}><Crosshair size={20}/>投げる範囲を選ぶ<ArrowDown size={17}/></button>
-            <p className="hero-fine">登録不要。投げた町はこのブラウザに残ります。</p>
+            <p className="hero-lead">行ける範囲を選んで、一投。<br/>当たった町を地図と資料で確かめる。</p>
           </div>
           <div className="hero-bottom"><span>広島県尾道市・千光寺公園から</span><span><a href="https://commons.wikimedia.org/wiki/File:Onomichi_Bridge_and_Shin-Onomichi_Bridge_from_Senkoji_Park.jpg" target="_blank" rel="noreferrer">そらみみ</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>（縮小）</span></div>
         </section>
-        <section className="trip-section" aria-label="旅先を決める"><div className="explore-heading"><div><p className="eyebrow">一投する前に</p><h2>投げる範囲</h2><p>全国のままでも、地域を選んでも。</p></div><span className="screen-count"><strong>47</strong> 都道府県 / <strong>{count(destinations.length)}</strong> 市区町村</span></div>
+        <section className="trip-section" aria-label="旅先を決める"><div className="explore-heading"><div><h2>投げる範囲を選ぶ</h2></div><span className="screen-count">全国・地域・都道府県から指定できます</span></div>
         <div className="picker-shell" id="trip-picker" role="group" aria-label="旅先ダーツ">
           <div className="draw-panel selection-panel">
             <div className="panel-heading"><span className="step-number">01</span><div><h3>行ける範囲を選ぶ</h3><p>全国からでも、県を指定しても。</p></div></div>
@@ -169,6 +167,6 @@ export default function App() {
     </main>
     <footer className="app-footer"><span>© 2026 きまぐれダーツ旅</span><button onClick={()=>setInfoOpen(true)}>使い方・データの出典<ArrowRight size={12}/></button></footer>
     <div className="sr-only" role="status" aria-live="polite">{announcement}</div>
-    <Dialog open={infoOpen} onOpenChange={setInfoOpen}><DialogContent className="info-dialog" showCloseButton={false}><DialogClose className="dialog-close" aria-label="閉じる"><X size={20}/></DialogClose><p className="eyebrow">使い方と出典</p><DialogTitle>偶然から、旅先を見つける。</DialogTitle><DialogDescription>行ける範囲を選んで、ダーツを投げるだけ。</DialogDescription><ol className="info-steps"><li><b>01</b><div><strong>範囲を選ぶ</strong><p>全国・7地域・47都道府県から選べます。候補一覧と地域地図も確認できます。</p></div></li><li><b>02</b><div><strong>ダーツを投げる</strong><p>着弾点は選ばれた町に対応します。町は指定範囲の抽選対象から市区町村単位で均等に選び、直前と同じ町は避けます。盤面は地理的な位置を示す地図ではありません。</p></div></li><li><b>03</b><div><strong>町を調べる</strong><p>結果画面からGoogleマップへ。気になった町は保存できます。</p></div></li></ol><div className="info-notes"><p>市区町村データ：<a href="https://github.com/code4fukui/localgovjp" target="_blank" rel="noreferrer">Code for FUKUI / localgovjp</a> · <a href="./assets/municipality-source.txt" target="_blank" rel="noreferrer">出典・CC0</a>。1,741件を人口と観光資源で照合し、全国{count(destinations.length)}件を抽選対象にしました。<a href="./competition/ren/candidates.html">全件の選定理由を見る</a>。政令指定都市は市単位、東京23区は区単位です。</p><p>履歴は最近30回まで。保存した町は別に残ります。ブラウザのデータを削除すると記録も消えます。</p><p>地図：<a href="https://github.com/geolonia/japanese-prefectures" target="_blank" rel="noreferrer">Geolonia / Wikipedia</a> · <a href="./assets/map-source.txt" target="_blank" rel="noreferrer">出典</a> · <a href="./assets/map-license.txt" target="_blank" rel="noreferrer">GFDL</a>。一部の離島は省略しています。九州・沖縄の地域地図は沖縄を別枠で表示します。トップの写真は尾道市の実景で、抽選先の風景ではありません。撮影：<a href="https://commons.wikimedia.org/wiki/File:Onomichi_Bridge_and_Shin-Onomichi_Bridge_from_Senkoji_Park.jpg" target="_blank" rel="noreferrer">そらみみ</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>、縮小版）。</p></div></DialogContent></Dialog>
+    <Dialog open={infoOpen} onOpenChange={setInfoOpen}><DialogContent className="info-dialog" showCloseButton={false}><DialogClose className="dialog-close" aria-label="閉じる"><X size={20}/></DialogClose><p className="eyebrow">使い方と出典</p><DialogTitle>抽選のしくみ</DialogTitle><DialogDescription>範囲を選んで投げると、市区町村が一つ選ばれます。</DialogDescription><ol className="info-steps"><li><b>01</b><div><strong>範囲を選ぶ</strong><p>全国・7地域・47都道府県から選べます。候補一覧と地域地図も確認できます。</p></div></li><li><b>02</b><div><strong>ダーツを投げる</strong><p>着弾点は選ばれた町に対応します。町は指定範囲の抽選対象から市区町村単位で均等に選び、直前と同じ町は避けます。盤面は地理的な位置を示す地図ではありません。</p></div></li><li><b>03</b><div><strong>町を調べる</strong><p>結果画面からGoogleマップへ。気になった町は保存できます。</p></div></li></ol><div className="info-notes"><p>市区町村データ：<a href="https://github.com/code4fukui/localgovjp" target="_blank" rel="noreferrer">Code for FUKUI / localgovjp</a> · <a href="./assets/municipality-source.txt" target="_blank" rel="noreferrer">出典・CC0</a>。1,741件を人口と観光資源で照合し、全国{count(destinations.length)}件を抽選対象にしました。<a href="./competition/ren/candidates.html">全件の選定理由を見る</a>。政令指定都市は市単位、東京23区は区単位です。</p><p>履歴は最近30回まで。保存した町は別に残ります。ブラウザのデータを削除すると記録も消えます。</p><p>地図：<a href="https://github.com/geolonia/japanese-prefectures" target="_blank" rel="noreferrer">Geolonia / Wikipedia</a> · <a href="./assets/map-source.txt" target="_blank" rel="noreferrer">出典</a> · <a href="./assets/map-license.txt" target="_blank" rel="noreferrer">GFDL</a>。一部の離島は省略しています。九州・沖縄の地域地図は沖縄を別枠で表示します。トップの写真は尾道市の実景で、抽選先の風景ではありません。撮影：<a href="https://commons.wikimedia.org/wiki/File:Onomichi_Bridge_and_Shin-Onomichi_Bridge_from_Senkoji_Park.jpg" target="_blank" rel="noreferrer">そらみみ</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>、縮小版）。</p></div></DialogContent></Dialog>
   </>;
 }

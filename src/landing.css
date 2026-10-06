@@ -98,3 +98,18 @@ body{background:var(--background)}
 @media(max-width:950px){.landing-hero{grid-template-columns:minmax(0,1fr) 40%}.landing-hero .hero-photo{height:350px}.hero-content{padding:47px 23px 36px}.hero-content h1{font-size:clamp(33px,4.4vw,43px)}.hero-lead{font-size:12px}.picker-shell{grid-template-columns:minmax(300px,.9fr) minmax(0,1.1fr)}.selection-panel{padding:25px 22px 0}.details-panel{padding:0 22px 25px}.picker-visual{padding:25px 15px}}
 @media(max-width:760px){.landing-hero{display:flex;flex-direction:column;position:relative}.hero-content{order:0;padding:30px 20px 24px}.hero-content h1{font-size:clamp(32px,8vw,44px);margin-top:13px}.hero-lead{margin-top:9px;font-size:11px}.hero-cta{min-height:46px;margin-top:16px;font-size:12px}.hero-fine{margin-top:9px;font-size:9px}.landing-hero .hero-photo{order:1;display:block;width:100%;height:157px;object-position:center 65%}.hero-bottom{position:absolute;bottom:0;left:0;right:0;display:flex;margin:0;padding:7px 14px;font-size:8px}.hero-bottom span:last-child{display:block;text-align:right}.trip-section{padding:30px 15px 34px}.explore-heading{margin-bottom:15px}.explore-heading h2{font-size:25px}.explore-heading p:last-child{font-size:11px}.screen-count{margin-top:7px}.picker-shell{border-radius:0;scroll-margin-top:68px}.selection-panel{padding:21px 19px 12px}.panel-heading{margin-bottom:14px}.panel-heading h3{font-size:17px}.selection-panel .panel-heading p{display:block}.selection-panel .scope-confirm{display:flex}.picker-visual{min-height:445px;padding:22px 15px;scroll-margin-top:68px}.dart-stage{min-height:405px}.target-scene{min-height:295px}.dart-target-button{min-height:295px}.board-intro{font-size:15px}.details-panel{padding:13px 19px 25px}.action-dock{border-color:var(--line);box-shadow:0 -4px 16px #1b332512}.action-dock .primary-button{min-height:51px}.result-shell{border-radius:0}.screen-result .screen-top h1,.screen-history .screen-top h1{font-size:27px}.destination-facts{margin-bottom:20px}}
 @media(max-width:400px){.hero-content{padding:27px 17px 23px}.hero-content h1{font-size:32px}.hero-bottom{font-size:7px}.hero-bottom span:last-child{max-width:58%}.trip-section{padding-inline:12px}.picker-visual{min-height:420px}.dart-stage{min-height:385px}}
+
+/* Short introduction: the throw surface is visible on arrival. */
+.landing-hero{grid-template-columns:minmax(0,1fr) minmax(320px,36%)}
+.landing-hero .hero-photo{height:268px}
+.hero-content{padding-top:35px;padding-bottom:29px}
+.hero-content h1{font-size:clamp(34px,3.4vw,46px);margin-top:11px;line-height:1.35}
+.hero-lead{margin-top:10px;font-size:12px}
+.trip-section{padding-top:28px}
+.explore-heading{margin-bottom:15px}
+.explore-heading h2{font-size:21px;margin:0;letter-spacing:-.025em}
+.screen-count{font-size:11px}
+.screen-count strong{color:inherit}
+@media(max-width:950px){.landing-hero{grid-template-columns:minmax(0,1fr) 38%}.landing-hero .hero-photo{height:256px}.hero-content{padding:30px 23px}.hero-content h1{font-size:clamp(32px,4vw,42px)}}
+@media(max-width:760px){.landing-hero{display:flex}.hero-content{padding:24px 20px 20px}.hero-content h1{font-size:clamp(31px,7.5vw,40px);margin-top:9px}.hero-lead{font-size:11px}.landing-hero .hero-photo{height:132px}.trip-section{padding-top:23px}.explore-heading h2{font-size:20px}}
+@media(max-width:400px){.hero-content{padding:22px 17px 18px}.hero-content h1{font-size:31px}.landing-hero .hero-photo{height:116px}}
