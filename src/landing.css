@@ -73,57 +73,28 @@ button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible,
 .destination-facts{padding:19px 19px 16px;margin:0 0 23px;background:#f4f7f2;border:1px solid #d9e2d5;border-radius:13px}.destination-facts-label{font-size:9px;letter-spacing:.1em;font-weight:800;color:#ad5d42}.destination-facts h3{font-size:17px;line-height:1.4;color:#214636;margin:5px 0 13px}.destination-facts ul{list-style:none;padding:0;margin:0}.destination-facts li{padding:12px 0;border-top:1px solid #d9e2d5}.destination-facts li>span{display:block;font-size:10px;font-weight:800;color:#bb5d43}.destination-facts li p{font-size:12px;line-height:1.7;color:#29483c;margin:4px 0 6px}.destination-facts li a{display:inline-flex;align-items:center;gap:3px;color:#537669;font-size:10px;font-weight:800;text-decoration:underline;text-underline-offset:3px}.destination-facts>small{display:block;font-size:9px;line-height:1.6;color:#6c8174;margin-top:9px}
 .facts-loading{font-size:11px;color:#6c8174;margin:0 0 18px}
 
-/* Keep the real destination photograph, map and dart in one restrained layout. */
-:root{--background:#f4f0e6;--foreground:#1c4037;--card:#faf8f2;--card-foreground:#1c4037;--ink:#1c4037;--deep:#1c4037;--line:#d7d8c9;--quiet:#52665a}
-body{background:#f4f0e6}
-.app-header{height:68px;background:#faf8f2;box-shadow:none;border-bottom:1px solid #d8dbd0}
-.brand>span:last-child>span{color:#b45138}
-.nav-item.active{background:#e9eee7;color:#1c4037}
-.landing-hero{min-height:600px;background:#17392f}
-.hero-photo{object-position:center 54%}
-.hero-shade{background:linear-gradient(90deg,#0c2b25f0 0%,#12362dcb 37%,#1636294d 73%,#152c241c 100%),linear-gradient(0deg,#0f2d26b3,transparent 20%)}
-.hero-content{padding:126px 36px 95px}
-.hero-kicker{letter-spacing:.035em;font-size:12px}
-.hero-kicker span{width:6px;height:6px;box-shadow:none;background:#e8b284}
-.hero-content h1{max-width:850px;font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-size:clamp(44px,5.7vw,76px);font-weight:600;letter-spacing:.02em;line-height:1.42;text-shadow:none}
-.hero-content h1 em{color:#f0c6a3}
-.hero-lead{font-weight:500;line-height:1.9;text-shadow:none}
-.hero-cta{min-height:56px;border:0;border-radius:0;background:#b55239;box-shadow:none;font-size:14px}
-.hero-cta:hover{background:#a4442e;box-shadow:none}
-.hero-cta:active{box-shadow:none}
-.hero-fine{font-size:10px;font-weight:500}
-.hero-bottom{font-weight:500;letter-spacing:0;color:#f1eee2}
-.hero-bottom span:last-child{letter-spacing:0;font-weight:500}
-.hero-bottom a{text-decoration:underline;text-underline-offset:3px}
-.trip-section{padding-top:66px;padding-bottom:65px}
-.explore-heading h2{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-weight:600;letter-spacing:.015em;font-size:clamp(32px,3.6vw,45px)}
-.eyebrow{letter-spacing:.035em;color:#a95039}
-.picker-shell{border-radius:2px;background:#fbfaf5;box-shadow:none}
-.selection-panel,.details-panel{background:#fbfaf5}
-.picker-visual{background:#1c4037}
-.picker-visual:before{display:none}
-.board-orbit{opacity:.45}
-.step-number{border-radius:2px;background:#e8eee5;color:#2d6247}
-.select-wrap select{border-radius:2px;background:#fffefa}
-.dart-start-button{border-radius:2px;box-shadow:none;background:#b55239;border-color:#b55239}
-.dart-start-button:hover{background:#a7442f;box-shadow:none}
-.dart-start-button:active{box-shadow:none}
-.target-prompt{border-radius:2px}
-.below-workspace{padding-bottom:42px}
-.screen-result .screen-top,.screen-history .screen-top{padding-top:39px}
-.screen-result .screen-top h1,.screen-history .screen-top h1{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-weight:600;letter-spacing:.015em}
-.result-shell{border-radius:2px;box-shadow:none}
-.result-panel{background:#fbfaf5}
-.result-ticket{border-top:1px solid #d3d9cf;letter-spacing:0;color:#a95039}
-.destination-overline{color:#a95039;letter-spacing:.035em}
-.destination-city{color:#1c4037;font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;letter-spacing:.01em}
-.map-action{border-radius:2px;background:#b55239;box-shadow:none}
-.map-action:hover{background:#a7442f}
-.result-map{background:#e5ede7}
-.destination-facts{border-radius:0;border:0;border-top:1px solid #d6ded5;border-bottom:1px solid #d6ded5;background:transparent;padding:17px 0}
-.destination-facts-label{letter-spacing:0;color:#a95039}
-.destination-facts h3{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-size:21px}
-.destination-facts li{border-color:#d6ded5}
-.app-footer{background:#f4f0e6}
-@media(max-width:760px){.landing-hero{min-height:590px}.hero-photo{object-position:56% center}.hero-shade{background:linear-gradient(90deg,#0d2c26e5,#12372ea8 65%,#1435294d),linear-gradient(0deg,#0d2b25c4,transparent 34%)}.hero-content{padding:98px 22px 93px}.hero-content h1{font-size:clamp(36px,8vw,53px)}.hero-cta{min-height:54px}.hero-bottom span:last-child{display:block;text-align:right}.trip-section{padding-top:53px}.result-shell{border-radius:2px}.destination-facts{margin-bottom:21px}}
-@media(max-width:430px){.hero-bottom{font-size:8px}.hero-bottom span:last-child{max-width:60%}.hero-content h1{font-size:clamp(32px,8.5vw,38px)}}
+
+/* The trip picker is the page. The photograph is one real place, not a promised result. */
+:root{--background:#f6f6f2;--foreground:#242d29;--card:#fffefa;--card-foreground:#242d29;--ink:#242d29;--deep:#242d29;--line:#d7ded7;--quiet:#59665d}
+body{background:var(--background)}
+.app-header{height:64px;background:#fffefa;border-bottom:1px solid var(--line);box-shadow:none}
+.brand>span:last-child>span{color:#bc452e}.nav-item.active{background:#e9eee9;color:#263a2d}.info-button{border-color:var(--line)}
+.landing-hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(410px,.92fr);min-height:0;background:#f6f6f2;color:var(--ink);border-bottom:1px solid var(--line)}
+.landing-hero .hero-photo{position:relative;inset:auto;grid-column:2;grid-row:1;width:100%;height:365px;object-fit:cover;object-position:center 65%}
+.hero-shade{display:none}
+.hero-content{grid-column:1;grid-row:1;z-index:1;max-width:none;margin:0;padding:50px 38px 40px max(27px,calc((100vw - 1190px)/2))}
+.hero-kicker{gap:9px;color:#536357;font-size:11px;font-weight:750;letter-spacing:0}.hero-kicker span{width:22px;height:2px;border-radius:0;background:#bf472e;box-shadow:none}
+.hero-content h1{max-width:650px;margin-top:18px;color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;font-size:clamp(36px,3.8vw,51px);font-weight:800;letter-spacing:-.05em;line-height:1.38;text-shadow:none}.hero-content h1 em{color:var(--ink)}
+.hero-lead{margin-top:14px;color:#58675b;font-size:13px;font-weight:500;line-height:1.85;text-shadow:none}
+.hero-cta{min-height:51px;margin-top:19px;padding:9px 16px;border:0;border-radius:0;background:#bd482f;color:#fff;font-size:13px;font-weight:800;box-shadow:none}.hero-cta:hover{background:#a83625;box-shadow:none;transform:translateY(-1px)}.hero-cta:active{box-shadow:none}.hero-cta svg:last-child{margin-left:10px}
+.hero-fine{margin-top:12px;color:#68766c;font-size:10px;font-weight:500;letter-spacing:0}
+.hero-bottom{position:relative;grid-column:2;grid-row:1;align-self:end;justify-self:stretch;bottom:auto;left:auto;right:auto;z-index:2;margin:0;padding:9px 15px;background:#24332bcf;border:0;color:#fff;font-size:9px;font-weight:500;letter-spacing:0}.hero-bottom span:last-child{letter-spacing:0;font-weight:500}.hero-bottom a{text-decoration:underline;text-underline-offset:2px}
+.trip-section{max-width:1230px;padding:39px 24px 55px}.explore-heading{align-items:end;margin-bottom:20px}.eyebrow{color:#b4462e;font-size:10px;letter-spacing:0}.explore-heading h2{margin-top:4px;color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;font-size:clamp(27px,3vw,35px);font-weight:800;letter-spacing:-.05em}.explore-heading p:last-child{margin-top:5px;font-size:12px;color:#627166}.screen-count{font-size:10px;color:#66746a}.screen-count strong{font-size:16px;color:#b4462e}
+.picker-shell{grid-template-columns:minmax(320px,.88fr) minmax(0,1.12fr);border-radius:0;border-color:var(--line);background:#fffefa;box-shadow:none;scroll-margin-top:72px}.selection-panel,.details-panel{background:#fffefa}.selection-panel{padding:27px 29px 0}.details-panel{padding:0 29px 28px}.panel-heading{margin-bottom:19px}.step-number{display:none}.panel-heading h3{font-size:18px;font-weight:800;letter-spacing:-.03em}.panel-heading p{font-size:11px;color:#6b786e}.scope-fields>label{font-size:11px;color:#384b3e}.scope-fields>label:not(:first-child){margin-top:10px}.select-wrap select{min-height:49px;border-radius:0;border-color:#c9d3ca;background:#fffefa;color:var(--ink);font-size:13px}.scope-confirm{font-size:11px;color:#596a5e}.secondary-disclosures summary{font-size:11px;color:#435d49}.candidate-browser input{background:#fffefa}.municipality-list li{border-color:var(--line)}
+.picker-visual{min-height:585px;padding:27px 31px;background:#23372f}.picker-visual:before{display:none}.dart-stage{min-height:530px}.dart-stage-top{font-size:10px;letter-spacing:0}.dart-stage-top>span:first-child{color:#f2bf9d}.dart-stage-top>span:last-child{font-size:10px}.board-intro{margin:15px 0 2px;font-size:17px;font-weight:650;letter-spacing:0}.board-intro strong{color:#f0bb9f}.board-orbit{display:none}.board-status>div{letter-spacing:0;font-size:10px}.target-prompt{border-radius:0;background:#1c322a;border-color:#dcb692}
+.dart-start-button{min-height:55px;border:0;border-radius:0;background:#bd482f;color:#fff;font-size:14px;box-shadow:none}.dart-start-button:hover{background:#a83625;box-shadow:none;transform:translateY(-1px)}.dart-start-button:active{box-shadow:none}.action-hint{color:#647268;font-size:10px}.below-workspace{max-width:1182px;padding-bottom:31px}.below-workspace>p{color:#647268;font-size:11px}.help-link,.text-button{color:#385c45}
+.screen-result .screen-top,.screen-history .screen-top{padding-top:30px}.screen-result .screen-top h1,.screen-history .screen-top h1{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;font-size:32px;font-weight:800;letter-spacing:-.04em}
+.result-shell{border-radius:0;box-shadow:none;border-color:var(--line)}.result-panel{background:#fffefa}.result-ticket{margin-top:28px;border-top:1px solid var(--line);letter-spacing:0;color:#b5462f}.destination-overline{color:#b5462f;letter-spacing:0}.destination-city{color:var(--ink);font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;letter-spacing:0}.destination-message{color:#5d6c60}.map-action{border-radius:0;background:#bd482f;box-shadow:none}.map-action:hover{background:#a83625}.result-map{background:#e5eee7}.map-caption,.map-note{color:#496651}.destination-facts{padding:17px 0;border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;background:transparent}.destination-facts-label{color:#b5462f;letter-spacing:0}.destination-facts h3{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;font-size:18px}.destination-facts li{border-color:var(--line)}.history-screen .screen-top h1{font-size:32px}.app-footer{background:#f6f6f2}
+@media(max-width:950px){.landing-hero{grid-template-columns:minmax(0,1fr) 40%}.landing-hero .hero-photo{height:350px}.hero-content{padding:47px 23px 36px}.hero-content h1{font-size:clamp(33px,4.4vw,43px)}.hero-lead{font-size:12px}.picker-shell{grid-template-columns:minmax(300px,.9fr) minmax(0,1.1fr)}.selection-panel{padding:25px 22px 0}.details-panel{padding:0 22px 25px}.picker-visual{padding:25px 15px}}
+@media(max-width:760px){.landing-hero{display:flex;flex-direction:column;position:relative}.hero-content{order:0;padding:30px 20px 24px}.hero-content h1{font-size:clamp(32px,8vw,44px);margin-top:13px}.hero-lead{margin-top:9px;font-size:11px}.hero-cta{min-height:46px;margin-top:16px;font-size:12px}.hero-fine{margin-top:9px;font-size:9px}.landing-hero .hero-photo{order:1;display:block;width:100%;height:157px;object-position:center 65%}.hero-bottom{position:absolute;bottom:0;left:0;right:0;display:flex;margin:0;padding:7px 14px;font-size:8px}.hero-bottom span:last-child{display:block;text-align:right}.trip-section{padding:30px 15px 34px}.explore-heading{margin-bottom:15px}.explore-heading h2{font-size:25px}.explore-heading p:last-child{font-size:11px}.screen-count{margin-top:7px}.picker-shell{border-radius:0;scroll-margin-top:68px}.selection-panel{padding:21px 19px 12px}.panel-heading{margin-bottom:14px}.panel-heading h3{font-size:17px}.selection-panel .panel-heading p{display:block}.selection-panel .scope-confirm{display:flex}.picker-visual{min-height:445px;padding:22px 15px;scroll-margin-top:68px}.dart-stage{min-height:405px}.target-scene{min-height:295px}.dart-target-button{min-height:295px}.board-intro{font-size:15px}.details-panel{padding:13px 19px 25px}.action-dock{border-color:var(--line);box-shadow:0 -4px 16px #1b332512}.action-dock .primary-button{min-height:51px}.result-shell{border-radius:0}.screen-result .screen-top h1,.screen-history .screen-top h1{font-size:27px}.destination-facts{margin-bottom:20px}}
+@media(max-width:400px){.hero-content{padding:27px 17px 23px}.hero-content h1{font-size:32px}.hero-bottom{font-size:7px}.hero-bottom span:last-child{max-width:58%}.trip-section{padding-inline:12px}.picker-visual{min-height:420px}.dart-stage{min-height:385px}}

@@ -31,6 +31,7 @@
     resultCaption: $('#result-caption'),
     resultReason: $('#result-reason'),
     resultFacts: $('#result-facts'),
+    localNotesTitle: $('#local-notes-title'),
     resultIndex: $('#result-index'),
     resultLink: $('#result-map-link'),
     focusMapButton: $('#focus-map-button'),
@@ -413,7 +414,7 @@
     busy = true;
     els.throwButton.disabled = true;
     els.prefectureSelect.disabled = true;
-    els.throwButton.querySelector('.throw-copy strong').textContent = '投擲中…';
+    els.throwButton.querySelector('.throw-copy strong').textContent = '着弾を待っています…';
     els.result.hidden = true;
     const {dart, impact, label} = prepareTargetMap(pool, city, place);
     els.mapStage.classList.add('throwing');
@@ -435,6 +436,7 @@
         ...basis.evidence.map(item => item.type === 'heritage' ? '日本遺産の構成文化財' : item.type === 'district' ? `${item.name}（伝統的建造物群）` : item.type === 'nature' ? `${item.name}（世界自然遺産）` : item.type === 'onsen' ? `${item.name}（温泉100選 上位10位）` : item.name)
       ];
       els.resultReason.textContent = `選定理由：${reasons.join('・')}`;
+      els.localNotesTitle.textContent = `${city.city}のデータ`;
       renderFacts(city.id);
       els.resultIndex.textContent = `${thrown}投目`;
       els.resultLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + city.city)}`;
@@ -443,7 +445,7 @@
       busy = false;
       els.throwButton.disabled = false;
       els.prefectureSelect.disabled = false;
-      els.throwButton.querySelector('.throw-copy strong').textContent = 'この範囲から投げる';
+      els.throwButton.querySelector('.throw-copy strong').textContent = 'ダーツを投げる';
       els.mapStage.classList.remove('throwing');
       els.result.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
     }, delay + 1250);

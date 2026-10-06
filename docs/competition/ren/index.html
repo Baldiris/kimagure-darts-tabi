@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#153d36">
+  <meta name="theme-color" content="#f8f8f4">
   <meta name="description" content="人口と観光資源を基準に選んだ47都道府県・1,432市区町村から、ダーツの一投で次の旅先を決める。">
-  <title>きまぐれダーツ旅 | 地図から始まる旅</title>
-  <link rel="stylesheet" href="./style.css?v=editorial2026d">
-  <script src="./app.js?v=editorial2026" defer></script>
+  <title>きまぐれダーツ旅 | 地図に投げて、旅先を決める</title>
+  <link rel="stylesheet" href="./style.css?v=mapfirst2026">
+  <script src="./app.js?v=mapfirst2026" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -16,32 +16,29 @@
       <span>きまぐれ<span class="brand-em">ダーツ旅</span></span>
     </a>
     <nav aria-label="ページ内ナビゲーション">
-      <a href="#how">旅の決め方</a>
-      <a class="nav-action" href="#explore">地図を開く <span aria-hidden="true">↗</span></a>
+      <a href="./candidates.html">候補の町</a>
+      <a class="nav-action" href="#explore">地図に投げる <span aria-hidden="true">↓</span></a>
     </nav>
   </header>
 
   <main id="top">
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-intro">
-        <p class="hero-overline">きまぐれダーツ旅 <span>／ 47都道府県・1,432の町</span></p>
-        <div class="hero-heading-row">
-          <div>
-            <h1 id="page-title">週末の行き先、<br><em>ダーツで決める。</em></h1>
-            <p class="hero-lead">行ける範囲を選んで、ひと投げ。<br>当たった町を、次の旅先にしてみよう。</p>
-            <a class="hero-link" href="#explore">地図を開いて投げる <span aria-hidden="true">↗</span></a>
-          </div>
-          <figure class="hero-photo">
-            <img src="../../assets/onomichi-senkoji.jpg" alt="千光寺公園から見た尾道の町と尾道水道" width="1280" height="960" fetchpriority="high">
-            <figcaption><span>広島県・尾道市の風景</span><span>写真：<a href="https://commons.wikimedia.org/wiki/File:Onomichi_Bridge_and_Shin-Onomichi_Bridge_from_Senkoji_Park.jpg" target="_blank" rel="noopener noreferrer">そらみみ</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>（縮小）</span></figcaption>
-          </figure>
+        <div class="hero-copy">
+          <p class="hero-overline">47都道府県・1,432市区町村から</p>
+          <h1 id="page-title">地図に投げて、<br>旅先を決める。</h1>
+          <p class="hero-lead">範囲を選んで、ダーツを一本。<br>当たった町は地図と公的資料で確かめられます。</p>
         </div>
+        <figure class="hero-photo">
+          <img src="../../assets/onomichi-senkoji.jpg" alt="千光寺公園から見た尾道の町と尾道水道" width="1280" height="960" fetchpriority="high">
+          <figcaption><span>広島・尾道市、千光寺公園から</span><span>撮影：<a href="https://commons.wikimedia.org/wiki/File:Onomichi_Bridge_and_Shin-Onomichi_Bridge_from_Senkoji_Park.jpg" target="_blank" rel="noopener noreferrer">そらみみ</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>（縮小）</span></figcaption>
+        </figure>
       </div>
 
       <div id="explore" class="atlas" aria-label="ダーツ旅の範囲選択">
         <div class="atlas-toolbar">
-          <div class="atlas-label">地図で行き先を選ぶ</div>
-          <div class="atlas-count"><span>全国</span><strong id="total-count">1,432</strong><span>市区町村</span></div>
+          <div class="atlas-label">行ける範囲を選んで、一投</div>
+          <div class="atlas-count"><span>抽選対象</span><strong id="total-count">1,432</strong><span>市区町村</span></div>
         </div>
 
         <div class="atlas-stage">
@@ -57,8 +54,8 @@
 
         <div class="atlas-controls">
           <div class="controls-head">
-          <div><h2>投げる範囲を決める</h2></div>
-            <p>全国からでも、都道府県を指定しても。</p>
+          <div><h2>どこまで行ける？</h2></div>
+            <p>全国、地域、都道府県から選べます。</p>
           </div>
           <div class="region-list" id="region-list" role="group" aria-label="地域を選択"></div>
           <div class="selection-row">
@@ -66,9 +63,9 @@
               <span class="select-wrap"><select id="prefecture-select"><option value="">すべての都道府県</option></select><span aria-hidden="true">⌄</span></span>
             </label>
             <div class="selection-summary" aria-live="polite"><span>いまの候補</span><strong id="candidate-count">1,432 <small>市区町村</small></strong><span id="selected-scope">全国</span></div>
-            <button class="throw-button" id="throw-button" type="button" disabled><span class="throw-icon" aria-hidden="true">➶</span><span class="throw-copy"><strong>この範囲から投げる</strong><small>ダーツで町をひとつ選ぶ</small></span><span class="throw-arrow" aria-hidden="true">↗</span></button>
+            <button class="throw-button" id="throw-button" type="button" disabled><span class="throw-icon" aria-hidden="true">➶</span><span class="throw-copy"><strong>ダーツを投げる</strong><small>候補の町から等確率で選びます</small></span><span class="throw-arrow" aria-hidden="true">→</span></button>
           </div>
-          <div class="candidate-rule"><span>候補の基準</span><p>人口1万人以上、または国立公園・文化財など観光資源の根拠がある町。元の1,741件を照合し、1,432件を抽選対象にしました。</p><a href="./candidates.html">選定理由と全件を見る <span aria-hidden="true">↗</span></a></div>
+          <div class="candidate-rule" id="criteria"><span>候補の基準</span><p>人口1万人以上、または国立公園・文化財など観光資源の根拠がある町。元の1,741件を照合し、1,432件を抽選対象にしました。</p><a href="./candidates.html">全件の選定理由を見る <span aria-hidden="true">→</span></a></div>
           <p class="scope-note">選ばれた範囲の抽選対象は各1件・等確率。人口が多いほど当たりやすくはなりません。着弾点は自治体の位置データで、地理的な境界やランダムな地点を表すものではありません。</p>
           <p class="gsi-source-note" id="gsi-source-note" hidden>地図の出典：<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener noreferrer">国土地理院・地理院タイル</a>。<span class="shoreline-credit">小縮尺地図の海岸線：Shoreline data is derived from: United States. National Imagery and Mapping Agency. "Vector Map Level 0 (VMAP0)." Bethesda, MD: Denver, CO: The Agency; USGS Information Services, 1997.</span></p>
         </div>
@@ -80,7 +77,7 @@
         <div class="result-topline"><span>ダーツが当たった町</span><span id="result-index">1投目</span></div>
         <div class="result-body">
           <div class="result-main">
-            <p class="result-kicker">行き先が決まりました</p>
+            <p class="result-kicker">着弾</p>
             <h2 id="result-title" tabindex="-1"><span id="result-prefecture"></span><br><strong id="result-city"></strong></h2>
             <p id="result-caption"></p>
             <p id="result-reason" class="result-reason"></p>
@@ -89,21 +86,13 @@
         </div>
       </div>
       <aside class="local-notes" aria-labelledby="local-notes-title">
-        <div class="local-notes-heading"><div><span>国の公開資料から</span><h3 id="local-notes-title">この町を知る</h3></div><p>町の名前だけでは見えない情報を、少しだけ。</p></div>
+        <div class="local-notes-heading"><div><span>公的資料</span><h3 id="local-notes-title">町のデータ</h3></div></div>
         <div class="local-notes-grid" id="result-facts"></div>
         <p class="local-notes-caveat">掲載情報は資料の基準時点のものです。施設の営業、交通、立入条件は現地の案内でご確認ください。</p>
       </aside>
     </section>
 
-    <section id="how" class="how-section" aria-labelledby="how-title">
-      <div class="section-heading"><h2 id="how-title">旅先の決め方</h2><p>範囲を選んで投げる。それだけで、次の町が決まります。</p></div>
-      <div class="steps">
-        <div class="step"><span>01 <i aria-hidden="true">↗</i></span><h3>地図を選ぶ</h3><p>全国、地域、都道府県から、旅に出られる範囲を決める。</p></div>
-        <div class="step"><span>02 <i aria-hidden="true">➶</i></span><h3>ダーツを投げる</h3><p>選んだ範囲の市区町村から、一つが等確率で選ばれる。</p></div>
-        <div class="step"><span>03 <i aria-hidden="true">↗</i></span><h3>町へ向かう</h3><p>出た町を地図で開く。寄り道だらけの休日が始まる。</p></div>
-      </div>
-    </section>
   </main>
-  <footer><span>きまぐれダーツ旅 <small>© 2026</small></span><a href="#top">ページの先頭へ ↑</a></footer>
+  <footer><span>きまぐれダーツ旅 <small>© 2026</small></span><div><a href="./candidates.html">候補と選定理由</a><a href="#top">ページの先頭へ ↑</a></div></footer>
 </body>
 </html>
