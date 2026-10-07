@@ -11,6 +11,7 @@ const uri = text => 'data:text/javascript;base64,'+Buffer.from(text).toString('b
 const municipalities = JSON.parse(read('src/lib/municipalities.json'));
 const selection = JSON.parse(read('public/competition/data/selection.json'));
 const facts = JSON.parse(read('public/competition/data/place-facts.json'));
+const coordinates = JSON.parse(read('public/competition/ren/coordinates.json')).points;
 const destinationsUri = uri(compile(read('src/lib/destinations.ts')
  .replace("import municipalities from './municipalities.json';",'const municipalities = '+JSON.stringify(municipalities)+';')
  .replace("import selection from '../../public/competition/data/selection.json';",'const selection = '+JSON.stringify(selection)+';')));
@@ -20,6 +21,10 @@ const {parseTravelState,resolveRoute,loadTravelState,travelStorageKey} = await i
 assert.equal(destinations.length,1432);
 assert.equal(Object.keys(facts.places).length,destinations.length);
 assert.ok(destinations.every(city=>facts.places[city.id]?.area[0] > 0),'Every selectable place has a government statistical fact');
+assert.ok(destinations.every(city=>{
+ const point=coordinates[city.id];
+ return Array.isArray(point) && point.length===2 && point.every(Number.isFinite);
+}),'Every selectable place has a map coordinate');
 assert.equal(facts.places['21604'].sight.name,'白川村荻町');
 assert.equal(facts.places['10426'].sight.kind,'park');
 assert.equal(facts.places['47207'].crop[0],'パインアップル');
@@ -74,4 +79,4 @@ globalThis.localStorage = {getItem:key=>storage.get(key)??null};
 assert.equal(loadTravelState().history[0].destinationId,'13205');
 storage.set(travelStorageKey,JSON.stringify(samePrefecture));
 assert.equal(loadTravelState().lastResult.destinationId,'13101','New state takes precedence over legacy state');
-console.log('1432 reachable municipalities, all 47 scopes, repeat avoidance, independent saves and legacy migration passed.');
+console.log('1432 reachable municipalities with facts and coordinates, all 47 scopes, repeat avoidance, independent saves and legacy migration passed.');

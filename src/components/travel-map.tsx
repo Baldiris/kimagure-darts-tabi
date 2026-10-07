@@ -3,6 +3,7 @@ import {type Destination, findPrefecture} from '@/lib/destinations';
 import {regionalAssets} from '@/lib/region-map-assets';
 import {prefectureAssets} from '@/lib/prefecture-map-assets';
 import type {Area} from '@/lib/travel-state';
+import {GsiDestinationMap} from './gsi-destination-map';
 
 const requests = new Map<string,Promise<string>>();
 const assetFor = (area:Area, code:number|null) => code && prefectureAssets[code] || regionalAssets[area] || './assets/japan.svg';
@@ -30,12 +31,13 @@ export function TravelMap({area,prefectureCode,destination}: {
   const single = prefectureCode !== null;
   const mapName = single ? findPrefecture(prefectureCode)?.prefecture ?? area : area;
   useEffect(() => {
+    if (destination) return;
     let alive = true;
     preloadTravelMap(area,prefectureCode).then(markup => {
       if (alive) setLoaded({asset,markup,error:false});
     }).catch(() => {if (alive) setLoaded({asset,markup:'',error:true});});
     return () => {alive=false;};
-  },[area,prefectureCode,asset]);
+  },[area,prefectureCode,asset,destination]);
   const {markup,labels} = useMemo(() => {
     if (loaded.asset !== asset || !loaded.markup) return {markup:'',labels:[] as Label[]};
     const doc = new DOMParser().parseFromString(loaded.markup,'image/svg+xml');
@@ -51,7 +53,8 @@ export function TravelMap({area,prefectureCode,destination}: {
     }) : [];
     return {markup:new XMLSerializer().serializeToString(doc.documentElement),labels};
   },[loaded,asset,destination?.code,single,area]);
-  return <div className={`travel-map ${single?'single-map':'regional-map'}`} role="img" aria-label={`${mapName}の地図。${destination ? `${destination.city}が選ばれました。` : '抽選対象の地域を表示しています。'}一部の離島は省略されています。`}>
-    {markup ? <><div className="map-svg" aria-hidden="true" dangerouslySetInnerHTML={{__html:markup}}/>{labels.length>0 && <svg className="map-labels" viewBox="0 0 1000 1000" aria-hidden="true">{labels.map(label => <text key={label.code} x={label.x} y={label.y} className={destination?.code===label.code?'selected':''}>{label.name}</text>)}</svg>}</> : <p className="map-placeholder">{loaded.asset === asset && loaded.error ? '地図を表示できませんでした' : '地図を読み込み中…'}</p>}
+  if (destination) return <GsiDestinationMap destination={destination}/>;
+  return <div className={`travel-map ${single?'single-map':'regional-map'}`} role="img" aria-label={`${mapName}の地図。抽選対象の地域を表示しています。一部の離島は省略されています。`}>
+    {markup ? <><div className="map-svg" aria-hidden="true" dangerouslySetInnerHTML={{__html:markup}}/>{labels.length>0 && <svg className="map-labels" viewBox="0 0 1000 1000" aria-hidden="true">{labels.map(label => <text key={label.code} x={label.x} y={label.y}>{label.name}</text>)}</svg>}</> : <p className="map-placeholder">{loaded.asset === asset && loaded.error ? '地図を表示できませんでした' : '地図を読み込み中…'}</p>}
   </div>;
 }
