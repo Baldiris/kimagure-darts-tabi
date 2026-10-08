@@ -24,4 +24,12 @@ A temporary same-origin iframe was used to review 375px and 390px layouts. Both 
 - Ren: Shikoku → Kochi showed 20 eligible places; a throw reached Umaji. All 20 map tiles loaded. The destination-map action switched to zoom 11 and could restore the full scope.
 - `npm run check` and `npm run build` passed after the last main JavaScript fix. The coordinate checks cover national, regional and all 47 prefecture scopes at three viewport sizes. All six legacy late-loaded facts assets still exist, and prior published JS/CSS assets are retained.
 - The Ren review then found an invisible needle: its zero-width anchor caused the more specific generic `.map-stage svg` sizing to produce a zero-width SVG. The final CSS uses `.map-stage .ren-real-dart` for explicit desktop/mobile dimensions and a new stylesheet URL. The public and built copies are identical; animation and tip coordinates are preserved.
-- The confirmation environment disconnected after the final Ren CSS fix. Its post-fix needle appearance could not be rechecked in the browser. Main and Ren interaction results above were observed before that final static correction; do not describe the corrected Ren needle as visually verified.
+- A follow-up deployed check after the confirmation environment recovered completed the final visual review. Desktop Ren reached Kitagawa and showed the needle visibly anchored to the town. Its width is explicitly 152px and landed opacity is 1. At 375px and 390px review widths, Ren reached Aki and kept its 126px needle visible, with no horizontal overflow.
+
+## Final closure — 2026-10-08
+
+- Rechecked main keyboard navigation: ArrowRight focuses Kagoshima with one map tab stop; Enter chooses it and transfers focus to the prefecture select.
+- A new main throw reached Kikai. Saved it, reloaded the page, and reopened its result from the saved filter. Save state remained true throughout.
+- Rechecked main mobile at 375px and 390px: actual content widths 360px and 375px equal the document scroll widths. The native selects end at y=372.375px, above the fixed action at y=714px.
+- Visually inspected the main desktop landing page, the mobile layout, and the post-fix Ren needle on desktop and mobile. Desktop landing and needle confirmation images were captured from the public site.
+- Removed both temporary QA files again after the final mobile review. The final release only closes verification records and removes the review surface; it does not alter the verified main or Ren implementation.
