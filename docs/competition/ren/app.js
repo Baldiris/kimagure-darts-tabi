@@ -12,8 +12,25 @@
   };
 
   const $ = (selector) => document.querySelector(selector);
+  function findRegionSelect() {
+    const select=$('#region-select');
+    if (select) return select;
+    // Older cached HTML contains the region button group.
+    const previous=$('#region-list');
+    const label=document.createElement('label');
+    label.className='pref-select-label region-select-label';
+    label.htmlFor='region-select';
+    label.append(document.createTextNode('地域'));
+    const wrap=document.createElement('span');
+    wrap.className='select-wrap';
+    const native=document.createElement('select');
+    native.id='region-select';
+    native.disabled=true;
+    wrap.append(native);label.append(wrap);previous.replaceWith(label);
+    return native;
+  }
   const els = {
-    regionList: $('#region-select'),
+    regionList: findRegionSelect(),
     prefectureSelect: $('#prefecture-select'),
     mapStage: $('#map-stage'),
     mapKeyText: $('#map-key-text'),

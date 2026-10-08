@@ -36,6 +36,9 @@ export function DartTarget({phase,destination,pool,scopeName,area,prefectureCode
   const position=destination&&coordinatesFor(destination.id);
   const hit=position?screenPoint(project(position),view,size.width,size.height):null;
   const markers=useMemo(()=>pool.map(d=>({id:d.id,...screenPoint(project(coordinatesFor(d.id)!),view,size.width,size.height)})).filter(p=>p.x>=0&&p.x<=size.width&&p.y>=0&&p.y<=size.height),[pool,view,size]);
+  // Keep the SVG node stable while the hover label changes; otherwise focus and
+  // the roving tab stop would be lost when React replaces innerHTML.
+  const outlinedMap=useMemo(()=><div className="country-outline" dangerouslySetInnerHTML={{__html:outline}}/>,[outline]);
   function codeAt(target:EventTarget|null){const shape=target instanceof Element?target.closest<SVGElement>('[data-code]'):null;return shape?Number(shape.dataset.code):null;}
   function choose(target:EventTarget|null){const code=codeAt(target);if(phase==='ready'&&code)onSelectPrefecture(code);}
   const geographic=phase!=='ready'||prefectureCode!==null;
@@ -51,7 +54,7 @@ export function DartTarget({phase,destination,pool,scopeName,area,prefectureCode
       const next=event.key==='Home'?0:event.key==='End'?shapes.length-1:(index+(['ArrowRight','ArrowDown'].includes(event.key)?1:-1)+shapes.length)%shapes.length;
       shapes.forEach((shape,i)=>shape.setAttribute('tabindex',i===next?'0':'-1'));shapes[next]?.focus({preventScroll:true});
     }}>
-      {outline&&!outlineFailed?<div className="country-outline" dangerouslySetInnerHTML={{__html:outline}}/>:<p className="map-state-message">{outlineFailed?'地図を表示できません。範囲を選んで投げられます。':'地図を準備しています…'}</p>}
+      {outline&&!outlineFailed?outlinedMap:<p className="map-state-message">{outlineFailed?'地図を表示できません。範囲を選んで投げられます。':'地図を準備しています…'}</p>}
     </div>:<div className="throw-map" role="group" aria-label={`${scopeName}の地理院地図。点は抽選対象の町の位置です。`}>
       <GsiTileLayer tiles={tiles}/>
       <svg className="map-town-points" viewBox={`0 0 ${size.width} ${size.height}`} aria-hidden="true">{markers.map(point=><circle key={point.id} cx={point.x} cy={point.y} r={pool.length>400?2.1:3}/>)}</svg>
