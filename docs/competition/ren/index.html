@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f8f8f4">
   <meta name="description" content="人口と観光資源を基準に選んだ47都道府県・1,432市区町村から、ダーツの一投で次の旅先を決める。">
   <title>きまぐれダーツ旅 | 地図に投げて、旅先を決める</title>
-  <link rel="stylesheet" href="./style.css?v=mapfirst2026">
-  <script src="./app.js?v=mapfirst2026" defer></script>
+  <link rel="stylesheet" href="./style.css?v=designloops20261008">
+  <script src="./app.js?v=designloops20261008" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -26,7 +26,7 @@
       <div class="hero-intro">
         <div class="hero-copy">
           <p class="hero-overline">47都道府県・1,432市区町村から</p>
-          <h1 id="page-title">地図に投げて、<br>旅先を決める。</h1>
+          <h1 id="page-title">地図に投げて、<br><span class="hero-serif">旅先を決める。</span></h1>
           <p class="hero-lead">範囲を選んで、ダーツを一本。<br>当たった町は地図と公的資料で確かめられます。</p>
         </div>
         <figure class="hero-photo">
@@ -57,7 +57,7 @@
           <div><h2>どこまで行ける？</h2></div>
             <p>全国、地域、都道府県から選べます。</p>
           </div>
-          <div class="region-list" id="region-list" role="group" aria-label="地域を選択"></div>
+          <label class="pref-select-label region-select-label" for="region-select">地域<span class="select-wrap"><select id="region-select" disabled><option>全国</option></select><span aria-hidden="true">⌄</span></span></label>
           <div class="selection-row">
             <label class="pref-select-label" for="prefecture-select">都道府県を選択
               <span class="select-wrap"><select id="prefecture-select"><option value="">すべての都道府県</option></select><span aria-hidden="true">⌄</span></span>

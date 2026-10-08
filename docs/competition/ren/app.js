@@ -13,7 +13,7 @@
 
   const $ = (selector) => document.querySelector(selector);
   const els = {
-    regionList: $('#region-list'),
+    regionList: $('#region-select'),
     prefectureSelect: $('#prefecture-select'),
     mapStage: $('#map-stage'),
     mapKeyText: $('#map-key-text'),
@@ -48,6 +48,7 @@
   let thrown = 0;
   let busy = false;
   let activeTarget = null;
+  let lastDestinationId = null;
 
   function prefecture() {
     return data.prefectures.find((item) => item.code === prefectureCode) || null;
@@ -192,14 +193,14 @@
     els.sourceNote.querySelector('.shoreline-credit').hidden = tileZoom >= 9;
   }
 
-  function drawTargetMap() {
+  function drawTargetMap(refreshTiles=true) {
     if (!activeTarget) return;
     const target = activeTarget;
     const {pool, city, place, canvas, impact, dart, label, view} = target;
     const {width, height} = els.mapStage.getBoundingClientRect();
     if (!width || !height) return;
     if (!view) target.view = fitView(pool, width, height);
-    drawTiles(target, width, height);
+    if (refreshTiles) drawTiles(target, width, height);
     const ratio = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(width * ratio);
     canvas.height = Math.round(height * ratio);
@@ -218,6 +219,7 @@
     context.fill();
     context.globalAlpha = 1;
     const winner = screenPoint(cityPoint(city), target.view, width, height);
+    if (target.landed) {
     context.beginPath();
     context.arc(winner.x, winner.y, radius + 4, 0, Math.PI * 2);
     context.fillStyle = '#fffdf7';
@@ -226,6 +228,7 @@
     context.arc(winner.x, winner.y, radius + 1.5, 0, Math.PI * 2);
     context.fillStyle = '#de6746';
     context.fill();
+    }
     const x = `${winner.x / width * 100}%`;
     const y = `${winner.y / height * 100}%`;
     for (const element of [impact, dart, label]) {
@@ -236,8 +239,9 @@
     label.classList.toggle('is-low', winner.y < height * .25);
     label.querySelector('strong').textContent = city.city;
     label.querySelector('small').textContent = place.name;
+    target.focusButton.disabled = busy;
     target.focusButton.textContent = target.detail ? '範囲全体に戻す ↗' : '着弾地点を拡大 ↗';
-    els.mapStage.setAttribute('aria-label', `${scopeName()}の地理院地図。${place.name}${city.city}に着弾`);
+    els.mapStage.setAttribute('aria-label', target.landed ? `${scopeName()}の地理院地図。${place.name}${city.city}に着弾` : `${scopeName()}の地理院地図。点は候補の町の位置です。`);
   }
 
   function focusWinner() {
@@ -284,7 +288,7 @@
     const dart = document.createElement('div');
     dart.className = 'throw-dart';
     dart.setAttribute('aria-hidden', 'true');
-    dart.innerHTML = '<span class="flight"></span><span class="shaft"></span><span class="point"></span>';
+    dart.innerHTML = '<svg class="ren-real-dart" viewBox="0 0 152 44"><defs><linearGradient id="dart-metal" x2="0" y2="1"><stop stop-color="#f8f6ec"/><stop offset=".5" stop-color="#717b80"/><stop offset="1" stop-color="#e8e4d7"/></linearGradient></defs><path d="M0 3 37 15 31 22 37 29 0 41 9 22Z" fill="#cc4d35"/><path d="M3 22h36M10 10l13 12-13 12" fill="none" stroke="#87372b" stroke-width="1.5"/><path d="M32 19h68v6H32Z" fill="url(#dart-metal)"/><path d="M82 17h45v10H82Z" fill="#d4ac64" stroke="#6b5b42"/><path d="M88 18v8m6-8v8m6-8v8m6-8v8m6-8v8m6-8v8" stroke="#71664d"/><path d="M127 20 152 22 127 24Z" fill="#4c5253"/></svg>';
     const impact = document.createElement('div');
     impact.className = 'impact';
     impact.setAttribute('aria-hidden', 'true');
@@ -295,35 +299,23 @@
     els.mapStage.classList.add('gsi-mode');
     els.mapStage.parentElement.classList.add('gsi-active');
     els.mapStage.replaceChildren(mapRoot, dart, impact, label);
-    activeTarget = {pool, city, place, mapRoot, tileLayer, canvas, mapStatus, focusButton, dart, impact, label, view:null, detail:false, tileSequence:0};
+    activeTarget = {pool, city, place, mapRoot, tileLayer, canvas, mapStatus, focusButton, dart, impact, label, view:null, detail:false, landed:false, tileSequence:0};
     drawTargetMap();
     els.mapKeyText.textContent = '緑の点＝候補の市区町村';
     els.coordinateBottom.textContent = `${pool.length.toLocaleString('ja-JP')}市区町村`;
-    els.mapNote.textContent = '地理院地図に候補の町を表示。赤い点へダーツが着弾します。';
+    els.mapNote.textContent = '地理院地図に候補の町を表示しています。';
     return activeTarget;
   }
 
   function setRegionButtons() {
-    els.regionList.replaceChildren();
-    ['全国', ...data.regions].forEach((name) => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'region-button';
-      button.textContent = name;
-      button.setAttribute('aria-pressed', name === region ? 'true' : 'false');
-      button.addEventListener('click', () => {
-        if (busy) return;
-        region = name;
-        prefectureCode = null;
-        updateSelection();
-      });
-      els.regionList.append(button);
-    });
+    els.regionList.replaceChildren(...['全国', ...data.regions].map(name=>new Option(name,name)));
+    els.regionList.value = region;
+    els.regionList.disabled = busy;
   }
 
   function setPrefectureOptions() {
     els.prefectureSelect.replaceChildren();
-    const allOption = new Option(region === '全国' ? 'すべての都道府県' : `${region}のすべて`, '');
+    const allOption = new Option('指定しない', '');
     els.prefectureSelect.add(allOption);
     data.prefectures.filter((item) => region === '全国' || item.region === region).forEach((item) => {
       els.prefectureSelect.add(new Option(item.name, String(item.code)));
@@ -377,7 +369,7 @@
       els.mapStage.replaceChildren(svg);
       const dart = document.createElement('div');
       dart.className = 'throw-dart';
-      dart.innerHTML = '<span class="flight"></span><span class="shaft"></span><span class="point"></span>';
+      dart.innerHTML = '<svg class="ren-real-dart" viewBox="0 0 152 44"><defs><linearGradient id="dart-metal" x2="0" y2="1"><stop stop-color="#f8f6ec"/><stop offset=".5" stop-color="#717b80"/><stop offset="1" stop-color="#e8e4d7"/></linearGradient></defs><path d="M0 3 37 15 31 22 37 29 0 41 9 22Z" fill="#cc4d35"/><path d="M3 22h36M10 10l13 12-13 12" fill="none" stroke="#87372b" stroke-width="1.5"/><path d="M32 19h68v6H32Z" fill="url(#dart-metal)"/><path d="M82 17h45v10H82Z" fill="#d4ac64" stroke="#6b5b42"/><path d="M88 18v8m6-8v8m6-8v8m6-8v8m6-8v8m6-8v8" stroke="#71664d"/><path d="M127 20 152 22 127 24Z" fill="#4c5253"/></svg>';
       const impact = document.createElement('div');
       impact.className = 'impact';
       els.mapStage.append(dart, impact);
@@ -409,24 +401,30 @@
     if (!data || !coordinates || busy) return;
     const pool = eligible();
     if (!pool.length) return;
-    const city = pool[uniformIndex(pool.length)];
+    const withoutPrevious = pool.filter(item=>item.id!==lastDestinationId);
+    const drawPool = withoutPrevious.length ? withoutPrevious : pool;
+    const city = drawPool[uniformIndex(drawPool.length)];
     const place = data.prefectures.find((item) => item.code === city.code);
     busy = true;
     els.throwButton.disabled = true;
     els.prefectureSelect.disabled = true;
+    els.regionList.disabled = true;
     els.throwButton.querySelector('.throw-copy strong').textContent = '着弾を待っています…';
     els.result.hidden = true;
     const {dart, impact, label} = prepareTargetMap(pool, city, place);
     els.mapStage.classList.add('throwing');
     void dart.offsetWidth;
     dart.classList.add('flying');
-    const delay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 20 : 850;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const delay = reduced ? 20 : 1450;
     setTimeout(() => {
+      if (activeTarget) {activeTarget.landed=true;drawTargetMap(false);}
       impact.classList.add('hit');
       label.classList.add('shown');
     }, delay);
     setTimeout(() => {
       thrown += 1;
+      lastDestinationId = city.id;
       els.resultPrefecture.textContent = place.name;
       els.resultCity.textContent = city.city;
       els.resultCaption.textContent = `${scopeName()}の${pool.length.toLocaleString('ja-JP')}市区町村から選ばれました。`;
@@ -445,10 +443,12 @@
       busy = false;
       els.throwButton.disabled = false;
       els.prefectureSelect.disabled = false;
+      els.regionList.disabled = false;
+      if (activeTarget) activeTarget.focusButton.disabled=false;
       els.throwButton.querySelector('.throw-copy strong').textContent = 'ダーツを投げる';
       els.mapStage.classList.remove('throwing');
       els.result.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
-    }, delay + 1250);
+    }, delay + (reduced ? 0 : 1300));
   }
 
   window.addEventListener('resize', () => {
@@ -461,6 +461,12 @@
     }
   });
 
+  els.regionList.addEventListener('change', () => {
+    if (busy) return;
+    region=els.regionList.value;
+    prefectureCode=null;
+    updateSelection();
+  });
   els.prefectureSelect.addEventListener('change', () => {
     if (busy) return;
     prefectureCode = els.prefectureSelect.value ? Number(els.prefectureSelect.value) : null;

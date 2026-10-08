@@ -17,6 +17,22 @@ const destinationsUri = uri(compile(read('src/lib/destinations.ts')
  .replace("import selection from '../../public/competition/data/selection.json';",'const selection = '+JSON.stringify(selection)+';')));
 const {destinations,prefectures,regions,destinationPool,pickDestination,findDestination,findLegacyDestination} = await import(destinationsUri);
 const {parseTravelState,resolveRoute,loadTravelState,travelStorageKey} = await import(uri(compile(read('src/lib/travel-state.ts')).replaceAll("'./destinations'",JSON.stringify(destinationsUri))));
+const {fitView,project,screenPoint,tilesFor} = await import(uri(compile(read('src/lib/geo-map.ts').replace("import data from '../../public/competition/ren/coordinates.json';",'const data = '+JSON.stringify({points:coordinates})+';'))));
+assert.deepEqual(project([0,0]),{x:128,y:128},'Mercator origin');
+const scopes=[destinationPool('全国'),...regions.map(area=>destinationPool(area)),...prefectures.map(p=>destinationPool(p.region,p.code))];
+for (const [width,height] of [[346,355],[390,355],[832,575]]) for (const pool of scopes) {
+ const view=fitView(pool,width,height),tiles=tilesFor(view,width,height);
+ assert.ok(tiles.length && tiles.length<180,'Bounded tile request count');
+ for (const place of pool) {
+  const point=project(coordinates[place.id]),screen=screenPoint(point,view,width,height);
+  assert.ok(screen.x>=50 && screen.x<=width-50 && screen.y>=70 && screen.y<=height-70,`${place.city} remains visible with room for a marker`);
+  const tile=tiles.find(t=>t.x===Math.floor(point.x*2**t.zoom/256) && t.y===Math.floor(point.y*2**t.zoom/256));
+  assert.ok(tile,`${place.city} has a covering tile`);
+  const tileScale=tile.size/256;
+  assert.ok(Math.abs(tile.left+(point.x*2**tile.zoom-tile.x*256)*tileScale-screen.x)<.00001,'Dart and tile use the same horizontal coordinate');
+  assert.ok(Math.abs(tile.top+(point.y*2**tile.zoom-tile.y*256)*tileScale-screen.y)<.00001,'Dart and tile use the same vertical coordinate');
+ }
+}
 
 assert.equal(destinations.length,1432);
 assert.equal(Object.keys(facts.places).length,destinations.length);
@@ -79,4 +95,4 @@ globalThis.localStorage = {getItem:key=>storage.get(key)??null};
 assert.equal(loadTravelState().history[0].destinationId,'13205');
 storage.set(travelStorageKey,JSON.stringify(samePrefecture));
 assert.equal(loadTravelState().lastResult.destinationId,'13101','New state takes precedence over legacy state');
-console.log('1432 reachable municipalities with facts and coordinates, all 47 scopes, repeat avoidance, independent saves and legacy migration passed.');
+console.log('1432 reachable municipalities, all 47 scopes, dart/tile alignment at three sizes, repeat avoidance, independent saves and legacy migration passed.');
